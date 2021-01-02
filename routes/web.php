@@ -20,3 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/post', 'HomeController@push')->name('push');
+
+Route::get('/post/todo_daily','PostController@index');
+
+Route::post('/post/send','PostController@send');
+
+Route::get('/post/target','TargetController@index');
+
+Route::get('/post/bookmark','BookmarkController@index');
