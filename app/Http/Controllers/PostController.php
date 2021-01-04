@@ -43,30 +43,24 @@ class PostController extends Controller
     public function showTimeline(){
         $posts=Post::all();
 
-        return view('post.timeline',['posts' => $posts]);
+        return view('post.timeline',['posts' => $posts],);
     }
+
 
     //timelineのコメント画面を表示
     public function showComment($id){
         //timelineのpostから詳細投稿を取得
         $post=Post::find($id);
+
+        //投稿者を判別するためのリレーション処理
+        $user_name = Post::find($id)->user->name;
+
         //コメントを全て取ってくる
         $comments=Comment::all();
 
-        return view('post.comment',['post' => $post],['comments' => $comments]);
+        //withメソッドで値をviewへ返す
+        return view('post.comment',['post' => $post],['comments' => $comments])->with('user_name',$user_name);
     }
-
-    ////timelineのコメント画面を表示
-    //public function showComment($id){
-    //    //timelineのpostから詳細投稿を取得
-    //    $post=Post::find($id);
-    //    $user_name=Post::find(1)->user->name;
-//
-    //    //コメントを全て取ってくる
-    //    $comments=Comment::all();
-//
-    //    return view('post.comment',$id,['post' => $post],$user_name,['comments' => $comments]);
-    //}
 
 
     //timelineのコメントを投稿
@@ -79,4 +73,7 @@ class PostController extends Controller
 
         return redirect(route('showComment'));
     }
+
+
+    
 }
