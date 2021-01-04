@@ -41,8 +41,20 @@ class HomeController extends Controller
     }
 
     //プロフィール画面を表示
-    public function showProfile()
+    public function showMyProfile()
     {
-        return view('profile');
+        return view('myprofile');
+    }
+
+    //ユーザープロフィール画面を表示
+    public function showUserProfile($id)
+    {
+        //投稿者を判別するためのリレーション処理
+        $user = Post::find($id)->user;
+        
+        $user_id = Post::find($id)->user->id;
+        $posts = Post::where('user_id', $user_id)->get();
+
+        return view('userprofile',['user' => $user],['posts' => $posts]);
     }
 }

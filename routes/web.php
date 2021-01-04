@@ -21,8 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//プロフィール画面へ遷移
-Route::get('/home/profile', 'HomeController@showProfile')->name('profile');
+//マイプロフィール画面へ遷移
+Route::get('/home/myprofile', 'HomeController@showMyProfile')->name('profile');
 
 
 Route::get('/post', 'HomeController@push')->name('push');
@@ -48,3 +48,6 @@ Route::get('/post/comment/{id}','PostController@showComment')->name('showComment
 
 //timelineのコメント投稿
 Route::post('/post/comment/{id}','PostController@postComment');
+
+//ユーザープロフィール画面へ遷移
+Route::get('/userprofile/{id}', 'HomeController@showUserProfile')->name('userprofile');

@@ -9,6 +9,7 @@
         @if( $post -> diary  === NULL)
             <div class="row justify-content-center">
               <p class="">todo:{{ $post -> todo }}</p>
+              <p class=""><a href="/userprofile/{{ $post -> id }}">投稿者:　{{ $user_name }}</a></p>
             </div>
         @else
             <div class="row justify-content-center">
