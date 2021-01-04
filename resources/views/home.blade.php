@@ -15,6 +15,7 @@
                         </div>
                     @endif
                     {{ __('You are logged in!') }}
+                    <p><a href="home/profile">マイページへ</a<></p>
                 </div>
             </div>
         </div>
@@ -35,6 +36,12 @@
     <a href="{{action('BookmarkController@index')}}">
         <button class="btn btn-danger" type="submit">bookmark</button>
     </a>
+</div>
+
+<div class="row justify-content-center">
+  <a href="/post/timeline">
+      <button class="btn btn-danger" type="submit">みんなの投稿へ</button>
+  </a>
 </div>
 @endsection
 

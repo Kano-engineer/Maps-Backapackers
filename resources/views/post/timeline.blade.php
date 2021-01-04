@@ -3,6 +3,10 @@
 @include('common.aside')
 
 @section('content')
+    <a href="{{action('HomeController@index')}}">
+        <button class="btn btn-danger" type="submit">jikoken</button>
+    </a>
+
  <div class="row justify-content-center">
    <p>みんなの投稿</p>
  </div>

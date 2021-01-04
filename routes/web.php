@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//プロフィール画面へ遷移
+Route::get('/home/profile', 'HomeController@showProfile')->name('profile');
+
+
 Route::get('/post', 'HomeController@push')->name('push');
 
 //todoとdiary作成画面へ遷移
@@ -37,7 +41,7 @@ Route::get('/post/target','TargetController@index');
 Route::get('/post/bookmark','BookmarkController@index');
 
 //timelineを表示
-Route::get('/post/timeline','PostController@showTimeline');
+Route::get('/post/timeline','PostController@showTimeline')->name('showTimeline');
 
 //timelineのコメントを表示
 Route::get('/post/comment/{id}','PostController@showComment')->name('showComment');
