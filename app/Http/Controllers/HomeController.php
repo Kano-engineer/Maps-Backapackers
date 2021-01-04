@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,4 +40,9 @@ class HomeController extends Controller
         return view('push');
     }
 
+    //プロフィール画面を表示
+    public function showProfile()
+    {
+        return view('profile');
+    }
 }

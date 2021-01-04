@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class PostController extends Controller
         return view('post.send');
     }
 
-    //todo or diary 作成完了画面を表示
+    //タイムライン画面を表示
     public function showTimeline(){
         $posts=Post::all();
 
@@ -49,12 +50,23 @@ class PostController extends Controller
     public function showComment($id){
         //timelineのpostから詳細投稿を取得
         $post=Post::find($id);
-
         //コメントを全て取ってくる
         $comments=Comment::all();
 
         return view('post.comment',['post' => $post],['comments' => $comments]);
     }
+
+    ////timelineのコメント画面を表示
+    //public function showComment($id){
+    //    //timelineのpostから詳細投稿を取得
+    //    $post=Post::find($id);
+    //    $user_name=Post::find(1)->user->name;
+//
+    //    //コメントを全て取ってくる
+    //    $comments=Comment::all();
+//
+    //    return view('post.comment',$id,['post' => $post],$user_name,['comments' => $comments]);
+    //}
 
 
     //timelineのコメントを投稿
