@@ -28,10 +28,12 @@ Route::get('/home/myprofile', 'HomeController@showMyProfile')->name('profile');
 Route::get('/post', 'HomeController@push')->name('push');
 
 //todoとdiary作成画面へ遷移
+
 Route::get('/post/todo_diary','PostController@index');
 
 //todoとdiary作成して、画面遷移
 Route::post('/post/todo_diary','PostController@post');
+
 
 //todoとdiary作成完了画面へ遷移
 Route::get('/post/send','PostController@send');
