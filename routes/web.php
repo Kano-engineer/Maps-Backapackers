@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //マイプロフィール画面へ遷移
 Route::get('/home/myprofile', 'HomeController@showMyProfile')->name('profile');
 
+//マイプロフィール画面から画像をアップする
+Route::post('/home/myprofile', 'HomeController@storeMyImg')->name('storeImg');
+
 
 Route::get('/post', 'HomeController@push')->name('push');
 

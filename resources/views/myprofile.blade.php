@@ -13,6 +13,15 @@
                 </div>
                 <div class="card-body">
                 　<div style="margin-top: 30px;">
+                   <!-- プロフィール画像を表示 -->
+                    <img src="{{ asset('storage/profiles/'.Auth::user()->my_pic) }}" alt="プロフィール画像">
+
+                <form method="post" action="">
+                    {{ csrf_field() }}
+                    <input type="file" name="myPic" class="input-file">
+                    <p><button class="btn btn-danger" type="submit">画像を送信</button></p>
+                </form>
+
    　　　　　　　　　　<table class="table table-striped">  
    　　　　　　　　　　　<tr>
    　　　　　　　　　　　　<th>氏名</th>

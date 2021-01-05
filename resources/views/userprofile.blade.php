@@ -13,6 +13,8 @@
                 </div>
                 <div class="card-body">
                 　<div style="margin-top: 30px;">
+               <!-- プロフィール画像を表示 -->
+                <img src="{{ asset('storage/profiles/'.$user -> my_pic) }}" alt="プロフィール画像">
    　　　　　　　　　　<table class="table table-striped">  
    　　　　　　　　　　　<tr>
    　　　　　　　　　　　　<th>氏名</th>
