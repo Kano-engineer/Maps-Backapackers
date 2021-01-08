@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFoldersTable extends Migration
+class AddMyPicToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateFoldersTable extends Migration
      */
     public function up()
     {
-        Schema::create('folders', function (Blueprint $table) {
-            $table->id();
-            $table->string('title',30);
-            $table->id('user_id');
-        });
+        Schema::table('users', function (Blueprint $table) {
+
+            $table->string('my_pic')->default('noimage.png');
+           });
     }
 
     /**
@@ -27,6 +26,8 @@ class CreateFoldersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('folders');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('my_pic');
+        });
     }
 }
