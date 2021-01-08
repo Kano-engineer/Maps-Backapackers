@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class HomeController extends Controller
 {
@@ -48,27 +52,55 @@ class HomeController extends Controller
 
 
     //プロフィール画面から画像をアップ
-    public function storeMyImg(Request $request)
+    public function storeMyImg(Request $request, User $user)
     {
-        //画像ファイルに名前をつけて指定ディレクトリに保存、変数に代入
-        //postで受け取ったデータ（$request）の中にある myPic(ネーム属性)を、第二引数”ユーザーid＋日付.jpg”の名前で第一引数のディレクトリに保存
-        $filepath = $request->myPic->storeAs('public/profile_images', Auth::id() . date("YmdHis"). '.jpg');
-        
-        //ユーザーIDからユーザー情報を取得、変数に代入
-        $user = User::find(auth()->id());
+        $uploadfile = $request->file('my_pic');
+      if(!empty($uploadfile)){
+        $my_picName = $request->file('my_pic')->hashName();
+        //storeAsでpublic/profileImgディレクトリにランダム名で画像を格納
+        $request->file('my_pic')->storeAs('public/profileImg',$my_picName);
+      }
+        //Userテーブルのログインアカウントレコードのmy_picカラムの値を$my_picNameに変更する
+        $item = \App\User::where('id', Auth::user()->id)->first();
+        $item->my_pic= $my_picName;
+        $item->save();
+        return redirect()->route('profile');
 
-        //ユーザー情報からmy_picカラムのデータをピックアップし、
-        //$filepathのファイル名の部分のみをmy_picカラムに代入
-        $user->my_pic = basename($filepath);
 
-        //保存
-        $user->save();
+     //これでもOK
+     //$uploadfile = $request->file('my_pic');
+     // if(!empty($uploadfile)){
+     //   $my_picName = $request->file('my_pic')->hashName();
+     //   $request->file('my_pic')->storeAs('public/profileImg',$my_picName);
+     //   $param = [
+     //       'my_pic'=>$my_picName,
+     //   ];
+     // }
+     //   User::where('id',$request->id)->update($param);
+//
+     //   return redirect()->route('profile');
+//
 
-        //ルート名 showMypage へ移動。フラッシュメッセージのデータも一緒に。
-        return redirect()->route('showMyProfile')->with('success', '新しいプロフィールを登録しました');
+        //これでもOK
+        //$upload_image = $request->file('my_pic');
+//
+        //if($upload_image) {
+		//	//アップロードされた画像を保存する
+        //    $path = $upload_image->store('public/profileImg');
+        //    //$path_name=Auth::id();
+        //    //$path = $upload_image->storeAs('public/profileImg',Auth::id() . '.jpg');
+        //    
+        //        //User::where('id', 'Auth::user()->my_pic')->update(['my_pic' => $path]);
+        //        //$item = User::where('id', $user->my_pic)->first();
+        //        $item = User::where('id', Auth::user()->my_pic)->first();
+        //        $item->my_pic = $path;
+        //        $item->save();
+		//	
+		//}
+        //return redirect()->route('profile');
 
-        //return view('myprofile');
     }
+
 
 
     //ユーザープロフィール画面を表示
