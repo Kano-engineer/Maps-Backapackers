@@ -21,5 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+// ゲストログイン
 Route::get('/login/guest', 'Auth\LoginController@guestLogin');
+
+// 画像アップロード
+Route::post('/upload', 'HomeController@upload');

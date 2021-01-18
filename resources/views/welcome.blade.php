@@ -6,12 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-        
-        <!-- ゲストログイン -->
-        <button type="submit" class="btn btn-secondary guest-btn">
-            <a href="/login/guest">Guest Login</a>
-        </button>
+        <title>MAPS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -77,8 +72,9 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
+                        <!-- ゲストログイン -->
+                        <a href="/login/guest">Guest Login</a>
                         <a href="{{ route('login') }}">Login</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
@@ -88,7 +84,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    MAPS
                 </div>
 
                 <div class="links">
