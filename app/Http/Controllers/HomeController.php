@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+//下記を追加する
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+//下記を追加する
+use App\Photo;
 
 class HomeController extends Controller
 {
@@ -25,4 +29,34 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function upload(Request $request)
+    {
+        $this->validate($request, [
+            'file' => [
+                // 必須
+                'required',
+                // アップロードされたファイルであること
+                'file',
+                // 画像ファイルであること
+                'image',
+                // MIMEタイプを指定
+                'mimes:jpeg,png',
+            ]
+        ]);
+
+        if ($request->file('file')->isValid([])) {
+            $path = $request->file->store('public');
+            return view('home')->with('filename', basename($path));
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors();
+        }
+    }
+
+
+
+
 }
