@@ -2,39 +2,16 @@
 
 namespace App\Http\Controllers;
 
-//下記を追加する
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-//下記を追加する
-use App\Photo;
 use App\Image;
-use App\Pin;
 
-class HomeController extends Controller
+class ImageController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    //
+    public function input()
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        // ページネーション？
-        // $pins = Pin::orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
-        // $pins = Pin::paginate(1);
-        $pins = Pin::all();
-        
-        return view('home', [ 'pins' => $pins]);
+        return view('image.input');
     }
 
     public function upload(Request $request)
@@ -51,12 +28,19 @@ class HomeController extends Controller
                 'mimes:jpeg,png',
             ]
         ]);
-
         
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
 
-            return view('home')->with('filename', basename($path));
+            $file_name = basename($path);
+            $user_id = Auth::id();
+            $new_image_data = new Image();
+            $new_image_data->user_id = $user_id;
+            $new_image_data->file_name = $file_name;
+
+            $new_image_data->save();
+
+            return redirect('/output');
         } else {
             return redirect()
                 ->back()
@@ -65,6 +49,10 @@ class HomeController extends Controller
         }
     }
 
-
-
+    public function output() {
+        $user_id = Auth::id();
+        $user_images = Image::whereUser_id($user_id)->get();
+        return view('image.output', ['user_images' => $user_images]);
+    }
+    //上記までを追記
 }

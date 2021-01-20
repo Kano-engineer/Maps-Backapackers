@@ -21,16 +21,19 @@
 </div>
 
 <div>
-    <form method="post" action="">
+    <form action="/post" method="post">
         {{ csrf_field() }}
-        <h3>新しいピンを作成</h3>
-            <ul>
-                <li>ex:景色が綺麗</li>
-            </ul>
-                <textarea name="todo" placeholder="text"></textarea>
-                <input type="hidden" name="user_id"  value="{{Auth::user()->id}}">
-                <p><button class="" type="submit">PIN</button></p>
+        <!-- <h3>新しいピンを作成</h3> -->
+            <textarea name="text" placeholder="text"></textarea>
+            <button type="submit">ピンを作成</button>
     </form>
+</div>
+
+<div class="container">
+  @foreach ($pins as $pins)
+  <p>{{ $pins->text }}</p>
+  <p><a href="post/{{$pins->id}}">PIN</a></p>
+  @endforeach
 </div>
 
 <!-- エラーメッセージ。なければ表示しない -->
@@ -41,22 +44,14 @@
     @endforeach
 </ul>
 @endif
-
 <!-- 画像アップロード -->
-<form action="{{ url('upload') }}" method="POST" enctype="multipart/form-data">
-    <!-- アップロードした画像。なければ表示しない -->
-    @isset ($filename)
-    <div>
-        <img src="{{ asset('storage/' . $filename) }}">
-    </div>
-    @endisset
-
-    <label for="photo">Photo</label>
+<a href="/output">プロフィール</a>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    @csrf
+    <label for="photo">画像アップロード:</label>
     <input type="file" class="form-control" name="file">
     <br>
-    <hr>
-    {{ csrf_field() }}
-    <button class="btn btn-success"> Upload </button>
+    <input type="submit">
 </form>
 
 @endsection
