@@ -13,8 +13,7 @@ class PinController extends Controller
     //
     public function post(Request $request)
     {
-        $this->validate(
-            $request,
+        $this->validate($request,
             [
                 'text' => 'required|string|max:30',
             ],
@@ -25,10 +24,11 @@ class PinController extends Controller
             ]
         );
 
-        Pin::create([
+        Pin::create(
+            [
             'text' => $request->text,
             'user_id' => $user_id = Auth::id(),
-        ]);
+            ]);
         return redirect()->back();
     }
 
@@ -37,5 +37,12 @@ class PinController extends Controller
         $pin = Pin::find($id);
         $photos = Photo::where('Pin_id',$id)->get();
         return view('pin',['pin' => $pin,'photos' => $photos]);
+    }
+
+    public function destroy($id) {
+            
+        $pin=Pin::where('id',$id);
+        $pin->delete();
+        return redirect('/home');
     }
 }
