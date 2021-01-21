@@ -33,7 +33,6 @@ class HomeController extends Controller
         // $pins = Pin::orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
         // $pins = Pin::paginate(1);
         $pins = Pin::all();
-        
         return view('home', [ 'pins' => $pins]);
     }
 
@@ -64,7 +63,5 @@ class HomeController extends Controller
                 ->withErrors();
         }
     }
-
-
 
 }

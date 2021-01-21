@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -18,15 +19,14 @@
             </div>
         </div>
     </div>
-</div>
-
-
+</div> -->
 
 <!-- エラーメッセージ。なければ表示しない -->
 @if ($errors->any())
 <ul>
     @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
+    <!-- <li>{{ $error }}</li> -->
+    <font color =red>*{{ $error }}</font>
     @endforeach
 </ul>
 @endif
@@ -42,10 +42,9 @@
 
 <div class="container">
   @foreach ($pins as $pins)
-  <p>{{ $pins->text }}</p>
+  <p>・{{ $pins->text }}</p>
   <p><a href="post/{{$pins->id}}">PIN</a></p>
   @endforeach
 </div>
-
 
 @endsection
