@@ -28,7 +28,6 @@ class ImageController extends Controller
                 'mimes:jpeg,png',
             ]
         ]);
-        
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
 
@@ -52,7 +51,7 @@ class ImageController extends Controller
     public function output() {
         $user_id = Auth::id();
         $user_images = Image::whereUser_id($user_id)->get();
-        return view('image.output', ['user_images' => $user_images]);
+        return view('profile', ['user_images' => $user_images]);
     }
     //上記までを追記
 }

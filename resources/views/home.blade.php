@@ -20,6 +20,17 @@
     </div>
 </div>
 
+
+
+<!-- エラーメッセージ。なければ表示しない -->
+@if ($errors->any())
+<ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
 <div>
     <form action="/post" method="post">
         {{ csrf_field() }}
@@ -36,22 +47,5 @@
   @endforeach
 </div>
 
-<!-- エラーメッセージ。なければ表示しない -->
-@if ($errors->any())
-<ul>
-    @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-</ul>
-@endif
-<!-- 画像アップロード -->
-<a href="/output">プロフィール</a>
-<form action="/upload" method="POST" enctype="multipart/form-data">
-    @csrf
-    <label for="photo">画像アップロード:</label>
-    <input type="file" class="form-control" name="file">
-    <br>
-    <input type="submit">
-</form>
 
 @endsection
