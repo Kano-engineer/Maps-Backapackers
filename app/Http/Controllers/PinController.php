@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pin;
 use App\Image;
+use App\Photo;
 
 class PinController extends Controller
 {
@@ -34,7 +35,7 @@ class PinController extends Controller
     public function show($id)
     {
         $pin = Pin::find($id);
-        $images = Image::where('user_id',$id)->get();
-        return view('pin',['pin' => $pin,'images' => $images]);
+        $photos = Photo::where('Pin_id',$id)->get();
+        return view('pin',['pin' => $pin,'photos' => $photos]);
     }
 }

@@ -40,4 +40,4 @@ Route::post('/post','PinController@post');
 Route::get('post/{id}','PinController@show',);
 
 //ピン詳細ページで写真をDB保存
-Route::get('post/photo/{id}','PhotoController@store',);
+Route::post('/store/{id}','PhotoController@upload',);

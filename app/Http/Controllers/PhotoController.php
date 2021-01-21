@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+
+use App\Photo;
 
 class PhotoController extends Controller
 {
     //
     public function upload(Request $request,$id)
     {
+
+        // dd($id);
+
         $this->validate($request, [
             'file' => [
                 // 必須
@@ -26,19 +32,20 @@ class PhotoController extends Controller
             $path = $request->file->store('public');
 
             $file_name = basename($path);
-            $user_id = Auth::id();
-            $new_image_data = new Image();
-            $new_image_data->user_id = $user_id;
-            $new_image_data->file_name = $file_name;
+            $pin_id = $id;
+            $new_image_data = new Photo();
+            $new_image_data->pin_id = $pin_id;
+            $new_image_data->photo = $file_name;
 
             $new_image_data->save();
 
-            return redirect('/output');
-        } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors();
+            return redirect()->back();
+        //     return redirect('/output');
+        // } else {
+        //     return redirect()
+        //         ->back()
+        //         ->withInput()
+        //         ->withErrors();
         }
     }
 
