@@ -12,11 +12,9 @@ class PhotoController extends Controller
     //
     public function upload(Request $request,$id)
     {
-
-        // dd($id);
-
-        $this->validate($request, [
-            'file' => [
+        $this->validate($request, 
+            [
+                'file' => 
                 // 必須
                 'required',
                 // アップロードされたファイルであること
@@ -25,8 +23,12 @@ class PhotoController extends Controller
                 'image',
                 // MIMEタイプを指定
                 'mimes:jpeg,png',
+            ],
+            [
+                'file.required' => '写真は必須です。',
+                
             ]
-        ]);
+        );
         
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
@@ -40,20 +42,12 @@ class PhotoController extends Controller
             $new_image_data->save();
 
             return redirect()->back();
-        //     return redirect('/output');
-        // } else {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors();
         }
     }
 
-    public function output() {
-        $user_id = Auth::id();
-        $user_images = Image::whereUser_id($user_id)->get();
-        return view('image.output', ['user_images' => $user_images]);
+        public function destroy($id) {
+            
+            $photo=Photo::where('id',$id)->delete();
+            return redirect()->back();
     }
-    //上記までを追記
-
 }
