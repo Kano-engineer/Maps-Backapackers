@@ -40,14 +40,29 @@
         </form>
     @endforeach
 
-<script>
-    function delete_alert(e){
-        if(!window.confirm('本当に削除しますか？')){
-        //   window.alert('キャンセルされました'); 
-          return false;
-        }
-      document.deleteform.submit();
-        };
-</script>
+<script src="{{ asset('/js/alert.js') }}"></script>
+
+<!-- <div id="map" style="height:500px;width:1000" ></div>
+<script src="{{ asset('/js/result.js') }}"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer>
+</script> -->
+
+
+<p>住所や駅名、目印などで検索できます。</p>
+<form onsubmit="return false;">
+  <input type="text" value="{{optional($pin) -> text}}" id="address">
+  <button type="button" value="検索" id="map_button">検索</button>
+</form>
+<!-- 地図を表示させる要素 -->
+<div class="map_box01"><div id="map-canvas" style="width: 500px;height: 350px;"></div></div>
+ 
+<p>マーカーのある位置の<br>
+緯度 <input type="text" id="lat" value=""><br>
+経度 <input type="text" id="lng" value=""><br>
+地図上をクリックするとマーカーを移動できます。</p>
+ 
+<!-- APIを取得 -->
+<script src="{{ asset('/js/getAddress.js') }}"></script> 
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
 
 @endsection
