@@ -11,7 +11,7 @@
 @endif
 <a href="/home">HOME</a>
 <!-- 画像アップロード -->
-<form action="/" method="POST" enctype="multipart/form-data">
+<form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="photo">画像アップロード:</label>
     <input type="file" class="form-control" name="file">
@@ -20,8 +20,8 @@
 </form>
 
 <p>{{optional($pin) -> text}}</p>
-@foreach ($images as $image)
-        <img src="{{ asset('storage/' . $image['file_name']) }}">
+@foreach ($photos as $photo)
+        <img src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
     @endforeach
 
