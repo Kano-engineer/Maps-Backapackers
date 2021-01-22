@@ -25,8 +25,8 @@
 @if ($errors->any())
 <ul>
     @foreach($errors->all() as $error)
-    <!-- <li>{{ $error }}</li> -->
-    <font color =red>*{{ $error }}</font>
+        <!-- <li>{{ $error }}</li> -->
+        <font color =red>*{{ $error }}</font>
     @endforeach
 </ul>
 @endif
@@ -34,17 +34,18 @@
 <div>
     <form action="/post" method="post">
         {{ csrf_field() }}
-        <!-- <h3>新しいピンを作成</h3> -->
-            <textarea name="text" placeholder="text"></textarea>
-            <button type="submit">ピンを作成</button>
+        <input type="search" name="text" placeholder="地名/住所">
+        <button type="submit">ピンを作成</button>
     </form>
 </div>
 
+<br>
+
 <div class="container">
-  @foreach ($pins as $pins)
-  <p>・{{ $pins->text }}</p>
-  <p><a href="post/{{$pins->id}}">PIN</a></p>
-  @endforeach
+    @foreach ($pins as $pins)
+        <p>▼{{ $pins->text }}</p>
+        <p><a style="color:blue;" href="post/{{$pins->id}}">PIN</a></p>
+    @endforeach
 </div>
 
 @endsection
