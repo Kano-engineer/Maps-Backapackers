@@ -45,4 +45,25 @@ class PinController extends Controller
         $pin->delete();
         return redirect('/home');
     }
+
+    public function edit($id)
+    {
+        $pin = Pin::find($id);
+        return view('edit', compact('pin'));
+    }
+
+    public function update(Request $request)
+    {
+
+        // dd($request);
+
+        $article = Pin::find($request->id);
+        $form = $request->all();
+        unset($form['_token']);
+        $article->fill($form)->save();
+
+        $pin = Pin::find($request->id);
+        return view('pin',['pin' => $pin]);
+    }
+
 }
