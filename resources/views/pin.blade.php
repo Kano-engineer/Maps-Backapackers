@@ -1,7 +1,8 @@
 @extends('layouts.app')
-<title>PIN</title>
 
 @section('content')
+<title>PIN </title>
+
 <h1 style="color:blue;">PIN</h1>
 
 <div>
@@ -13,34 +14,41 @@
 @endif
 </div>
 
-<!-- 画像アップロード -->
-<form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <input type="file" class="form-control" name="file">
-    <br>
-      <input type="submit" value="画像アップロード">
-</form>
-
-<h1>・{{optional($pin) -> text}}</h1>
-
-<a style="color:blue;" href="/edit/{{$pin->id}}">編集</a>
-
-        <!-- 写真削除 idで判別-->
-        <form action="{{ action('PinController@destroy', $pin->id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="ピンを削除" onClick="delete_alert(event);return false;">
+@if(Auth::user()->id === $pin->user_id)
+        <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" class="form-control" name="file">
+                <br>
+                <input type="submit" value="画像アップロード">
         </form>
+@endif
 
+<h1>・{{optional($pin) -> text}} by <a style="color:blue;" href="profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h1>
+
+@if(Auth::user()->id === $pin->user_id)
+<a style="color:blue;" href="/edit/{{$pin->id}}">地名/住所を編集(地図を再検索)</a>
+@endif
+
+@if(Auth::user()->id === $pin->user_id)
+        <form action="{{ action('PinController@destroy', $pin->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="ピンを削除" onClick="delete_alert(event);return false;">
+        </form>
+@endif
+
+<br>
 @foreach ($photos as $photo)
         <img style="" src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
         <!-- 写真削除 idで判別-->
+        @if(Auth::user()->id === $pin->user_id)
         <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="写真を削除" onClick="delete_alert(event);return false;">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="写真を削除" onClick="delete_alert(event);return false;">
         </form>
+        @endif
         <p>コメント・チャット</p>
 @endforeach
 

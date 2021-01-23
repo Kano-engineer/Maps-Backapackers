@@ -24,15 +24,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 // ゲストログイン
 Route::get('/login/guest', 'Auth\LoginController@guestLogin');
 
-//下記を追記
-//画像をアップロードするページ
-Route::get('/upload', 'ProfileController@input');
+//プロフィール表示
+Route::get('/profile', 'ProfileController@index');
 //画像を保存したり画像名をDBに格納する部分
-Route::post('/upload', 'ProfileController@upload');
-//保存した画像を表示するページ
-Route::get('/output', 'ProfileController@output');
-//
+Route::post('profile/upload', 'ProfileController@upload');
+//プロフィール画像削除
 Route::delete('/profile/{id}', 'ProfileController@destroy');
+//プロフィール
+Route::get('/profile/{id}', 'ProfileController@show');
 
 // ピン作成：テキスト保存
 Route::post('/post','PinController@post');
@@ -53,4 +52,4 @@ Route::delete('/pin/text/{id}', 'PinController@destroy');
 Route::get('edit/{id}', 'PinController@edit');
 
 // ピン更新
-Route::POST('update/', 'PinController@update');
+Route::POST('update/{id}', 'PinController@update');
