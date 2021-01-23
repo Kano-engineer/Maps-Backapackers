@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Pin;
 use App\Image;
 use App\Photo;
+use App\Pin;
 
 class PinController extends Controller
 {
@@ -34,7 +34,10 @@ class PinController extends Controller
 
     public function show($id)
     {
+        // withメソッド→find($id)でないと通らない。
+        $pin = Pin::with('user')->get();
         $pin = Pin::find($id);
+        // 
         $photos = Photo::where('Pin_id',$id)->get();
         return view('pin',['pin' => $pin,'photos' => $photos]);
     }
@@ -49,21 +52,16 @@ class PinController extends Controller
     public function edit($id)
     {
         $pin = Pin::find($id);
-        return view('edit', compact('pin'));
+        return view('edit',['pin' => $pin]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-
-        // dd($request);
-
-        $article = Pin::find($request->id);
-        $form = $request->all();
-        unset($form['_token']);
-        $article->fill($form)->save();
-
-        $pin = Pin::find($request->id);
-        return view('pin',['pin' => $pin]);
+        $pin = Pin::find($id);
+        $pin->text=$request->text;
+        $pin->save();
+        $photos = Photo::where('Pin_id',$id)->get();
+        return view('pin',['pin' => $pin,'photos' => $photos]);
     }
 
 }

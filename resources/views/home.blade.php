@@ -43,8 +43,9 @@
 
 <div class="container">
     @foreach ($pins as $pins)
-        <p>▼{{ $pins->text }}</p>
-        <p><a style="color:blue;" href="post/{{$pins->id}}">PIN</a></p>
+        <p>▼<a style="color:blue;" href="post/{{$pins->id}}">PIN</a>：{{ $pins->text }} by <a style="color:blue;" href="profile/{{$pins->user_id}}">{{$pins->user->name}}</a></p>
+        <p></p>
+        <p></p>
     @endforeach
 </div>
 

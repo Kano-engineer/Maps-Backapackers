@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Image;
+use App\User;
+use App\Pin;
 
 class ProfileController extends Controller
 {
-    //
-    public function input()
-    {
-        return view('image.input');
-    }
-
     public function upload(Request $request)
     {
         $this->validate($request, 
@@ -45,25 +41,27 @@ class ProfileController extends Controller
             $new_image_data->save();
 
             return redirect()->back();
-        //     return redirect('/output');
-        // } else {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors();
         }
     }
-
-    public function output() {
+    
+    public function index() {
         $user_id = Auth::id();
         $user_images = Image::whereUser_id($user_id)->get();
-        return view('profile', ['user_images' => $user_images]);
+        $pin = Pin::whereUser_id($user_id)->get();
+        return view('profile', ['user_images' => $user_images,'pin' => $pin]);
     }
 
     public function destroy($id) {
-            
         $pin=Image::where('id',$id);
         $pin->delete();
         return redirect()->back();
+    }
+
+    public function show($id) {
+        $user = User::find($id);
+        $user_id = $id;        
+        $user_images = Image::whereUser_id($user_id)->get();
+        $pin = Pin::whereUser_id($user_id)->get();
+        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user]);
     }
 }

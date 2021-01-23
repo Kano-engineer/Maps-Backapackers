@@ -29,10 +29,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // ページネーション？
-        // $pins = Pin::orderBy('created_at', 'desc')->paginate(self::PAGINATION_LIMIT);
-        // $pins = Pin::paginate(1);
-        $pins = Pin::all();
+        // $pins = Pin::all();
+
+        //cf.1対多リレーション 
+        $pins = Pin::with('user')->get();
+
         return view('home', [ 'pins' => $pins]);
     }
 

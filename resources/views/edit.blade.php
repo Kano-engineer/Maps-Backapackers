@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="update/" method="post">
+<form action="/update/{{$pin->id}}" method="post">
             @csrf
             <p>PIN:{{$pin->text}}</p>
             <input type="text" name="text" value="{{$pin->text}}">
