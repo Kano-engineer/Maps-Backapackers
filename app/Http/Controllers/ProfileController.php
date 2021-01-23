@@ -43,12 +43,16 @@ class ProfileController extends Controller
             return redirect()->back();
         }
     }
-    
+
     public function index() {
         $user_id = Auth::id();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
-        return view('profile', ['user_images' => $user_images,'pin' => $pin]);
+        
+        $id = $user_id;
+        $user = User::find($id);
+
+        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user]);
     }
 
     public function destroy($id) {
