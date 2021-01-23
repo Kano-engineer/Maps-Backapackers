@@ -49,7 +49,7 @@
                 <input type="submit" value="写真を削除" onClick="delete_alert(event);return false;">
         </form>
         @endif
-        <p>コメント・チャット</p>
+        <p>写真へのコメント</p>
 @endforeach
 
 <script src="{{ asset('/js/alert.js') }}"></script>
@@ -79,4 +79,5 @@
 <script src="{{ asset('/js/getAddress.js') }}"></script> 
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
 
+<p>チャット</p>
 @endsection
