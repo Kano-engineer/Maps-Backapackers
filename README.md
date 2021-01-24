@@ -7,15 +7,24 @@
 ・個人的に自転車一人旅が好きなので、旅好きな人達がガイドブックに乗っていないローカル情報を共有でき、コロナ禍で移動が制限された中でもオンラインで旅を追体験できるアプリを制作しました。
 
 #使用技術
-AWS
-PHP 
-Laravel
-JavaScript
-Vue.js
-MySQL
-Pusher
-Google API ( Maps Javascript API / Geocoding API )
-Git / GitHub
+
+・AWS
+
+・PHP 
+
+・Laravel
+
+・JavaScript
+
+・Vue.js
+
+・MySQL
+
+・Pusher
+
+・Google API ( Maps Javascript API / Geocoding API )
+
+・Git / GitHub
 
 #機能
 
