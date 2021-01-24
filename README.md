@@ -6,17 +6,14 @@
 
 ・個人的に自転車一人旅が好きなので、旅好きな人達がガイドブックに乗っていないローカル情報を共有でき、コロナ禍で移動が制限された中でもオンラインで旅を追体験できるアプリを制作しました。
 
-AWS( ACM / ALB / EC2 / ElastiCache / RDS / Route53 / S3 )
-Docker / Docker-Compose
-Travis CI
+#使用技術
+AWS
+PHP 
+Laravel
 JavaScript
-Ruby 2.6.5
-Rails 6.0.0
-MySQL2
-Redis
-Nginx
-Unicorn
-Rubocop / Rspec / Capistrano
+Vue.js
+MySQL
+Pusher
 Google API ( Maps Javascript API / Geocoding API )
 Git / GitHub
 
