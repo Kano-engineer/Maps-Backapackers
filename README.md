@@ -8,8 +8,6 @@
 
 #使用技術
 
-・AWS
-
 ・PHP 
 
 ・Laravel
@@ -21,6 +19,8 @@
 ・MySQL
 
 ・Pusher
+
+・AWS
 
 ・Google API ( Maps Javascript API / Geocoding API )
 
