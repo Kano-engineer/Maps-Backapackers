@@ -12,7 +12,6 @@
 @endif
    </div>
 
-
 @if(Auth::user()->id === $user->id)
 <form action="profile/upload" method="POST" enctype="multipart/form-data">
     @csrf
@@ -23,6 +22,8 @@
 </form>
 @endif
 
+<br>
+<p>自己紹介コメント：ex.学生のくまです。*ユーザーのみ編集可能 user_id</p>
 <br>
 @foreach ($user_images as $user_image)
     <img src="{{ asset('storage/' . $user_image['file_name']) }}">
@@ -39,13 +40,11 @@
 @endforeach
 
 <div class="container">
+<p>◆投稿一覧◆</p>
     @foreach ($pin as $pin)
-        <p>▼<a style="color:blue;" href="post/{{$pin->id}}">PIN</a>：{{ $pin->text }}</p>
+        <p>▼<a style="color:blue;" href="/post/{{$pin->id}}">PIN</a>：{{ $pin->text }}</p>
         <p></p>
     @endforeach
 </div>
-
-
     <script src="{{ asset('/js/alert.js') }}"></script>
-
 @endsection
