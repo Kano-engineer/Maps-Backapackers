@@ -37,7 +37,7 @@ Route::get('/profile/{id}', 'ProfileController@show');
 Route::post('/post','PinController@post');
 
 //ピン詳細:{{pins->id}}をcontrollerに渡す
-Route::get('post/{id}','PinController@show',);
+Route::get('/post/{id}','PinController@show',);
 
 //ピン詳細ページで写真をDB保存
 Route::post('/store/{id}','PhotoController@upload',);
@@ -53,3 +53,16 @@ Route::get('edit/{id}', 'PinController@edit');
 
 // ピン更新
 Route::POST('update/{id}', 'PinController@update');
+
+
+//リアルタムチャット 
+Route::get('chat', 'ChatsController@index');
+// ピン→チャット
+Route::get('/chat/{id}', 'ChatsController@index');
+
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+// プライベートチャンネルをリッスンする場合、channels.phpに許可ルールを記述する必要があります。
+Broadcast::channel('chat', function ($user) {
+    return Auth::check();
+});

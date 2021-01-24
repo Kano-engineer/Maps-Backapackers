@@ -44,9 +44,11 @@
 <div class="container">
     @foreach ($pins as $pins)
         <p>▼<a style="color:blue;" href="post/{{$pins->id}}">PIN</a>：{{ $pins->text }} by <a style="color:blue;" href="profile/{{$pins->user_id}}">{{$pins->user->name}}</a></p>
-        <p></p>
-        <p></p>
     @endforeach
+</div>
+
+<div class="container">
+<p><a style="color:blue;" href="chat">◆共有チャット◆</a></p>
 </div>
 
 @endsection
