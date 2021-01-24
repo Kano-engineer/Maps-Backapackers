@@ -29,6 +29,11 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+    
     /**
      * The attributes that should be hidden for arrays.
      *
