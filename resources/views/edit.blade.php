@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->has('text'))
+<ul>
+    @foreach($errors->all() as $error)
+        <!-- <li>{{ $error }}</li> -->
+        <font color =red>*{{ $error }}</font>
+    @endforeach
+</ul>
+@endif
 <form action="/update/{{$pin->id}}" method="post">
             @csrf
             <p>PIN:{{$pin->text}}</p>

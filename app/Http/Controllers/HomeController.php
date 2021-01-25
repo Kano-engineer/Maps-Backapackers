@@ -29,11 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $pins = Pin::all();
-
-        //cf.1対多リレーション 
         $pins = Pin::with('user')->get();
-
         return view('home', [ 'pins' => $pins]);
     }
 

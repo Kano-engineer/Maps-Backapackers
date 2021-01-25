@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<title>PIN </title>
+<title>PIN</title>
 
-<h1 style="color:blue;">PIN</h1>
+<!-- <h1 style="color:blue;">PIN</h1> -->
 
 <div>
 <!-- エラーメッセージ。なければ表示しない -->
-@if ($errors->any())
+@if ($errors->has('file'))
     @foreach($errors->all() as $error)
     <font color =red>*{{ $error }}</font>
     @endforeach
@@ -23,7 +23,7 @@
         </form>
 @endif
 
-<h1>・{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h1>
+<h1>📍{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h1>
 
 @if(Auth::user()->id === $pin->user_id)
 <a style="color:blue;" href="/edit/{{$pin->id}}">地名/住所を編集(地図を再検索)</a>
@@ -49,8 +49,9 @@
                 <input type="submit" value="写真を削除" onClick="delete_alert(event);return false;">
         </form>
         @endif
-        <p>写真へのコメント：ex.夕焼けが綺麗だった。くまモンがいた。*ユーザーのみ編集可能 photo_id</p>
 @endforeach
+
+<br>
 
 <script src="{{ asset('/js/alert.js') }}"></script>
 
@@ -67,10 +68,41 @@
 <div class="map_box01"><div id="map-canvas" style="width: 1000px;height: 500px;"></div></div>
 <p>*地図上をクリックするとピンを移動できます。</p>
 
+<p><a style="color:blue;" href="/chat/{{$pin -> id}}">◆共有チャット/タイムライン◆</a></p>
+<p>◆コメント◆</p>
+
+<div>
+<!-- エラーメッセージ。なければ表示しない -->
+@if ($errors->has('comment'))
+    @foreach($errors->all() as $error)
+    <font color =red>*{{ $error }}</font>
+    @endforeach
+@endif
+</div>
+
+<div>
+    <form action="/comment/{{$pin -> id}}" method="post">
+        {{ csrf_field() }}
+        <input type="search" name="comment" placeholder="コメント">
+        <button type="submit">コメントを作成</button>
+    </form>
+</div>
+
 <br>
 
-<p><a style="color:blue;" href="/chat/{{$pin -> id}}">◆共有チャット◆</a></p>
-<p>ex.ここの道が走りやすい。この近くに美味しいラーメン屋があるよ〜pin_id</p>
+<div class="container">
+    @foreach ($comments as $comments)
+        <p><a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$comments->user->name}}</a>：{{ $comments->comment }}</p>
+        @if(Auth::user()->id === $comments->user_id)
+        <!-- <p>{{$comments->created_at}}</p> -->
+        <form action="{{ action('PinController@destroyComment', $comments->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="コメントを削除" onClick="delete_alert(event);return false;">
+        </form>
+        @endif
+    @endforeach
+</div>
 
 <!-- チャット -->
     <!-- <meta charset="UTF-8">
