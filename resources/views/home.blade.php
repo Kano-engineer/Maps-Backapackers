@@ -22,7 +22,7 @@
 </div> -->
 
 <!-- エラーメッセージ。なければ表示しない -->
-@if ($errors->any())
+@if ($errors->has('text'))
 <ul>
     @foreach($errors->all() as $error)
         <!-- <li>{{ $error }}</li> -->
@@ -43,12 +43,13 @@
 
 <div class="container">
     @foreach ($pins as $pins)
-        <p>▼<a style="color:blue;" href="post/{{$pins->id}}">PIN</a>：{{ $pins->text }} by <a style="color:blue;" href="profile/{{$pins->user_id}}">{{$pins->user->name}}</a></p>
+        <p><a style="color:blue;" href="post/{{$pins->id}}">📍PIN</a> {{ $pins->text }} by <a style="color:blue;" href="profile/{{$pins->user_id}}">{{$pins->user->name}}</a></p>
     @endforeach
 </div>
 
 <div class="container">
-<p><a style="color:blue;" href="chat">◆共有チャット◆</a></p>
+<p><a style="color:blue;" href="chat">◆共有チャット/タイムライン◆</a></p>
 </div>
+
 
 @endsection

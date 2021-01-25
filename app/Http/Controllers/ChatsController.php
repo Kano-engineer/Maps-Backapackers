@@ -16,22 +16,26 @@ class ChatsController extends Controller
  
     public function index()
     {
-        return view('post');
+        return view('post',);
     }
  
     public function fetchMessages()
     {
+        // pin毎に分けたい
         return Message::with('user')->get();
     }
  
     public function sendMessage(Request $request)
     {
+        
+
         $user = Auth::user();
- 
         $message = $user->messages()->create([
             'message' => $request->input('message')
         ]);
  
+        // dd($message);
+
         // broadcast(new MessageSent($user, $message));に書き換え可能
         // toOthersで自分以外のユーザーにブロードキャストできる。
         // broadcast(new MessageSent($user, $message))->toOthers();
