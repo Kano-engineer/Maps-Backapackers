@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePinsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pins', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('text');
-            $table->geometry('location')->nullable();;
-            $table->foreignId('user_id')
-            ->constrained()
-            ->onDelete('cascade');
+            $table->string('comment');
+            $table->foreignId('user_id')->nullable();;
+            $table->foreignId('pin_id')->nullable();;
+            $table->foreignId('profile_id')->nullable();;
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pins');
+        Schema::dropIfExists('comments');
     }
 }

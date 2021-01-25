@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Image;
 use App\User;
 use App\Pin;
+use App\Comment;
 
 class ProfileController extends Controller
 {
@@ -45,14 +46,18 @@ class ProfileController extends Controller
     }
 
     public function index() {
+
+
+
         $user_id = Auth::id();
+        $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
         
         $id = $user_id;
         $user = User::find($id);
 
-        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user]);
+        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
     public function destroy($id) {
@@ -63,9 +68,41 @@ class ProfileController extends Controller
 
     public function show($id) {
         $user = User::find($id);
-        $user_id = $id;        
+        $user_id = $id;
+        $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
-        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user]);
+        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
+
+        // コメント
+        public function comment(Request $request,$id)
+        {
+            // dd($request,$id);
+    
+            $this->validate($request,
+                [
+                    'comment_profile' => 'required|string|max:50',
+                ],
+                [
+                    'comment_profile.required' => 'コメントは必須です。',
+                    'comment_profile.string'   => 'テキストには文字列を入力してください。',
+                    'comment_profile.max'      => 'テキストは50文字以下です。',
+                ]
+            );
+    
+            Comment::create(
+                [
+                'comment' => $request->comment_profile,
+                'profile_id' => $id,
+                ]);
+            return redirect()->back();
+        }
+
+        public function destroyComment($id) {
+
+            $comment=Comment::where('id',$id);
+            $comment->delete();
+            return redirect()->back();
+        }
 }
