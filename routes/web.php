@@ -52,7 +52,7 @@ Route::delete('/pin/text/{id}', 'PinController@destroy');
 Route::get('edit/{id}', 'PinController@edit');
 
 // ピン更新
-Route::POST('update/{id}', 'PinController@update');
+Route::POST('/update/{id}', 'PinController@update');
 
 
 //リアルタムチャット 
@@ -66,3 +66,16 @@ Route::post('messages', 'ChatsController@sendMessage');
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
+
+
+// ピン：コメント作成
+Route::post('/comment/{id}','PinController@comment');
+
+// ピン：コメント削除
+Route::delete('/comment/{id}', 'PinController@destroyComment');
+
+// プロフィール：コメント作成
+Route::post('/profile/comment/{id}','ProfileController@comment');
+
+// プロフィール：コメント削除
+Route::delete('/profile/comment/{id}', 'ProfileController@destroyComment');
