@@ -3,50 +3,52 @@
 @section('content')
 <title>PIN</title>
 
-<!-- <h1 style="color:blue;">PIN</h1> -->
 
-<div>
-<!-- エラーメッセージ。なければ表示しない -->
-@if ($errors->has('file'))
-    @foreach($errors->all() as $error)
-    <font color =red>*{{ $error }}</font>
-    @endforeach
-@endif
-</div>
+<div class="container">
+<div class="row">
+    <div class="col-xs-6 col-md-4"></div>
+    <div class="col-xs-6 col-md-4">
 
-@if(Auth::user()->id === $pin->user_id)
-        <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" class="form-control" name="file">
-                <br>
-                <input type="submit" value="画像アップロード">
-        </form>
-@endif
+    <!-- <h5><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h5> -->
 
-<h1>📍{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h1>
+    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}">  <i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
 
 @if(Auth::user()->id === $pin->user_id)
-<a style="color:blue;" href="/edit/{{$pin->id}}">地名/住所を編集(地図を再検索)</a>
+<a type="button" class="btn btn-primary btn-lg active btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">地名/住所を編集(地図を再検索)</i></a>
 @endif
 
 @if(Auth::user()->id === $pin->user_id)
         <form action="{{ action('PinController@destroy', $pin->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="ピンを削除" onClick="delete_alert(event);return false;">
+                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt">投稿削除</i></button>
         </form>
 @endif
 
 <br>
+<!-- エラーメッセージ。なければ表示しない -->
+@if ($errors->has('file'))
+    @foreach($errors->all() as $error)
+    <font color =red>*{{ $error }}</font>
+    @endforeach
+@endif
+@if(Auth::user()->id === $pin->user_id)
+        <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" class="form-control" name="file">
+                <button type="submit"  class='btn btn-primary btn-lg active btn-sm'><i class="fas fa-images">画像アップロード</i></button>
+        </form>
+@endif
+
 @foreach ($photos as $photo)
-        <img style="" src="{{ asset('storage/' . $photo['photo']) }}">
+        <img style="width:380px;height:250px;" src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
         <!-- 写真削除 idで判別-->
         @if(Auth::user()->id === $pin->user_id)
         <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="写真を削除" onClick="delete_alert(event);return false;">
+                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
         </form>
         @endif
 @endforeach
@@ -65,11 +67,10 @@
   <button style="display:none;" type="" value="" id="map_button">検索</button>
 </form>
 <!-- 地図を表示させる要素 -->
-<div class="map_box01"><div id="map-canvas" style="width: 1000px;height: 500px;"></div></div>
-<p>*地図上をクリックするとピンを移動できます。</p>
+<div class="map_box01"><div id="map-canvas" style="width:380px;height:190px;"></div></div>
+<!-- <p>*地図上をクリックするとピンを移動できます。</p> -->
 
-<p><a style="color:blue;" href="/chat/{{$pin -> id}}">◆共有チャット/タイムライン◆</a></p>
-<p>◆コメント◆</p>
+<br>
 
 <div>
 <!-- エラーメッセージ。なければ表示しない -->
@@ -81,10 +82,11 @@
 </div>
 
 <div>
+
     <form action="/comment/{{$pin -> id}}" method="post">
         {{ csrf_field() }}
         <input type="search" name="comment" placeholder="コメント">
-        <button type="submit">コメントを作成</button>
+        <button type="submit"><i class="fas fa-comment-dots">コメント</i></button>
     </form>
 </div>
 
@@ -92,18 +94,21 @@
 
 <div class="container">
     @foreach ($comments as $comments)
-        <p><a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$comments->user->name}}</a>：{{ $comments->comment }}</p>
+        <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
+        {{ $comments->comment }}
+        </p>
         @if(Auth::user()->id === $comments->user_id)
         <!-- <p>{{$comments->created_at}}</p> -->
         <form action="{{ action('PinController@destroyComment', $comments->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="コメントを削除" onClick="delete_alert(event);return false;">
+                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
         </form>
         @endif
     @endforeach
 </div>
 
+<!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="chat"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
 <!-- チャット -->
     <!-- <meta charset="UTF-8">
     <title>チャット</title>
@@ -124,5 +129,10 @@
 <!-- APIを取得 -->
 <script src="{{ asset('/js/getAddress.js') }}"></script> 
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
+
+    </div>
+    <div class="col-xs-6 col-md-4"></div>
+    </div>
+</div>
 
 @endsection
