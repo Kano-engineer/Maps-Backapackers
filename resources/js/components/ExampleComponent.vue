@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <ul>
@@ -10,7 +11,7 @@
         <button @click="postMessage" :disabled="!textExists">送信</button>
     </div>
 </template>
-
+ 
 <script>
 export default {
     data() {
