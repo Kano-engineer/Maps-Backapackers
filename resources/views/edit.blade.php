@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+     <div class="row">
+     <div class="col-xs-6 col-md-4"></div>
+     <div class="col-xs-6 col-md-4">
 @if ($errors->has('text'))
 <ul>
     @foreach($errors->all() as $error)
@@ -9,10 +13,14 @@
     @endforeach
 </ul>
 @endif
-<form action="/update/{{$pin->id}}" method="post">
+<form action="/update/{{$pin->id}}" method="post" class=".form-control:focus">
             @csrf
-            <p>PIN:{{$pin->text}}</p>
+            <p><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{$pin->text}}</p>
             <input type="text" name="text" value="{{$pin->text}}">
-            <input type="submit" value="更新">
+            <input class="btn btn-primary btn-lg active btn-sm" type="submit" value="EDIT">
 </form>
+     </div>
+     <div class="col-xs-6 col-md-4"></div>
+     </div>
+</div>
 @endsection
