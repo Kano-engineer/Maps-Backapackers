@@ -52,5 +52,4 @@
 
 ・リアルタイムチャット機能
 
-cf.Top Page
-https://user-images.githubusercontent.com/71540533/106152966-6241e480-61c1-11eb-929b-49116620b5cc.png
+cf.Top Page(https://user-images.githubusercontent.com/71540533/106152966-6241e480-61c1-11eb-929b-49116620b5cc.png)
