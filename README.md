@@ -1,4 +1,3 @@
-https://user-images.githubusercontent.com/71540533/106152966-6241e480-61c1-11eb-929b-49116620b5cc.png
 #Maps.Backpackers
 
 ・「ローカル情報を共有」できる旅アプリ。
@@ -52,3 +51,6 @@ https://user-images.githubusercontent.com/71540533/106152966-6241e480-61c1-11eb-
 ・編集/削除機能
 
 ・リアルタイムチャット機能
+
+cf.Top Page
+https://user-images.githubusercontent.com/71540533/106152966-6241e480-61c1-11eb-929b-49116620b5cc.png
