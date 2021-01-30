@@ -56,12 +56,10 @@ Route::POST('/update/{id}', 'PinController@update');
 
 
 //リアルタムチャット 
-Route::get('chat', 'ChatsController@index');
-// ピン→チャット
-Route::get('/chat/{id}', 'ChatsController@index');
-
+Route::get('post', 'ChatsController@index');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
+
 // プライベートチャンネルをリッスンする場合、channels.phpに許可ルールを記述する必要があります。
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
@@ -79,3 +77,7 @@ Route::post('/profile/comment/{id}','ProfileController@comment');
 
 // プロフィール：コメント削除
 Route::delete('/profile/comment/{id}', 'ProfileController@destroyComment');
+
+// いいね機能
+Route::post('posts/{pin}/favorites', 'FavoriteController@store')->name('favorites');
+Route::post('posts/{pin}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');

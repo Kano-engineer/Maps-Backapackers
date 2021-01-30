@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Image;
@@ -27,9 +26,9 @@ class ProfileController extends Controller
         ],
         [
             'file.required' => '写真は必須です。',
-            
         ]
     );
+
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
 
@@ -46,9 +45,6 @@ class ProfileController extends Controller
     }
 
     public function index() {
-
-
-
         $user_id = Auth::id();
         $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
@@ -75,11 +71,8 @@ class ProfileController extends Controller
         return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
-        // コメント
         public function comment(Request $request,$id)
         {
-            // dd($request,$id);
-    
             $this->validate($request,
                 [
                     'comment_profile' => 'required|string|max:50',
@@ -100,7 +93,6 @@ class ProfileController extends Controller
         }
 
         public function destroyComment($id) {
-
             $comment=Comment::where('id',$id);
             $comment->delete();
             return redirect()->back();

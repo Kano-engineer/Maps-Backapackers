@@ -3,7 +3,6 @@
 @section('content')
 <title>PIN</title>
 
-
 <div class="container">
 <div class="row">
     <div class="col-xs-6 col-md-4"></div>
@@ -11,7 +10,21 @@
 
     <!-- <h5><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h5> -->
 
-    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}">  <i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
+<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}">  <i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
+
+@if($pin->users()->where('user_id', Auth::id())->exists())
+      <form action="{{ route('unfavorites', $pin) }}" method="POST">
+         @csrf
+         <input type="submit" value="&#xf164;" class="fas btn btn-danger">
+      </form>
+@else
+      <form action="{{ route('favorites', $pin) }}" method="POST">
+        @csrf
+        <input type="submit" value="&#xf164;" class="fas btn btn-success">
+      </form>
+ @endif
+    <p>いいね：{{ $pin->users()->count() }}</p>
+
 
 @if(Auth::user()->id === $pin->user_id)
 <a type="button" class="btn btn-primary btn-lg active btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">地名/住所を編集(地図を再検索)</i></a>
@@ -40,6 +53,9 @@
         </form>
 @endif
 
+@if ($photos->isEmpty()) 
+    <img style="width:380px;height:250px;" src="{{ URL::asset('storage/noimage.png') }}" />
+@else
 @foreach ($photos as $photo)
         <img style="width:380px;height:250px;" src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
@@ -52,6 +68,7 @@
         </form>
         @endif
 @endforeach
+@endif
 
 <br>
 
