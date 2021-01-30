@@ -6724,10 +6724,6 @@ a.close.disabled {
   transform: translateX(-100%);
 }
 
-.far fa-heart{
-background-color: rgb(153, 11, 35);
-}
-
 .carousel-fade .carousel-item {
   opacity: 0;
   transition-property: opacity;

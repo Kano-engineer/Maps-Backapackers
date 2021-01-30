@@ -22,4 +22,9 @@ class Pin extends Model
     {
         return $this->hasMany(Photo::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }

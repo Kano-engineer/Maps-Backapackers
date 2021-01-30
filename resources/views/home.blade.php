@@ -23,8 +23,6 @@
 
 <div class="links">
 
-
-
 <div class="container">
 <div class="row">
     <div class="col-xs-6 col-md-4"></div>
@@ -69,11 +67,10 @@
     <div class="row">
     <div class="col-xs-6 col-md-4"></div>
     <div class="col-xs-6 col-md-4">
-<a type="button" class="btn btn-primary btn-lg active btn-sm" href="chat"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+<a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
     </div>
     <div class="col-xs-6 col-md-4"></div>
     </div>
 </div>
-
 
 @endsection

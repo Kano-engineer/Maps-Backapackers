@@ -32,4 +32,16 @@ class CreateCommentsTable extends Migration
     {
         Schema::dropIfExists('comments');
     }
+
+    public function isFollowing($user_id)
+   {
+       // exists()でテーブルにレコードが存在しているかをチェック
+       return $this->follows()->where('followed_id', $user_id)->exists();
+   }
+
+   public function isFollowed($user_id)
+   {
+       return $this->followers()->where('following_id', $user_id)->exists();
+   }
+   
 }
