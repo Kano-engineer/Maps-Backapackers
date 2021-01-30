@@ -55,6 +55,9 @@
 @endif
 </div>
 
+@if ($user_images->isEmpty()) 
+    <img style="width:380px;height:250px;" src="{{ URL::asset('storage/noimage.png') }}" />
+@else
 @foreach ($user_images as $user_image)
     <img style="width:380px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
     <!-- 写真削除 idで判別-->
@@ -66,6 +69,8 @@
                 @endif
     </form>
 @endforeach
+@endif
+
 
 <br>
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
@@ -75,8 +80,13 @@
     @endforeach
     <script src="{{ asset('/js/alert.js') }}"></script>
 
-    </div>
-    <div class="col-xs-6 col-md-4"></div>
-    </div>
-</div>
+
+
+<br>
+<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
+
+<br>
+<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">フォロー中</i></h5>
+
+
 @endsection
