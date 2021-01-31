@@ -49,7 +49,7 @@ class ProfileController extends Controller
         $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
-        
+
         $id = $user_id;
         $user = User::find($id);
 
@@ -97,4 +97,5 @@ class ProfileController extends Controller
             $comment->delete();
             return redirect()->back();
         }
+    
 }
