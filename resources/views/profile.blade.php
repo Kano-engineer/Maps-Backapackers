@@ -8,6 +8,37 @@
     <div class="col-xs-6 col-md-4">
 
     <h1><i style="color:#094067;" class="fas fa-user"></i>{{ $user->name }}</h1>
+    <!-- 自分以外のユーザーのみフォロー機能表示 -->
+    @if(Auth::user()->id !== $user->id)
+        @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
+        <form action="{{ route('unfollow', $user) }}" method="POST">
+            @csrf
+            <input type="submit" value="&#xf164;Following" class='fas btn btn-primary'>
+        </form>
+        @else
+        <form action="{{ route('follow', $user) }}" method="POST">
+            @csrf
+            <input type="submit" value="&#xf164;Follow Me" class="fas btn btn-link">
+        </form>
+        @endif
+    @endif
+    <!-- <br> -->
+    <div class="d-flex flex-row">
+
+    <div class="p-2">
+    <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Following：{{ $user->follows()->count() }}</i></p>
+    @foreach ($user->follows as $follow)
+    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user"></i>{{$follow->name}}</a>
+    @endforeach
+    </div>
+
+    <div class="p-2">
+    <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Followers：{{ $user->followUsers()->count() }}</i></p>
+    @foreach ($user->followusers as $followuser)
+    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$followuser->id}}"><i class="fas fa-user"></i>{{$followuser->name}}</a>
+    @endforeach
+    </div>
+    </div>
 
     @if(Auth::user()->id === $user->id)
     <form action="/profile/comment/{{ $user->id }}" method="post">
@@ -80,13 +111,14 @@
     @endforeach
     <script src="{{ asset('/js/alert.js') }}"></script>
 
-
-
 <br>
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
+<!-- 多対多（Many to Many）foreachでクラスに分解して表示 -->
+@foreach ($user->favorites as $favorite)
+<p><a type="button"  style="color:#3da9fc;" href="/post/{{$favorite->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $favorite->text }}</a></p>
+@endforeach
 
-<br>
-<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">フォロー中</i></h5>
+
 
 
 @endsection

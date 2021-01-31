@@ -10,21 +10,19 @@
 
     <!-- <h5><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h5> -->
 
-<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}">  <i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
+<h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
 
 @if($pin->users()->where('user_id', Auth::id())->exists())
       <form action="{{ route('unfavorites', $pin) }}" method="POST">
          @csrf
-         <input type="submit" value="&#xf164;" class="fas btn btn-danger">
+         <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
       </form>
 @else
       <form action="{{ route('favorites', $pin) }}" method="POST">
         @csrf
-        <input type="submit" value="&#xf164;" class="fas btn btn-success">
+        <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
       </form>
  @endif
-    <p>いいね：{{ $pin->users()->count() }}</p>
-
 
 @if(Auth::user()->id === $pin->user_id)
 <a type="button" class="btn btn-primary btn-lg active btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">地名/住所を編集(地図を再検索)</i></a>
@@ -99,7 +97,6 @@
 </div>
 
 <div>
-
     <form action="/comment/{{$pin -> id}}" method="post">
         {{ csrf_field() }}
         <input type="search" name="comment" placeholder="コメント">
@@ -121,6 +118,7 @@
                 @method('DELETE')
                 <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
         </form>
+            </div>
         @endif
     @endforeach
 </div>
