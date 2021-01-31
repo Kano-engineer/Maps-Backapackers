@@ -81,3 +81,7 @@ Route::delete('/profile/comment/{id}', 'ProfileController@destroyComment');
 // いいね機能
 Route::post('posts/{pin}/favorites', 'FavoriteController@store')->name('favorites');
 Route::post('posts/{pin}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');
+
+// フォロー機能
+Route::post('/users/{user}/follow', 'FollowUserController@follow')->name('follow');
+Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow')->name('unfollow');
