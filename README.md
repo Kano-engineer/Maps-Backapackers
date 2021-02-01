@@ -1,4 +1,4 @@
-#Maps.Backpackers
+# アプリ名：Maps.Backpackers
 
 ・「ローカル情報を共有」できる旅アプリ。
 
