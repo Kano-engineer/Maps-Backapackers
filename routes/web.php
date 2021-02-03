@@ -85,3 +85,8 @@ Route::post('posts/{pin}/unfavorites', 'FavoriteController@destroy')->name('unfa
 // フォロー機能
 Route::post('/users/{user}/follow', 'FollowUserController@follow')->name('follow');
 Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow')->name('unfollow');
+
+// map
+Route::get('/map', 'HomeController@map')->name('map');
+Route::get('/map2', 'HomeController@map2')->name('map2');
+Route::get('/map3', 'HomeController@map3')->name('map3');
