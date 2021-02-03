@@ -142,12 +142,11 @@
 <input style="display:none;" type="text" id="lng" value=""><br>
 
 <!-- APIを取得 -->
-<script src="{{ asset('/js/getAddress.js') }}"></script> 
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
-
     </div>
     <div class="col-xs-6 col-md-4"></div>
     </div>
 </div>
 
+<script src="{{ asset('/js/getAddress.js') }}"></script> 
 @endsection

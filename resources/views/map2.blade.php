@@ -1,3 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+
+    <p>住所や駅名、目印などで検索できます。</p>
+<form onsubmit="return false;">
+  <input type="text" value="株式会社Maromaro" id="address">
+  <button type="button" value="検索" id="map_button">検索</button>
+</form>
+<!-- 地図を表示させる要素 -->
+<div class="map_box01"><div id="map-canvas" style="width: 500px;height: 350px;"></div></div>
+ 
+<p>マーカーのある位置の<br>
+緯度 <input type="text" id="lat" value=""><br>
+経度 <input type="text" id="lng" value=""><br>
+地図上をクリックするとマーカーを移動できます。</p>
+
+<!-- APIを取得 -->
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
+
+<script>
 var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
@@ -37,7 +59,8 @@ var getMap = (function() {
       // ジオコーディングが成功しなかった場合
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);
-      } 
+      }
+     
     });
      
     // マップをクリックで位置変更
@@ -54,8 +77,7 @@ var getMap = (function() {
       marker.setMap(null);
       marker = new google.maps.Marker({
         position: lat_lng,
-        map: map,
-        
+        map: map
       });
      
       // 座標の中心をずらす
@@ -91,3 +113,7 @@ var getMap = (function() {
  
 })();
 getMap.getAddress();
+</script>
+    
+  </body>
+</html>

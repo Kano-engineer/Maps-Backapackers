@@ -33,6 +33,24 @@ class HomeController extends Controller
         return view('home', [ 'pins' => $pins]);
     }
 
+    public function map()
+    {
+        $pins = Pin::with('user')->get();
+        return view('map', [ 'pins' => $pins]);
+    }
+
+    public function map2()
+    {
+        $pins = Pin::with('user')->get();
+        return view('map2', [ 'pins' => $pins]);
+    }
+
+    public function map3()
+    {
+        $pins = Pin::with('user')->get();
+        return view('map3', [ 'pins' => $pins]);
+    }
+
     public function upload(Request $request)
     {
         $this->validate($request, [
