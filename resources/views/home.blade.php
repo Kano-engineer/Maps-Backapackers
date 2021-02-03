@@ -68,6 +68,12 @@
     <div class="col-xs-6 col-md-4"></div>
     <div class="col-xs-6 col-md-4">
 <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+
+<br>
+
+<a type="button" class="btn btn-primary btn-lg active btn-sm" href="map"><i class="fas fa-comment-dots">MAP</i></a>
+<a type="button" class="btn btn-primary btn-lg active btn-sm" href="map2"><i class="fas fa-comment-dots">MAP2</i></a>
+<a type="button" class="btn btn-primary btn-lg active btn-sm" href="map3"><i class="fas fa-comment-dots">MAP3</i></a>
     </div>
     <div class="col-xs-6 col-md-4"></div>
     </div>
