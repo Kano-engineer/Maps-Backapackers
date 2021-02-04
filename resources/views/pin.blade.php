@@ -5,8 +5,8 @@
 
 <div class="container">
 <div class="row">
-    <div class="col-xs-6 col-md-4"></div>
-    <div class="col-xs-6 col-md-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
 
     <!-- <h5><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h5> -->
 
@@ -76,7 +76,7 @@
 <script src="{{ asset('/js/result.js') }}"></script> 
 <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer>
 </script> -->
-
+ 
 <form type="hidden" onsubmit="return false;">
   <input style="display:none;" type="" value="{{optional($pin) -> text}}" id="address">
   <button style="display:none;" type="" value="" id="map_button">検索</button>
@@ -123,6 +123,33 @@
     @endforeach
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+<table class="table">
+    <thead>
+        <tr>
+            <th>コメント</th>
+            <th>ユーザー</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach ($comments as $comments)
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        
+    </tbody>
+    @endforeach
+</table>
+            </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
 <!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="chat"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
 <!-- チャット -->
     <!-- <meta charset="UTF-8">
@@ -143,10 +170,11 @@
 
 <!-- APIを取得 -->
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
+    
+<script src="{{ asset('/js/getAddress.js') }}"></script> 
+
+    <div class="col-md-4">
     </div>
-    <div class="col-xs-6 col-md-4"></div>
     </div>
 </div>
-
-<script src="{{ asset('/js/getAddress.js') }}"></script> 
 @endsection
