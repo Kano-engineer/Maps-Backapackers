@@ -31,14 +31,14 @@
 
     function initMap() {
 
-      let data =@json($pins);
-
     var addresses = [
-        'アラスカ',
+        '@json($pins->text)',
+
     ];
 
 var latlng = []; //緯度経度の値をセット
 var marker = []; //マーカーの位置情報をセット
+var infoWindow = [];
 var myLatLng; //地図の中心点をセット用
 var geocoder;
 geocoder = new google.maps.Geocoder();
@@ -59,6 +59,9 @@ function geo(callback){
                             position: results[0].geometry.location, // マーカーを立てる位置を指定
                             map: map // マーカーを立てる地図を指定
                         });
+                        infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                            content: 'hello' // 吹き出しに表示する内容
+                        });
                     } else { // 失敗した場合
                     }//if文の終了。ifは文なので;はいらない
                     if (--cRef <= 0) {
@@ -70,6 +73,7 @@ function geo(callback){
     }//for文の終了
 }//function geo終了
 
+
 function aftergeo(){
     myLatLng = latlng[0];//最初の住所を地図の中心点に設定
     var opt = {
@@ -79,7 +83,17 @@ function aftergeo(){
     map.setOptions(opt);//オプションをmapにセット
 }//function aftergeo終了
 
+
+
 };//function initMap終了
+
+
+// マーカーにクリックイベントを追加
+function markerEvent(i) {
+    marker[i].addListener('click', function() { // マーカーをクリックしたとき
+      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+  });
+}
 
 </script>
 
