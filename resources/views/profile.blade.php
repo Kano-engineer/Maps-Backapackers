@@ -87,7 +87,7 @@
 </div>
 
 @if ($user_images->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('storage/noimage.png') }}" />
+    <img style="width:380px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
 @else
 @foreach ($user_images as $user_image)
     <img style="width:380px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
