@@ -123,33 +123,6 @@
     @endforeach
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4"></div>
-            <div class="col-md-4">
-<table class="table">
-    <thead>
-        <tr>
-            <th>コメント</th>
-            <th>ユーザー</th>
-        </tr>
-    </thead>
-    
-    <tbody>
-    @foreach ($comments as $comments)
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        
-    </tbody>
-    @endforeach
-</table>
-            </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
-
 <!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="chat"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
 <!-- チャット -->
     <!-- <meta charset="UTF-8">
