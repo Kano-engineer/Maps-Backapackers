@@ -52,7 +52,7 @@
 @endif
 
 @if ($photos->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('storage/noimage.png') }}" />
+    <img style="width:380px;height:250px;" src="{{ URL::asset('image/noimage.png') }}" />
 @else
 @foreach ($photos as $photo)
         <img style="width:380px;height:250px;" src="{{ asset('storage/' . $photo['photo']) }}">
