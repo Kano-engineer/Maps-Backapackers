@@ -100,10 +100,10 @@
 </div>
 
 @if ($user_images->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
+    <img style="width:350px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
 @else
 @foreach ($user_images as $user_image)
-    <img style="width:380px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
+    <img style="width:350px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
     <!-- 写真削除 idで判別-->
     <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                 @csrf
@@ -118,6 +118,7 @@
 </div>
 <br>
 
+<br>
 <div class="col-xs-6 col-md-4">
 <!--likes  -->
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>

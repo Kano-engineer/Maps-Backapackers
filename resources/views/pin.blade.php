@@ -25,9 +25,6 @@
 
     <div class="col-md-4">
 <!-- main -->
-    
-    
-<br>
 
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
 
@@ -90,11 +87,6 @@
 <br>
 
 <script src="{{ asset('/js/alert.js') }}"></script>
-
-<!-- <div id="map" style="height:500px;width:1000" ></div>
-<script src="{{ asset('/js/result.js') }}"></script> 
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer>
-</script> -->
  
 <form type="hidden" onsubmit="return false;">
   <input style="display:none;" type="" value="{{optional($pin) -> text}}" id="address">
@@ -102,11 +94,13 @@
 </form>
 
 </div>
+<br>
+<br>
 <div class="col-md-4">
 <!-- map -->
 
 <!-- 地図を表示させる要素 -->
-<div class="map_box01"><div id="map-canvas" style="width:500px;height:250px;"></div></div>
+<div class="map_box01"><div id="map-canvas" style="width:500px;height:300px;"></div></div>
 
 <!-- <p>*地図上をクリックするとピンを移動できます。</p> -->
 <br>
@@ -142,7 +136,7 @@
                 @method('DELETE')
                 <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
         </form>
-            </div>
+            
         @endif
     @endforeach
 </div>
