@@ -5,10 +5,29 @@
 
 <div class="container">
 <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
 
-    <!-- <h5><i style="color:#094067;" class="fas fa-map-marker-alt"></i>{{optional($pin) -> text}} by <a style="color:blue;" href="/profile/{{$pin->user_id}}">{{$pin->user->name}}</a></h5> -->
+<div class="col-md-4">
+        <!-- side -->
+@if ( Auth::check() )
+    <ul class="navbar-nav mr-auto">
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <h4>USER：{{ Auth::user()->name }}</h4>
+                    <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
+               
+                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+                
+            </div>
+        </div>
+    </ul>
+@endif
+</div>
+
+    <div class="col-md-4">
+<!-- main -->
+    
+    
+<br>
 
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
 
@@ -81,10 +100,15 @@
   <input style="display:none;" type="" value="{{optional($pin) -> text}}" id="address">
   <button style="display:none;" type="" value="" id="map_button">検索</button>
 </form>
-<!-- 地図を表示させる要素 -->
-<div class="map_box01"><div id="map-canvas" style="width:380px;height:190px;"></div></div>
-<!-- <p>*地図上をクリックするとピンを移動できます。</p> -->
 
+</div>
+<div class="col-md-4">
+<!-- map -->
+
+<!-- 地図を表示させる要素 -->
+<div class="map_box01"><div id="map-canvas" style="width:500px;height:250px;"></div></div>
+
+<!-- <p>*地図上をクリックするとピンを移動できます。</p> -->
 <br>
 
 <div>
@@ -123,19 +147,6 @@
     @endforeach
 </div>
 
-<!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="chat"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
-<!-- チャット -->
-    <!-- <meta charset="UTF-8">
-    <title>チャット</title>
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <div id="app">
-        <example-component></example-component>
-    </div> 
-    <script src="{{ mix('js/app.js') }}"></script> -->
-<!-- チャット -->
-
 <!-- 緯度  -->
 <input style="display:none;" type="text" id="lat" value=""><br>
 <!-- 経度 -->
@@ -146,8 +157,7 @@
     
 <script src="{{ asset('/js/getAddress.js') }}"></script> 
 
-    <div class="col-md-4">
-    </div>
-    </div>
+   
+</div>
 </div>
 @endsection

@@ -4,10 +4,8 @@
 <title>My Profile</title>
 <div class="container">
     <div class="row">
-    <div class="col-xs-6 col-md-4"></div>
-    <div class="col-xs-6 col-md-4">
-
-    <h1><i style="color:#094067;" class="fas fa-user"></i>{{ $user->name }}</h1>
+        <div class="col-xs-6 col-md-4">
+        <h1><i style="color:#094067;" class="fas fa-user"></i>{{ $user->name }}</h1>
     <!-- 自分以外のユーザーのみフォロー機能表示 -->
     @if(Auth::user()->id !== $user->id)
         @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
@@ -39,6 +37,21 @@
     @endforeach
     </div>
     </div>
+
+
+
+
+
+        </div>
+
+
+            
+
+
+<div class="col-xs-6 col-md-4">
+            <!-- main -->
+        
+
 
     @if(Auth::user()->id === $user->id)
     <form action="/profile/comment/{{ $user->id }}" method="post">
@@ -102,8 +115,11 @@
 @endforeach
 @endif
 
-
+</div>
 <br>
+
+<div class="col-xs-6 col-md-4">
+<!--likes  -->
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
     @foreach ($pin as $pin)
         <p><a type="button"  style="color:#3da9fc;" href="/post/{{$pin->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $pin->text }}</a></p>
@@ -117,8 +133,10 @@
 @foreach ($user->favorites as $favorite)
 <p><a type="button"  style="color:#3da9fc;" href="/post/{{$favorite->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $favorite->text }}</a></p>
 @endforeach
+</div>
 
 
 
-
+</div>
+</div>
 @endsection
