@@ -63,7 +63,6 @@
 <!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
 
 <br>
-    </div>
     <div class="col-md-4">
     </div>
     </div>
