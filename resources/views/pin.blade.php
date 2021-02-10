@@ -9,14 +9,17 @@
 <div class="col-md-4">
         <!-- side -->
 @if ( Auth::check() )
-    <ul class="navbar-nav mr-auto">
+<ul class="navbar-nav mr-auto">
         <div class="sidebar">
             <div class="sidebar-item">
-                <h4>USER：{{ Auth::user()->name }}</h4>
+                <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
                     <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
-               
+                <div class="btn-sidebar">
+
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
-                
+                    
+                </div>
             </div>
         </div>
     </ul>
@@ -68,10 +71,10 @@
 @endif
 
 @if ($photos->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('image/noimage.png') }}" />
+    <img style="width:380px;height:300px;" src="{{ URL::asset('image/noimage.png') }}" />
 @else
 @foreach ($photos as $photo)
-        <img style="width:380px;height:250px;" src="{{ asset('storage/' . $photo['photo']) }}">
+        <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
         <!-- 写真削除 idで判別-->
         @if(Auth::user()->id === $pin->user_id)
@@ -125,6 +128,7 @@
 <br>
 
 <div class="container">
+
     @foreach ($comments as $comments)
         <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
         {{ $comments->comment }}
