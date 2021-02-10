@@ -11,6 +11,7 @@
         <div class="sidebar">
             <div class="sidebar-item">
                 <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
                     <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
                 <div class="btn-sidebar">
 
@@ -39,6 +40,17 @@
 
 <br>
 
+<div class="card" >
+  <h5 class="card-header">Place</h5>
+  <div class="card-body">
+    <img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+    <h5 class="card-title">SNS for Backpackers</h5>
+    <!-- <p>地名/写真は一括入力？cf.Facebook</p> -->
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<br>
 
 <table class="table">
     <thead>
@@ -48,7 +60,6 @@
             <th>投稿ユーザー</th>
         </tr>
     </thead>
-    
     <tbody>
         @foreach ($pins as $pins)
         <tr>
