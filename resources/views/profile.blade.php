@@ -100,10 +100,10 @@
 </div>
 
 @if ($user_images->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
+    <img style="width:350px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
 @else
 @foreach ($user_images as $user_image)
-    <img style="width:380px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
+    <img style="width:350px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
     <!-- 写真削除 idで判別-->
     <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                 @csrf
@@ -118,14 +118,25 @@
 </div>
 <br>
 
+<br>
 <div class="col-xs-6 col-md-4">
 <!--likes  -->
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
     @foreach ($pin as $pin)
-        <p><a type="button"  style="color:#3da9fc;" href="/post/{{$pin->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $pin->text }}</a></p>
-
+    <div class="card">
+<h5 class="card-header" style="color:#094067;">{{ $pin->text }}</h5>
+<div class="card-body">
+<img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+<h5 class="card-title">SNS for Backpackers</h5>
+<p class="card-text"></p>
+<a href="post/{{$pin->id}}" class="btn btn-primary">Go somewhere</a>
+</div>
+</div>
+<br>
     @endforeach
     <script src="{{ asset('/js/alert.js') }}"></script>
+
+
 
 <br>
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
