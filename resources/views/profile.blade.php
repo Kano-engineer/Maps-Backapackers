@@ -20,59 +20,6 @@
         </form>
         @endif
     @endif
-    <!-- <br> -->
-    <div class="d-flex flex-row">
-
-    <div class="p-2">
-    <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Following：{{ $user->follows()->count() }}</i></p>
-    @foreach ($user->follows as $follow)
-    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user"></i>{{$follow->name}}</a>
-    @endforeach
-    </div>
-
-    <div class="p-2">
-    <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Followers：{{ $user->followUsers()->count() }}</i></p>
-    @foreach ($user->followusers as $followuser)
-    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$followuser->id}}"><i class="fas fa-user"></i>{{$followuser->name}}</a>
-    @endforeach
-    </div>
-    </div>
-
-
-
-
-
-        </div>
-
-
-            
-
-
-<div class="col-xs-6 col-md-4">
-            <!-- main -->
-        
-
-
-    @if(Auth::user()->id === $user->id)
-    <form action="/profile/comment/{{ $user->id }}" method="post">
-        {{ csrf_field() }}
-        <input type="search" name="comment_profile" placeholder="自己紹介コメント">
-        <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
-    </form>
-    @endif
-    <br>
-    <h5 style="color:#094067;"><i class="fas fa-angle-right">自己紹介</i></h5>
-    @foreach ($comments as $comment)
-        <p style="color:#094067;">{{ $comment ->comment}}</p>
-        @if(Auth::user()->id === $user->id)
-        <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-        </form>
-        @endif
-    @endforeach
-    
     <div>
 @if ($errors->has('file'))
     @foreach($errors->all() as $error)
@@ -115,11 +62,49 @@
 @endforeach
 @endif
 
+<div class="d-flex flex-row">
+
+<div class="p-2">
+<p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Following：{{ $user->follows()->count() }}</i></p>
+@foreach ($user->follows as $follow)
+<p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user"></i>{{$follow->name}}</a>
+@endforeach
 </div>
+
+<div class="p-2">
+<p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Followers：{{ $user->followUsers()->count() }}</i></p>
+@foreach ($user->followusers as $followuser)
+<p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$followuser->id}}"><i class="fas fa-user"></i>{{$followuser->name}}</a>
+@endforeach
+</div>
+</div>
+
+@if(Auth::user()->id === $user->id)
+<form action="/profile/comment/{{ $user->id }}" method="post">
+    {{ csrf_field() }}
+    <input type="search" name="comment_profile" placeholder="自己紹介コメント">
+    <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+</form>
+@endif
+<br>
+<h5 style="color:#094067;"><i class="fas fa-angle-right">自己紹介</i></h5>
+@foreach ($comments as $comment)
+    <p style="color:#094067;">{{ $comment ->comment}}</p>
+    @if(Auth::user()->id === $user->id)
+    <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
+    </form>
+    @endif
+@endforeach
+
+</div>
+
 <br>
 
 <br>
-<div class="col-xs-6 col-md-4">
+<div class="col-xs-6 col-md-8">
 <!--likes  -->
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
     @foreach ($pin as $pin)
@@ -135,9 +120,6 @@
 <br>
     @endforeach
     <script src="{{ asset('/js/alert.js') }}"></script>
-
-
-
 <br>
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
 <!-- 多対多（Many to Many）foreachでクラスに分解して表示 -->
@@ -145,9 +127,6 @@
 <p><a type="button"  style="color:#3da9fc;" href="/post/{{$favorite->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $favorite->text }}</a></p>
 @endforeach
 </div>
-
-
-
 </div>
 </div>
 @endsection

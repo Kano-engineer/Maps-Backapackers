@@ -23,7 +23,7 @@
     </ul>
 @endif
     </div>
-    <div class="col-md-4">
+    <div class="col-md-8">
         @if ($errors->has('text'))
         <ul>
         @foreach($errors->all() as $error)
@@ -42,7 +42,7 @@
 <br>
 
 @foreach ($pins as $pins)
-<div class="card" >
+<div class="card">
   <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pins->user_id}}"><i class="fas fa-user"></i> {{$pins->user->name}}</a>：{{ $pins->text }}</h5>
   <div class="card-body">
     <img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
@@ -55,8 +55,8 @@
 @endforeach
 
 <br>
-    <div class="col-md-4">
-    </div>
+    <!-- <div class="col-md-4">
+    </div> -->
     </div>
 </div>
 
