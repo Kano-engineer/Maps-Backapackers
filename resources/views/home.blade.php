@@ -10,12 +10,13 @@
     <ul class="navbar-nav mr-auto">
         <div class="sidebar">
             <div class="sidebar-item">
-                <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                <h4><i style="color:#094067;" class="fas fa-user">(写真)USER：</i>{{ Auth::user()->name }}</h4>
+                <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
                     <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
                 <div class="btn-sidebar">
 
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
-                    
+                    <br>
                 </div>
             </div>
         </div>
@@ -30,6 +31,7 @@
         @endforeach
         </ul>
         @endif
+        <h5 type="button" class="btn btn-primary" href="#"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
     <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">地名/住所を入力してあなたの旅をシェアしよう</i></p>
     <form action="/post" method="post" class=".form-control:focus">
         {{ csrf_field() }}
@@ -39,28 +41,18 @@
 
 <br>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>詳細</th>
-            <th>地名/住所</th>
-            <th>投稿ユーザー</th>
-        </tr>
-    </thead>
-    
-    <tbody>
-        @foreach ($pins as $pins)
-        <tr>
-            <th scope="row"><a type="button"  style="color:#3da9fc;" href="post/{{$pins->id}}"><i class="fas fa-globe-europe"></i></a> </th>
-            <td><a style="color:#094067;">{{ $pins->text }}</a></td>
-            <td><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pins->user_id}}"><i class="fas fa-user"></i> {{$pins->user->name}}</a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-<!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a> -->
+@foreach ($pins as $pins)
+<div class="card" >
+  <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pins->user_id}}"><i class="fas fa-user"></i> {{$pins->user->name}}</a>：{{ $pins->text }}</h5>
+  <div class="card-body">
+    <img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+    <h5 class="card-title">SNS for Backpackers</h5>
+    <p class="card-text"></p>
+    <a href="post/{{$pins->id}}" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<br>
+@endforeach
 
 <br>
     <div class="col-md-4">

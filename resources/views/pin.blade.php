@@ -9,14 +9,17 @@
 <div class="col-md-4">
         <!-- side -->
 @if ( Auth::check() )
-    <ul class="navbar-nav mr-auto">
+<ul class="navbar-nav mr-auto">
         <div class="sidebar">
             <div class="sidebar-item">
-                <h4>USER：{{ Auth::user()->name }}</h4>
+                <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
                     <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
-               
+                <div class="btn-sidebar">
+
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
-                
+                    
+                </div>
             </div>
         </div>
     </ul>
@@ -25,9 +28,6 @@
 
     <div class="col-md-4">
 <!-- main -->
-    
-    
-<br>
 
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
 
@@ -71,10 +71,10 @@
 @endif
 
 @if ($photos->isEmpty()) 
-    <img style="width:380px;height:250px;" src="{{ URL::asset('image/noimage.png') }}" />
+    <img style="width:380px;height:300px;" src="{{ URL::asset('image/noimage.png') }}" />
 @else
 @foreach ($photos as $photo)
-        <img style="width:380px;height:250px;" src="{{ asset('storage/' . $photo['photo']) }}">
+        <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}">
         <br>
         <!-- 写真削除 idで判別-->
         @if(Auth::user()->id === $pin->user_id)
@@ -90,11 +90,6 @@
 <br>
 
 <script src="{{ asset('/js/alert.js') }}"></script>
-
-<!-- <div id="map" style="height:500px;width:1000" ></div>
-<script src="{{ asset('/js/result.js') }}"></script> 
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer>
-</script> -->
  
 <form type="hidden" onsubmit="return false;">
   <input style="display:none;" type="" value="{{optional($pin) -> text}}" id="address">
@@ -102,11 +97,13 @@
 </form>
 
 </div>
+<br>
+<br>
 <div class="col-md-4">
 <!-- map -->
 
 <!-- 地図を表示させる要素 -->
-<div class="map_box01"><div id="map-canvas" style="width:500px;height:250px;"></div></div>
+<div class="map_box01"><div id="map-canvas" style="width:500px;height:300px;"></div></div>
 
 <!-- <p>*地図上をクリックするとピンを移動できます。</p> -->
 <br>
@@ -131,6 +128,7 @@
 <br>
 
 <div class="container">
+
     @foreach ($comments as $comments)
         <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
         {{ $comments->comment }}
@@ -142,7 +140,7 @@
                 @method('DELETE')
                 <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
         </form>
-            </div>
+            
         @endif
     @endforeach
 </div>
