@@ -26,7 +26,7 @@
 @endif
 </div>
 
-    <div class="col-md-4">
+<div class="col-md-4">
 <!-- main -->
 
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-map-marker-alt">{{optional($pin) -> text}} by </i><a style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user"></i>{{$pin->user->name}}</a></h5>
@@ -97,8 +97,9 @@
 </form>
 
 </div>
+
 <br>
-<br>
+
 <div class="col-md-4">
 <!-- map -->
 
@@ -121,7 +122,7 @@
     <form action="/comment/{{$pin -> id}}" method="post">
         {{ csrf_field() }}
         <input type="search" name="comment" placeholder="コメント">
-        <button type="submit"><i class="fas fa-comment-dots">コメント</i></button>
+        <button type="submit"><i class="fas fa-comment">コメント</i></button>
     </form>
 </div>
 
@@ -155,7 +156,7 @@
     
 <script src="{{ asset('/js/getAddress.js') }}"></script> 
 
-   
+   </div>
 </div>
 </div>
 @endsection
