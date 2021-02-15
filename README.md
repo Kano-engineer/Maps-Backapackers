@@ -1,4 +1,4 @@
-#アプリ名：Maps.Backpackers
+#アプリ名：Maps.Backpackers【http://52.195.10.177/】
 
 ・「ローカル情報を共有」できる旅アプリ。
 
