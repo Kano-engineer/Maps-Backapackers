@@ -101,7 +101,6 @@
 <br>
 
 <div class="col-md-4">
-<!-- map -->
 
 <!-- 地図を表示させる要素 -->
 <div class="map_box01"><div id="map-canvas" style="width:500px;height:300px;"></div></div>
