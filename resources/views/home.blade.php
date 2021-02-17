@@ -10,10 +10,15 @@
     <ul class="navbar-nav mr-auto">
         <div class="sidebar">
             <div class="sidebar-item">
-                <h4><i style="color:#094067;" class="fas fa-user">(写真)USER：</i>{{ Auth::user()->name }}</h4>
+                <h4><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a></h4>
                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
-                    <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
+                    <!-- <p><a href="/profile" class="btn btn-primary"><i class="fas fa-user"></i>MyProfile:{{ Auth::user()->name }}</a></p> -->
                 <div class="btn-sidebar">
+                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map"><i class="fas fa-comment-dots">DM</i></a>
+                    <br>
+
+                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索</i></a>
+                    <br>
 
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
                     <br>
@@ -23,6 +28,9 @@
     </ul>
 @endif
     </div>
+
+
+
     <div class="col-md-8">
         @if ($errors->has('text'))
         <ul>
@@ -45,16 +53,28 @@
 <div class="card">
   <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pins->user_id}}"><i class="fas fa-user"></i> {{$pins->user->name}}</a>：{{ $pins->text }}</h5>
   <div class="card-body">
-    <img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
     <h5 class="card-title">SNS for Backpackers</h5>
+    <img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
     <p class="card-text"></p>
-    <a href="post/{{$pins->id}}" class="btn btn-primary">Go somewhere</a>
-  </div>
+    <a href="post/{{$pins->id}}" class="btn btn-primary">MAPを見る</a>
+@if($pins->users()->where('user_id', Auth::id())->exists())
+      <form action="{{ route('unfavorites', $pins) }}" method="POST">
+         @csrf
+         <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-primary">
+      </form>
+@else
+      <form action="{{ route('favorites', $pins) }}" method="POST">
+        @csrf
+        <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-link">
+      </form>
+@endif
+</div>
 </div>
 <br>
 @endforeach
 
 <br>
+
     <!-- <div class="col-md-4">
     </div> -->
     </div>
