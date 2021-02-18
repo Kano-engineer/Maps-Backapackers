@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
-    
-    <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+<head>
+<meta charset="utf-8">
+<title>Simple Map Sample</title>
+<meta charset="utf-8">
+<style>
+/* レスポンシブ */
+.map_wrapper {
+  position: relative; /* 子要素の基準とする */
+  width:100%;
+  padding-top:56.25%; /* 幅の 56.25% を高さとする場合（16:9）*/
+  border: 1px solid #CCC;  
+}
+.map_wrapper .gmap {
+  position: absolute; /* 親要素のパディング領域に配置 */
+  width: 100%; /* 親コンテナの幅いっぱいに表示 */
+  height: 100%; /* 親コンテナの高さいっぱいに表示 */
+  top: 0;
+  left: 0;
+} 
+</style>
+</head>
+<body>
 
-    @foreach ($pins as $pins)
-       {{ $pins->text }} 
-    @endforeach
+<div class="map_wrapper">
+  <div id="gmap" class="gmap"></div>
+</div>
 
-    <script>
+@foreach ($pins as $pins)
+<ol id="pins">
+    <li>{{ $pins->text }}</li>
+</ol>
+@endforeach
 
-    function initMap() {
+<script>
+  function initMap() {
 
-    var addresses = [
-        '@json($pins->text)',
-
-    ];
+var addresses = [
+    'pins',
+];
 
 var latlng = []; //緯度経度の値をセット
 var marker = []; //マーカーの位置情報をセット
-var infoWindow = [];
 var myLatLng; //地図の中心点をセット用
 var geocoder;
 geocoder = new google.maps.Geocoder();
 
-var map = new google.maps.Map(document.getElementById('map'));//地図を作成する
+var map = new google.maps.Map(document.getElementById('gmap'));//地図を作成する
 
 geo(aftergeo);
 
@@ -59,9 +62,6 @@ function geo(callback){
                             position: results[0].geometry.location, // マーカーを立てる位置を指定
                             map: map // マーカーを立てる地図を指定
                         });
-                        infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-                            content: 'hello' // 吹き出しに表示する内容
-                        });
                     } else { // 失敗した場合
                     }//if文の終了。ifは文なので;はいらない
                     if (--cRef <= 0) {
@@ -73,32 +73,18 @@ function geo(callback){
     }//for文の終了
 }//function geo終了
 
-
 function aftergeo(){
     myLatLng = latlng[0];//最初の住所を地図の中心点に設定
     var opt = {
         center: myLatLng, // 地図の中心を指定
-        zoom: 2 // 地図のズームを指定
+        zoom: 16 // 地図のズームを指定
     };//地図作成のオプションのうちcenterとzoomは必須
     map.setOptions(opt);//オプションをmapにセット
 }//function aftergeo終了
 
-
-
 };//function initMap終了
 
-
-// マーカーにクリックイベントを追加
-function markerEvent(i) {
-    marker[i].addListener('click', function() { // マーカーをクリックしたとき
-      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
-  });
-}
-
-</script>
-
-  </head>
-  <body>
-    <div id="map"></div>
-  </body>
+</script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
+</body>
 </html>

@@ -19,6 +19,10 @@
 
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索</i></a>
                     <br>
+                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map2"><i class="fas fa-comment-dots">MAP2で検索</i></a>
+                    <br>
+                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map3"><i class="fas fa-comment-dots">MAP3で検索</i></a>
+                    <br>
 
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
                     <br>
