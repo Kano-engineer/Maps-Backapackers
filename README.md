@@ -1,6 +1,6 @@
 #アプリ名：Maps.Backpackers(http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/)
 
-・「ローカル情報を共有」できる旅アプリ。
+・ガイドブックに載っていないローカル情報を共有できる旅アプリです。
 
 #制作背景/問題意識
 
