@@ -70,3 +70,8 @@
 
 ・デザインとUI/UXの洗練
 
+・S3 / RDS / Route53
+
+・Jenkins連携
+
+
