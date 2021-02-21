@@ -1,4 +1,4 @@
-![Uploading スクリーンショット 2021-02-21 18.55.29.png…]()
+https://user-images.githubusercontent.com/71540533/106152528-e182e880-61c0-11eb-8c32-953634910a4a.png
 
 #アプリ名：Maps.Backpackers(http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/)
 
