@@ -13,12 +13,22 @@
         <div class="sidebar">
             <div class="sidebar-item">
                 <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
-                <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
+                @if (Auth::user()->images->isEmpty()) 
+                    <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="...">
+                @else
+                    @foreach(Auth::user()->images as $image)
+                    <img style="width:250px;height:200px;" src="{{ asset('storage/' . $image['file_name']) }}">
+                    @endforeach
+                @endif
                     <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
                 <div class="btn-sidebar">
 
-                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
-                    
+                    <a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索(実装中：クリックOK)</i></a>
+                    <br>
+                    <p></p>
+                    <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+                    <p></p>
+                    <br>
                 </div>
             </div>
         </div>
