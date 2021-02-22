@@ -32,8 +32,8 @@ function initMap() {
   var target = document.getElementById('gmap');  
   //マップを生成
   var map = new google.maps.Map(target, {  
-    center: {lat: 40.748441, lng: -73.985664},
-    zoom: 14
+    center: {lat: 35, lng: 135},
+    zoom: 2
   });
   //ジオコーディングのインスタンスの生成
   var geocoder = new google.maps.Geocoder();  
