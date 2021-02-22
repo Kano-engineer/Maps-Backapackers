@@ -27,7 +27,7 @@ Route::get('/login/guest', 'Auth\LoginController@guestLogin');
 //プロフィール表示
 Route::get('/profile', 'ProfileController@index');
 //画像を保存したり画像名をDBに格納する部分
-Route::post('profile/upload', 'ProfileController@upload');
+Route::post('/profile/upload', 'ProfileController@upload');
 //プロフィール画像削除
 Route::delete('/profile/{id}', 'ProfileController@destroy');
 //プロフィール
