@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pins = Pin::with('user')->get();
+        $pins = Pin::with('user')->with('photos')->get();
         return view('home', [ 'pins' => $pins]);
     }
 

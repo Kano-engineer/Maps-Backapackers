@@ -5,8 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-4">
-        <h1><i style="color:#094067;" class="fas fa-user"></i>{{ $user->name }}</h1>
-    <!-- 自分以外のユーザーのみフォロー機能表示 -->
+        <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
     @if(Auth::user()->id !== $user->id)
         @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
         <form action="{{ route('unfollow', $user) }}" method="POST">
@@ -20,16 +19,33 @@
         </form>
         @endif
     @endif
-    <div>
+
+@if ($user_images->isEmpty()) 
+    <img style="width:250px;height:200px;" src="{{ URL::asset('image/4.jpg') }}" />
+@else
+@foreach ($user_images as $user_image)
+    <img style="width:250px;height:200px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
+    <!-- 写真削除 idで判別-->
+    <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                @if(Auth::user()->id === $user->id)
+                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
+                @endif
+    </form>
+@endforeach
+@endif
+
+<div>
 @if ($errors->has('file'))
     @foreach($errors->all() as $error)
     <font color =red>*{{ $error }}</font>
     @endforeach
 @endif
-   </div>
+</div>
 
 @if(Auth::user()->id === $user->id)
-<form action="profile/upload" method="POST" enctype="multipart/form-data">
+<form action="/profile/upload" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="photo"></label>
     <input type="file" class="form-control" name="file">
@@ -45,22 +61,6 @@
     @endforeach
 @endif
 </div>
-
-@if ($user_images->isEmpty()) 
-    <img style="width:350px;height:250px;" src="{{ URL::asset('image/4.jpg') }}" />
-@else
-@foreach ($user_images as $user_image)
-    <img style="width:350px;height:250px;" src="{{ asset('storage/' . $user_image['file_name']) }}">
-    <!-- 写真削除 idで判別-->
-    <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
-                @csrf
-                @method('DELETE')
-                @if(Auth::user()->id === $user->id)
-                <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-                @endif
-    </form>
-@endforeach
-@endif
 
 <div class="d-flex flex-row">
 
@@ -98,6 +98,13 @@
     </form>
     @endif
 @endforeach
+<p></p>
+<a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索(実装中：クリックOK)</i></a>
+                    <br>
+                    <p></p>
+                    <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+                    <p></p>
+                    <br>
 
 </div>
 
@@ -108,15 +115,35 @@
 <!--likes  -->
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
     @foreach ($pin as $pin)
-    <div class="card">
+<div class="card">
 <h5 class="card-header" style="color:#094067;">{{ $pin->text }}</h5>
 <div class="card-body">
-<img style="width:200px;height:150px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-<h5 class="card-title">SNS for Backpackers</h5>
+
+@if ($pin->photos->isEmpty()) 
+        <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+    @else
+        @foreach($pin->photos as $photo)
+        <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+        @endforeach
+@endif
+
+<!-- <h5 class="card-title">SNS for Backpackers</h5> -->
 <p class="card-text"></p>
-<a href="post/{{$pin->id}}" class="btn btn-primary">Go somewhere</a>
+<a href="/post/{{$pin->id}}" class="btn btn-primary">MAPを見る</a>
+@if($pin->users()->where('user_id', Auth::id())->exists())
+      <form action="{{ route('unfavorites', $pin) }}" method="POST">
+         @csrf
+         <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
+      </form>
+@else
+      <form action="{{ route('favorites', $pin) }}" method="POST">
+        @csrf
+        <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
+      </form>
+@endif
 </div>
 </div>
+
 <br>
     @endforeach
     <script src="{{ asset('/js/alert.js') }}"></script>
@@ -124,9 +151,34 @@
 <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
 <!-- 多対多（Many to Many）foreachでクラスに分解して表示 -->
 @foreach ($user->favorites as $favorite)
-<p><a type="button"  style="color:#3da9fc;" href="/post/{{$favorite->id}}"><i class="fas fa-map-marker-alt"></i></a><a style="color:#094067;">{{ $favorite->text }}</a></p>
+
+<div class="card">
+<h5 class="card-header" style="color:#094067;">{{ $favorite->text }}</h5>
+<div class="card-body">
+
+        <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+
+<p class="card-text"></p>
+<a href="/post/{{$favorite->id}}" class="btn btn-primary">MAPを見る</a>
+
+
+@if($favorite->users()->where('user_id', Auth::id())->exists())
+      <form action="{{ route('unfavorites', $favorite) }}" method="POST">
+         @csrf
+         <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
+      </form>
+@else
+      <form action="{{ route('favorites', $favorite) }}" method="POST">
+        @csrf
+        <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
+      </form>
+@endif
+</div>
+</div>
+
 @endforeach
 </div>
 </div>
 </div>
 @endsection
+

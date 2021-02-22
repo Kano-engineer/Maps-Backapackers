@@ -7,6 +7,7 @@ use App\Image;
 use App\User;
 use App\Pin;
 use App\Comment;
+use App\Photo;
 
 class ProfileController extends Controller
 {
@@ -48,7 +49,7 @@ class ProfileController extends Controller
         $user_id = Auth::id();
         $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
-        $pin = Pin::whereUser_id($user_id)->get();
+        $pin = Pin::whereUser_id($user_id)->with('photos')->get();
 
         $id = $user_id;
         $user = User::find($id);
