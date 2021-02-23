@@ -29,10 +29,10 @@
                     <br>
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map3"><i class="fas fa-comment-dots">MAP3で検索</i></a>
                     <br> -->
-                    <a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
+                    <a type="button" class="btn btn-primary btn-sm" href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
                     <br>
                     <p></p>
-                    <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+                    <a type="button" class="btn btn-primary btn-sm" href="/post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
                     <p></p>
                     <br>
                 </div>
@@ -51,7 +51,7 @@
         </ul>
         @endif
         <!-- <h5 type="button" class="btn btn-primary" href="#"><i class="fas fa-edit">地名/住所を入力して、あなたの旅をシェアしよう</i></h5> -->
-    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">地名/住所を入力して旅をシェアする</i></h5>
+    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">地名/住所を入力して旅をシェアしよう</i></h5>
     <form action="/post" method="post" class=".form-control:focus">
         {{ csrf_field() }}
         <input type="search" name="text" placeholder="地名/住所">
