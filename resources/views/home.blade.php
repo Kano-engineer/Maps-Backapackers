@@ -20,7 +20,7 @@
                 @endif
                 
                     <!-- <p><a href="/profile" class="btn btn-primary"><i class="fas fa-user"></i>MyProfile:{{ Auth::user()->name }}</a></p> -->
-                    <p><a href="/profile" class="btn btn-primary">MyProfile</a></p>
+                    <p><a href="/profile" class="btn btn-primary"><i class="fas fa-user"></i>MyProfile</a></p>
                 <div class="btn-sidebar">
                 <div class="btn-sidebar">
                     <!-- <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map"><i class="fas fa-comment-dots">DM</i></a>
