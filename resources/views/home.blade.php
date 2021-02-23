@@ -50,7 +50,7 @@
         @endforeach
         </ul>
         @endif
-        <!-- <h5 type="button" class="btn btn-primary" href="#"><i class="fas fa-edit">地名/住所を入力して、あなたの旅をシェアしよう</i></h5> -->
+        <!-- <h5 type="button" class="btn btn-primary" href="#"><i class="fas fa-edit">地名/住所を入力して、あなたの旅をシェア</i></h5> -->
     <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">地名/住所を入力して旅をシェアする</i></h5>
     <form action="/post" method="post" class=".form-control:focus">
         {{ csrf_field() }}
