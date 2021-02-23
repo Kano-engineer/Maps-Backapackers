@@ -20,6 +20,11 @@
  
     <script src="{{ mix('js/app.js') }}"></script>
     
+    <script>
+ $(window).load(function() {
+      footerStart();
+  });
+    </script>
     <footer>
 <!--フッターの記述-->
     </footer>

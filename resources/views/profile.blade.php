@@ -99,10 +99,10 @@
     @endif
 @endforeach
 <p></p>
-<a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
+<a type="button" class="btn btn-primary btn-sm" href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
                     <br>
                     <p></p>
-                    <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
+                    <a type="button" class="btn btn-primary btn-sm" href="/post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
                     <p></p>
                     <br>
 
