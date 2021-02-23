@@ -29,7 +29,7 @@
                     <br>
                     <a type="button" class="btn btn-primary btn-lg active btn-sm" href="map3"><i class="fas fa-comment-dots">MAP3で検索</i></a>
                     <br> -->
-                    <a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索(実装中：クリックOK)</i></a>
+                    <a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
                     <br>
                     <p></p>
                     <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
@@ -78,7 +78,7 @@
     @endif
 
     <p class="card-text"></p>
-    <a href="post/{{$pins->id}}" class="btn btn-primary">MAPを見る</a>
+    <a href="post/{{$pins->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
 @if($pins->users()->where('user_id', Auth::id())->exists())
       <form action="{{ route('unfavorites', $pins) }}" method="POST">
          @csrf

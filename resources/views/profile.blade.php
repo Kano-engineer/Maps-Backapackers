@@ -99,7 +99,7 @@
     @endif
 @endforeach
 <p></p>
-<a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-comment-dots">MAPで検索(実装中：クリックOK)</i></a>
+<a type="button" class="btn btn-primary btn-sm" href="map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
                     <br>
                     <p></p>
                     <a type="button" class="btn btn-primary btn-sm" href="post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a>
@@ -129,7 +129,7 @@
 
 <!-- <h5 class="card-title">SNS for Backpackers</h5> -->
 <p class="card-text"></p>
-<a href="/post/{{$pin->id}}" class="btn btn-primary">MAPを見る</a>
+<a href="/post/{{$pin->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
 @if($pin->users()->where('user_id', Auth::id())->exists())
       <form action="{{ route('unfavorites', $pin) }}" method="POST">
          @csrf
@@ -159,7 +159,7 @@
         <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
 
 <p class="card-text"></p>
-<a href="/post/{{$favorite->id}}" class="btn btn-primary">MAPを見る</a>
+<a href="/post/{{$favorite->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
 
 
 @if($favorite->users()->where('user_id', Auth::id())->exists())
