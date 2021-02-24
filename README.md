@@ -39,8 +39,7 @@
 
 ・AWS
 
-![Untitled Diagram](https://user-images.githubusercontent.com/71540533/108985564-89160c80-76d4-11eb-8d9c-46433f3411dc.png)
-
+![image_from_ios](https://user-images.githubusercontent.com/71540533/109007760-da7fc500-76ef-11eb-812b-05edd7fc958a.jpg)
 
 # 機能
 
