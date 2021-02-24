@@ -14,11 +14,11 @@
 
 ・PHP 
 
-     ー Laravel
+    - Laravel
 
 ・JavaScript
 
-     ー Vue.js
+    - Vue.js
 
 # API 
 
@@ -32,7 +32,7 @@
 
 ・RDB
 
-ー MySQL
+    - MySQL
 
 ・AWS
 
