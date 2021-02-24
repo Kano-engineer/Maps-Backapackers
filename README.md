@@ -20,7 +20,7 @@
 
 ー Vue.js
 
-＃ API 
+# API 
 
 ・Google API ( Maps Javascript API / Geocoding API )
 
