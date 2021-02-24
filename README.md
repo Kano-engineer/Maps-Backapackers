@@ -14,7 +14,7 @@
 
 ・PHP 
 
-- Laravel
+ー Laravel
 
 ・JavaScript
 
