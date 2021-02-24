@@ -22,9 +22,10 @@
 
 # API 
 
+・Pusher
+
 ・Google API ( Maps Javascript API / Geocoding API )
 
-・Pusher
 
 # インフラ / コード管理
 
