@@ -1,5 +1,7 @@
 # アプリ名：Maps.Backpackers(http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/)
 
+https://user-images.githubusercontent.com/71540533/108964599-0171d300-76bf-11eb-832c-4a948aac504f.JPG
+
 ・ガイドブックに載っていないローカル情報を共有できる旅アプリです。
 
 # 制作背景
