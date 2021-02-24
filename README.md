@@ -20,10 +20,6 @@
 
 ー Vue.js
 
-・RDB
-
-ー MySQL
-
 ＃ API 
 
 ・Google API ( Maps Javascript API / Geocoding API )
@@ -33,6 +29,10 @@
 # インフラ / コード管理
 
 ・Git
+
+・RDB
+
+ー MySQL
 
 ・AWS
 
