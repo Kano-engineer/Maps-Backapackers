@@ -14,11 +14,11 @@
 
 ・PHP 
 
-ー Laravel
+     ー Laravel
 
 ・JavaScript
 
-ー Vue.js
+     ー Vue.js
 
 # API 
 
