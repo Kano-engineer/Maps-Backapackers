@@ -18,11 +18,11 @@
 
 ・JavaScript
 
-- Vue.js
+ー Vue.js
 
 ・RDB
 
-- MySQL
+ー MySQL
 
 ＃ API 
 
