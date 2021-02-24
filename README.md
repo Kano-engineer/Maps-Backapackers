@@ -10,25 +10,31 @@
 
 ・「ユーザーがどうやったら使いやすいか」を考え、地図を使って感覚的に操作出来る工夫をしました。JavaScriptを用いて詳細画面に遷移した際に地名/住所から緯度経度を取得し、自動で地図上にピンを表示させる処理を取り入れました。また、Vue.jsやAWSなど現場で使われているモダンな技術を取り入れる努力をしました。
 
-# 使用技術
+# 使用言語
 
 ・PHP 
 
-・Laravel
+- Laravel
 
 ・JavaScript
 
-・Vue.js
+- Vue.js
 
-・MySQL
+・RDB
 
-・Pusher
+- MySQL
 
-・AWS
+＃ API 
 
 ・Google API ( Maps Javascript API / Geocoding API )
 
-・Git / GitHub
+・Pusher
+
+# インフラ / コード管理
+
+・Git
+
+・AWS
 
 # 機能
 
