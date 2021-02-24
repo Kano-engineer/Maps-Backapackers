@@ -39,7 +39,7 @@
 
 ・AWS
 
-[Untitled Diagram.pdf](https://github.com/Kano-engineer/Maps-Backapackers/files/6035153/Untitled.Diagram.pdf)
+![Untitled Diagram](https://user-images.githubusercontent.com/71540533/108985564-89160c80-76d4-11eb-8d9c-46433f3411dc.png)
 
 
 # 機能
