@@ -139,8 +139,9 @@
             @endforeach
             
             <br>
-
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
+            
+            <!-- TODO:Display image-->
+            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿(実装中：画像表示予定)</i></h5>
             @foreach ($user->favorites as $favorite)
                 <div class="card">
                     <h5 class="card-header" style="color:#094067;">{{ $favorite->text }}</h5>
