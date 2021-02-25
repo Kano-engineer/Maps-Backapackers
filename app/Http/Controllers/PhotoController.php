@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
-
 use App\Photo;
 
 class PhotoController extends Controller
@@ -15,18 +13,13 @@ class PhotoController extends Controller
         $this->validate($request, 
             [
                 'file' => 
-                // 必須
                 'required',
-                // アップロードされたファイルであること
                 'file',
-                // 画像ファイルであること
                 'image',
-                // MIMEタイプを指定
                 'mimes:jpeg,png',
             ],
             [
-                'file.required' => '写真は必須です。',
-                
+                'file.required' => '写真は必須です。',  
             ]
         );
         
@@ -38,7 +31,6 @@ class PhotoController extends Controller
             $new_image_data = new Photo();
             $new_image_data->pin_id = $pin_id;
             $new_image_data->photo = $file_name;
-
             $new_image_data->save();
 
             return redirect()->back();
@@ -46,8 +38,8 @@ class PhotoController extends Controller
     }
 
         public function destroy($id) {
-            
             $photo=Photo::where('id',$id)->delete();
+            
             return redirect()->back();
     }
 }
