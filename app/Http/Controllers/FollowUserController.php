@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\User;
 use App\FollowUser;
+use App\User;
 
 class FollowUserController extends Controller
 {
@@ -14,11 +13,7 @@ class FollowUserController extends Controller
             'following_user_id' => \Auth::user()->id,
             'followed_user_id' => $user->id,
         ]);
-
         return redirect()->back();
-
-        // $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
-        // return response()->json(['followCount' => $followCount]);
     }
 
     public function unfollow(User $user) {
@@ -26,8 +21,5 @@ class FollowUserController extends Controller
         $follow->delete();
 
         return redirect()->back();
-
-        // $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
-        // return response()->json(['followCount' => $followCount]);
     }
 }
