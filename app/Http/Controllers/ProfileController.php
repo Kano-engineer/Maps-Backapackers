@@ -14,22 +14,17 @@ class ProfileController extends Controller
     public function upload(Request $request)
     {
         $this->validate($request, 
-        [
-            'file' => 
-            // 必須
-            'required',
-            // アップロードされたファイルであること
-            'file',
-            // 画像ファイルであること
-            'image',
-            // MIMEタイプを指定
-            'mimes:jpeg,png',
-        ],
-        [
-            'file.required' => '写真は必須です。',
-        ]
+            [
+                'file' => 
+                'required',
+                'file',
+                'image',
+                'mimes:jpeg,png',
+            ],
+            [
+                'file.required' => '写真は必須です。',
+            ]
     );
-
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
 
@@ -50,7 +45,6 @@ class ProfileController extends Controller
         $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->with('photos')->get();
-
         $id = $user_id;
         $user = User::find($id);
 
@@ -84,7 +78,6 @@ class ProfileController extends Controller
                     'comment_profile.max'      => 'テキストは50文字以下です。',
                 ]
             );
-    
             Comment::create(
                 [
                 'comment' => $request->comment_profile,
@@ -92,10 +85,10 @@ class ProfileController extends Controller
                 ]);
             return redirect()->back();
         }
-
         public function destroyComment($id) {
             $comment=Comment::where('id',$id);
             $comment->delete();
+            
             return redirect()->back();
         }
     
