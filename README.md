@@ -14,9 +14,9 @@
 
 # 使用言語
 
-・PHP 
+・PHP 7.3.11
 
-    - Laravel
+    - Laravel 7.30.4
 
 ・JavaScript
 
