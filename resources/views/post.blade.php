@@ -82,7 +82,7 @@
                                         <img style="width:250px;height:200px;" src="{{ asset('storage/' . $image['file_name']) }}">
                                         @endforeach
                                     @endif
-                                        <p><a href="/profile" class="btn btn-primary"><i class="fas fa-user"></i>MyProfile</a></p>
+                                        <p><a href="/profile" class="btn btn-primary"><i class="fas fa-user"></i>My Profile</a></p>
                                     <div class="btn-sidebar">
                                         <a type="button" class="btn btn-primary btn-sm" href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a>
                                         <br>
