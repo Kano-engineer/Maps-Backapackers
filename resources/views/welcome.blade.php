@@ -16,6 +16,11 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <style>
+        body {
+        background: url("../image/5.jpg");
+        }
+    </style>
     </head>
     <body id="page-top" >
         <!-- Navigation-->
@@ -40,11 +45,11 @@
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead">
+        <!-- <header class="masthead"> -->
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 align-self-end">
-                        <h1 class="text-uppercase text-white font-weight-bold">Maps.Backpackers</h1>
+                        <h1 colr="#000000" class="text-uppercase text-white font-weight-bold">Maps.Backpackers</h1>
                        <br>
                     </div>
                     <div class="col-lg-8 align-self-baseline">
@@ -53,7 +58,7 @@
                     
                 </div>
             </div>
-        </header>
+        <!-- </header> -->
         <!-- About-->
         
         <!-- Bootstrap core JS-->
