@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Photo;
 use App\Image;
 use App\Pin;
+use App\Comment;
 
 class HomeController extends Controller
 {
@@ -26,8 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::id();
+        $comments=Comment::whereProfile_id($user_id)->get();
         $pins = Pin::with('user')->with('photos')->get();
-        return view('home', [ 'pins' => $pins]);
+        return view('home', [ 'pins' => $pins, 'comments'=>$comments]);
     }
 
     public function map()
