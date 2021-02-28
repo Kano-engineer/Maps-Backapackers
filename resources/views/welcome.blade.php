@@ -19,6 +19,8 @@
         <style>
         body {
         background: url("../image/5.jpg");
+        /* background-size: cover; */
+        background-attachment: fixed;
         }
     </style>
     </head>
