@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-4">
-                <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                <h4><i style="color:#094067;" class="fas fa-user">USER：</i>{{ $user->name }}</h4>
             @if(Auth::user()->id !== $user->id)
                 @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
                     <form action="{{ route('unfollow', $user) }}" method="POST">
