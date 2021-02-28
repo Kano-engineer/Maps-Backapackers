@@ -58,18 +58,24 @@
                                 @endforeach
                         @endif
                             <p class="card-text"></p>
-                            <a href="post/{{$pins->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
-                        @if($pins->users()->where('user_id', Auth::id())->exists())
-                            <form action="{{ route('unfavorites', $pins) }}" method="POST">
-                                @csrf
-                                <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-primary">
-                            </form>
-                        @else
-                            <form action="{{ route('favorites', $pins) }}" method="POST">
-                                @csrf
-                                <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-link">
-                            </form>
-                        @endif
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    <a href="post/{{$pins->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
+                                </div>
+                                <div class="p-2">
+                                    @if($pins->users()->where('user_id', Auth::id())->exists())
+                                        <form action="{{ route('unfavorites', $pins) }}" method="POST">
+                                            @csrf
+                                            <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-primary">
+                                        </form>
+                                    @else
+                                        <form action="{{ route('favorites', $pins) }}" method="POST">
+                                            @csrf
+                                            <input type="submit" value="&#xf164;Like {{ $pins->users()->count() }}" class="fas btn btn-link">
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <br>
