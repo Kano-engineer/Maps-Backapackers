@@ -107,7 +107,7 @@
         <br>
 
         <div class="col-xs-6 col-md-8">
-            <!-- TODO:Use tab menu for switching between list and likes -->
+            <!-- TODO:Use tab menu for switching between list and like -->
             <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
             @foreach ($pin as $pin)
                 <div class="card">
@@ -145,7 +145,7 @@
             @endforeach
             
             <br>
-            <!-- TODO:Display images -->
+            <!-- TODO:Display image -->
             <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿(実装中：画像表示予定）</i></h5>
             @foreach ($user->favorites as $favorite)
                 <div class="card">

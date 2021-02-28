@@ -7,6 +7,11 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <style>
+        body {
+        background: url("../image/5.jpg");
+        }
+    </style>
 </head>
  
 <body>
