@@ -121,18 +121,24 @@
                                 @endforeach
                             @endif
                                 <p class="card-text"></p>
-                                <a href="/post/{{$pin->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
-                            @if($pin->users()->where('user_id', Auth::id())->exists())
-                                <form action="{{ route('unfavorites', $pin) }}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
-                                </form>
-                            @else
-                                <form action="{{ route('favorites', $pin) }}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
-                                </form>
-                            @endif
+                                <div class="d-flex flex-row">
+                                    <div class="p-2">
+                                        <a href="/post/{{$pin->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
+                                    </div>
+                                    <div class="p-2">
+                                        @if($pin->users()->where('user_id', Auth::id())->exists())
+                                            <form action="{{ route('unfavorites', $pin) }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                                            </form>
+                                        @else
+                                            <form action="{{ route('favorites', $pin) }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
                         </div>
                 </div>
                 <br>
@@ -147,18 +153,24 @@
                         <div class="card-body">
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                 <p class="card-text"></p>
-                                <a href="/post/{{$favorite->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
-                            @if($favorite->users()->where('user_id', Auth::id())->exists())
-                                <form action="{{ route('unfavorites', $favorite) }}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
-                                </form>
-                            @else
-                                <form action="{{ route('favorites', $favorite) }}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
-                                </form>
-                            @endif
+                                <div class="d-flex flex-row">
+                                    <div class="p-2">
+                                        <a href="/post/{{$favorite->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
+                                    </div>
+                                    <div class="p-2">
+                                        @if($favorite->users()->where('user_id', Auth::id())->exists())
+                                            <form action="{{ route('unfavorites', $favorite) }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
+                                            </form>
+                                        @else
+                                            <form action="{{ route('favorites', $favorite) }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
                         </div>
                 </div>
                 <br>
