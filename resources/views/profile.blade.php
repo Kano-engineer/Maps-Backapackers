@@ -121,12 +121,12 @@
                         @if($pin->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $pin) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                                <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
                             </form>
                         @else
                             <form action="{{ route('favorites', $pin) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
+                                <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                             </form>
                         @endif
                     </a>
@@ -135,7 +135,7 @@
             @endforeach
             <br>
 
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
+            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいね!した投稿</i></h5>
             @foreach ($user->favorites as $favorite)
                 <div class="card">
                         <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
@@ -151,12 +151,12 @@
                         @if($favorite->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $favorite) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
+                                <input type="submit" value="&#xf164; いいね！ {{ $favorite->users()->count() }}" class="fas btn btn-primary">
                             </form>
                         @else
                             <form action="{{ route('favorites', $favorite) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
+                                <input type="submit" value="&#xf164; いいね！ {{ $favorite->users()->count() }}" class="fas btn btn-link">
                             </form>
                         @endif
                     </a>
