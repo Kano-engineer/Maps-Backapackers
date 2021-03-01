@@ -28,13 +28,16 @@ class HomeController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $comments=Comment::whereProfile_id($user_id)->get();
+        // comment = self-introduction in sidebar
+        $comment=Comment::whereProfile_id($user_id)->get();
         $pins = Pin::with('user')->with('photos')->get();
-        return view('home', [ 'pins' => $pins, 'comments'=>$comments]);
+
+        return view('home', [ 'pins' => $pins, 'comment'=>$comment]);
     }
 
     public function map()
     {
+        
         $pins = Pin::with('user')->get();
         return view('map', [ 'pins' => $pins]);
     }

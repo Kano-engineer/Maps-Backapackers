@@ -41,7 +41,11 @@ class PinController extends Controller
         $comments = Comment::where('Pin_id',$id)->get();
         $photos = Photo::where('Pin_id',$id)->get();
 
-        return view('pin',['pin' => $pin,'photos' => $photos,'comments'=>$comments]);
+        // comment = self-introduction in sidebar
+        $user_id = Auth::id();
+        $comment=Comment::whereProfile_id($user_id)->get();
+
+        return view('pin',['pin' => $pin,'photos' => $photos,'comments'=>$comments,'comment'=>$comment]);
     }
 
     public function destroy($id) {
