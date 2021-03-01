@@ -16,7 +16,7 @@
                             @endforeach
                         @endif
                         <a href="/profile" class="card-body">
-                        <h4><i class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                        <h4><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></h4>
                             @foreach ($comment as $comment)
                                <p class="card-text">{{ $comment ->comment}}</p>
                             @endforeach
