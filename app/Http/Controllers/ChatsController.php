@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
-use App\Message;
 use Illuminate\Support\Facades\Auth;
 use App\Events\MessageSent;
+use App\Message;
+use App\Comment;
  
 class ChatsController extends Controller
 {
@@ -16,7 +17,10 @@ class ChatsController extends Controller
  
     public function index()
     {
-        return view('post',);
+        $user_id = Auth::id();
+        // comment = self-introduction in sidebar
+        $comment=Comment::whereProfile_id($user_id)->get();
+        return view('post', ['comment'=>$comment]);
     }
  
     public function fetchMessages()

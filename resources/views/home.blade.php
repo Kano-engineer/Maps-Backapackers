@@ -5,7 +5,6 @@
     <div class="row">
         <div class="col-md-4">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
-            <ul class="navbar-nav mr-auto">
                 <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
                     <div class="card" style="width:;">
@@ -18,7 +17,7 @@
                         @endif
                         <a href="/profile" class="card-body">
                         <h4><i class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
-                            @foreach ($comments as $comment)
+                            @foreach ($comment as $comment)
                                <p class="card-text">{{ $comment ->comment}}</p>
                             @endforeach
                         </a>
@@ -26,10 +25,9 @@
                             <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a></li>
                             <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a></li>
                         </ul>
-                        </div>
-                        <p></p>
+                    </div>
+                    <p></p>
                 </div>
-            </ul>
         </div>
 
         <div class="col-md-8">
