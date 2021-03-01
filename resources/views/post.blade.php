@@ -6,7 +6,7 @@
                     <div class="col-md-4">
                         <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                         <div class="sidebar">
-                        <!-- 2/28 Update:sidebar in card -->
+                        <!-- 3/1 Update:sidebar in card -->
                             <div class="card" style="width:;">
                                 @if (Auth::user()->images->isEmpty()) 
                                     <a href="/profile"><img style="" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="..."></a>
@@ -16,7 +16,7 @@
                                     @endforeach
                                 @endif
                                 <a href="/profile" class="card-body">
-                                <h4><i class="fas fa-user">USER：</i>{{ Auth::user()->name }}</h4>
+                                <h4><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></h4>
                                     @foreach ($comment as $comment)
                                     <p class="card-text">{{ $comment ->comment}}</p>
                                     @endforeach
