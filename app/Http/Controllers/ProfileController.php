@@ -47,7 +47,7 @@ class ProfileController extends Controller
         $pin = Pin::whereUser_id($user_id)->with('photos')->get();
         $id = $user_id;
         $user = User::find($id);
-
+        
         return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
