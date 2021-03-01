@@ -30,6 +30,7 @@
                     @endforeach
                 @endif
                 </div>
+                <!-- TODO:update rayout of upload image / follow -> Edit page ? -->
                 @if(Auth::user()->id === $user->id)
                     <form action="/profile/upload" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -107,67 +108,58 @@
             <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
             @foreach ($pin as $pin)
                 <div class="card">
-                    <h5 class="card-header" style="color:#094067;">{{ $pin->text }}</h5>
-                        <div class="card-body">
-                            @if ($pin->photos->isEmpty()) 
+                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pin->user_id}}"><i class="fas fa-user"></i> {{$pin->user->name}}</a>：{{ $pin->text }}</h5>
+                    <a href="post/{{$pin->id}}" class="card-body">
+                        @if ($pin->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-                            @else
+                        @else
                                 @foreach($pin->photos as $photo)
                                 <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                 @endforeach
-                            @endif
-                                <p class="card-text"></p>
-                                <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        <a href="/post/{{$pin->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
-                                    </div>
-                                    <div class="p-2">
-                                        @if($pin->users()->where('user_id', Auth::id())->exists())
-                                            <form action="{{ route('unfavorites', $pin) }}" method="POST">
-                                                @csrf
-                                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
-                                            </form>
-                                        @else
-                                            <form action="{{ route('favorites', $pin) }}" method="POST">
-                                                @csrf
-                                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
-                                            </form>
-                                        @endif
-                                    </div>
-                                </div>
-                        </div>
+                        @endif
+                            <p class="card-text"></p>
+                        @if($pin->users()->where('user_id', Auth::id())->exists())
+                            <form action="{{ route('unfavorites', $pin) }}" method="POST">
+                                @csrf
+                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                            </form>
+                        @else
+                            <form action="{{ route('favorites', $pin) }}" method="POST">
+                                @csrf
+                                <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
+                            </form>
+                        @endif
+                    </a>
                 </div>
                 <br>
             @endforeach
-            
             <br>
-            <!-- TODO:Display image -->
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿(実装中：画像表示予定）</i></h5>
+
+            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいねした投稿</i></h5>
             @foreach ($user->favorites as $favorite)
                 <div class="card">
-                    <h5 class="card-header" style="color:#094067;">{{ $favorite->text }}</h5>
-                        <div class="card-body">
+                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
+                    <a href="post/{{$favorite->id}}" class="card-body">
+                        @if ($favorite->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-                                <p class="card-text"></p>
-                                <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        <a href="/post/{{$favorite->id}}" class="btn btn-primary"><i class="fas fa-globe-europe">MAPを見る</i></a>
-                                    </div>
-                                    <div class="p-2">
-                                        @if($favorite->users()->where('user_id', Auth::id())->exists())
-                                            <form action="{{ route('unfavorites', $favorite) }}" method="POST">
-                                                @csrf
-                                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
-                                            </form>
-                                        @else
-                                            <form action="{{ route('favorites', $favorite) }}" method="POST">
-                                                @csrf
-                                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
-                                            </form>
-                                        @endif
-                                    </div>
-                                </div>
-                        </div>
+                        @else
+                                @foreach($favorite->photos as $photo)
+                                <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                @endforeach
+                        @endif
+                            <p class="card-text"></p>
+                        @if($favorite->users()->where('user_id', Auth::id())->exists())
+                            <form action="{{ route('unfavorites', $favorite) }}" method="POST">
+                                @csrf
+                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-primary">
+                            </form>
+                        @else
+                            <form action="{{ route('favorites', $favorite) }}" method="POST">
+                                @csrf
+                                <input type="submit" value="&#xf164;Like {{ $favorite->users()->count() }}" class="fas btn btn-link">
+                            </form>
+                        @endif
+                    </a>
                 </div>
                 <br>
             @endforeach
