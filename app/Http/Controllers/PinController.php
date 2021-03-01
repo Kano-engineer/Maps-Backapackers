@@ -57,9 +57,12 @@ class PinController extends Controller
 
     public function edit($id)
     {
+        $user_id = Auth::id();
+        // comment = self-introduction in sidebar
+        $comment=Comment::whereProfile_id($user_id)->get();
         $pin = Pin::find($id);
 
-        return view('edit',['pin' => $pin]);
+        return view('edit',['pin' => $pin, 'comment'=>$comment]);
     }
 
     public function update(Request $request,$id)
