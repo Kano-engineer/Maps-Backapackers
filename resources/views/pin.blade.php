@@ -37,12 +37,12 @@
             @if($pin->users()->where('user_id', Auth::id())->exists())
                 <form action="{{ route('unfavorites', $pin) }}" method="POST">
                     @csrf
-                    <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                    <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
                 </form>
             @else
                 <form action="{{ route('favorites', $pin) }}" method="POST">
                     @csrf
-                    <input type="submit" value="&#xf164;Like {{ $pin->users()->count() }}" class="fas btn btn-link">
+                    <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                 </form>
             @endif
 
