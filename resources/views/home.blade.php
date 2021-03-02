@@ -31,20 +31,6 @@
         </div>
 
         <div class="col-md-8">
-            @if ($errors->has('text'))
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <font color =red>*{{ $error }}</font>
-                    @endforeach
-                </ul>
-            @endif
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
-                <form action="/post" method="post" class=".form-control:focus">
-                    {{ csrf_field() }}
-                    <input type="search" name="text" placeholder="地名/住所">
-                    <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
-                </form>
-            <br>
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
