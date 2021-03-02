@@ -23,8 +23,8 @@
                             @endforeach
                         </a>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a></li>
-                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット</i></a></li>
+                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SEARCH(実装中：クリックOK)</i></a></li>
+                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
                         </ul>
                 </div>
             <p></p>
@@ -37,12 +37,12 @@
             @if($pin->users()->where('user_id', Auth::id())->exists())
                 <form action="{{ route('unfavorites', $pin) }}" method="POST">
                     @csrf
-                    <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                    <input type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
                 </form>
             @else
                 <form action="{{ route('favorites', $pin) }}" method="POST">
                     @csrf
-                    <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-link">
+                    <input type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                 </form>
             @endif
 
