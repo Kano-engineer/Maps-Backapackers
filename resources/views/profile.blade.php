@@ -96,8 +96,8 @@
                     @endforeach
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a></li>
-                        <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット</i></a></li>
+                        <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SPACE(実装中：クリックOK)</i></a></li>
+                        <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
                     </ul>
                 </div>
             <p></p>
@@ -107,9 +107,9 @@
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
-            <label class="tab_item" for="tab1">あなたの投稿</label>
+            <label class="tab_item" for="tab1">LIST</label>
             <input id="tab2" type="radio" name="tab_item">
-            <label class="tab_item" for="tab2">いいね！した投稿</label>
+            <label class="tab_item" for="tab2">LIKES</label>
             <!-- TAB:LIST -->
             <div class="tab_content" id="tab1_content">
                 <div class="tab_content_description">
@@ -121,10 +121,10 @@
                 @endforeach
                 </ul>
                 @endif
-                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
+                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel</i></h5>
                     <form action="/post" method="post" class=".form-control:focus">
                         {{ csrf_field() }}
-                        <input type="search" name="text" placeholder="地名/住所">
+                        <input type="search" name="text" placeholder="Place">
                         <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                     </form>
                 <br>
@@ -144,12 +144,12 @@
                         @if($pin->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $pin) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
+                                <input type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-primary">
                             </form>
                         @else
                             <form action="{{ route('favorites', $pin) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164; いいね！ {{ $pin->users()->count() }}" class="fas btn btn-link">
+                                <input type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                             </form>
                         @endif
                     </a>
@@ -169,10 +169,10 @@
                 @endforeach
                 </ul>
                 @endif
-                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
+                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel</i></h5>
                     <form action="/post" method="post" class=".form-control:focus">
                         {{ csrf_field() }}
-                        <input type="search" name="text" placeholder="地名/住所">
+                        <input type="search" name="text" placeholder="Place">
                         <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                     </form>
                 <br>
@@ -192,12 +192,12 @@
                         @if($favorite->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $favorite) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164; いいね！ {{ $favorite->users()->count() }}" class="fas btn btn-primary">
+                                <input type="submit" value="&#xf164; LIKE！ {{ $favorite->users()->count() }}" class="fas btn btn-primary">
                             </form>
                         @else
                             <form action="{{ route('favorites', $favorite) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164; いいね！ {{ $favorite->users()->count() }}" class="fas btn btn-link">
+                                <input type="submit" value="&#xf164; LIKE！ {{ $favorite->users()->count() }}" class="fas btn btn-link">
                             </form>
                         @endif
                     </a>
