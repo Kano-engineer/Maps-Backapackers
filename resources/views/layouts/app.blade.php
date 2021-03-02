@@ -29,6 +29,46 @@
         /* link on li */
         a {display:block;}
         a:hover { text-decoration: none; }
+
+        /*タブ切り替え全体のスタイル*/
+        .tab_container {
+  padding-bottom: 1em;
+  background-color: #fff;
+  border:1px solid #3490dc;
+  margin: 0 auto;}
+.tab_item {
+  width: calc(100%/2);    /*100%/4を100%/2に変更*/
+  padding:15px 0;
+  border-bottom: 3px solid #3490dc ;
+  background-color: #ececec;
+  text-align: center;
+  color: #3490dc ;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+input[name="tab_item"] {
+  display: none;
+}
+.tab_content {
+  display: none;
+  padding: 1em 1em 0;
+  clear: both;
+  overflow: hidden;
+}
+#tab1:checked ~ #tab1_content,
+#tab2:checked ~ #tab2_content {  /*, #tab3:checked ~ #tab3_content , #tab4:checked ~ #tab4_contentを削除*/
+  display: block;
+}
+.tab_container input:checked + .tab_item {
+  background-color: #3490dc ;
+  color: #fff;
+}
     </style>
 </head>
 <body>
@@ -77,8 +117,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -96,7 +134,7 @@
             @yield('aside') 
         </a>
     </div>
-    
+
 <!-- Use Google Maps API / Geocording API -->
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
 

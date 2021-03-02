@@ -104,9 +104,32 @@
         </div>
 
         <div class="col-xs-6 col-md-8">
-            <!-- TODO:Use tab menu for switching between list and like -->
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">投稿一覧</i></h5>
-            @foreach ($pin as $pin)
+            <!-- Update:Use tab menu for switching between list and likes -->
+            <div class="tab_container">
+            <input id="tab1" type="radio" name="tab_item" checked>
+            <label class="tab_item" for="tab1">あなたの投稿</label>
+            <input id="tab2" type="radio" name="tab_item">
+            <label class="tab_item" for="tab2">いいね！した投稿</label>
+            <!-- TAB:LIST -->
+            <div class="tab_content" id="tab1_content">
+                <div class="tab_content_description">
+                <!-- Form -->
+                @if ($errors->has('text'))
+                <ul>
+                @foreach($errors->all() as $error)
+                    <font color =red>*{{ $error }}</font>
+                @endforeach
+                </ul>
+                @endif
+                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
+                    <form action="/post" method="post" class=".form-control:focus">
+                        {{ csrf_field() }}
+                        <input type="search" name="text" placeholder="地名/住所">
+                        <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                    </form>
+                <br>
+                <!-- LIST -->
+                @foreach ($pin as $pin)
                 <div class="card">
                         <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pin->user_id}}"><i class="fas fa-user"></i> {{$pin->user->name}}</a>：{{ $pin->text }}</h5>
                     <a href="post/{{$pin->id}}" class="card-body">
@@ -133,10 +156,28 @@
                 </div>
                 <br>
             @endforeach
-            <br>
-
-            <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">いいね!した投稿</i></h5>
-            @foreach ($user->favorites as $favorite)
+                </div>
+            </div>
+            <!-- TAB:LIKES -->
+            <div class="tab_content" id="tab2_content">
+                <div class="tab_content_description">
+                <!-- Form -->
+                @if ($errors->has('text'))
+                <ul>
+                @foreach($errors->all() as $error)
+                    <font color =red>*{{ $error }}</font>
+                @endforeach
+                </ul>
+                @endif
+                <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">あなたの旅をシェアしよう</i></h5>
+                    <form action="/post" method="post" class=".form-control:focus">
+                        {{ csrf_field() }}
+                        <input type="search" name="text" placeholder="地名/住所">
+                        <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                    </form>
+                <br>
+                <!-- LIKES -->
+                @foreach ($user->favorites as $favorite)
                 <div class="card">
                         <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
                     <a href="post/{{$favorite->id}}" class="card-body">

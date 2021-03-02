@@ -7,6 +7,7 @@ use App\Photo;
 use App\Image;
 use App\Pin;
 use App\Comment;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -31,8 +32,11 @@ class HomeController extends Controller
         // comment = self-introduction in sidebar
         $comment=Comment::whereProfile_id($user_id)->get();
         $pins = Pin::with('user')->with('photos')->get();
+        // $user->favorites
+        $id = $user_id;
+        $user = User::find($id);
 
-        return view('home', [ 'pins' => $pins, 'comment'=>$comment]);
+        return view('home', [ 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
     public function map()
