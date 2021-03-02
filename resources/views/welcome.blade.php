@@ -22,6 +22,9 @@
         /* background-size: cover; */
         background-attachment: fixed;
         }
+        h1 {
+  text-shadow: 2px 2px 3px #666666;
+  }
     </style>
     </head>
     <body id="page-top" >
@@ -62,7 +65,6 @@
             </div>
         <!-- </header> -->
         <!-- About-->
-        
         <!-- Bootstrap core JS-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
