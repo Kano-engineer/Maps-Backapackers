@@ -97,7 +97,7 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a></li>
-                        <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット/タイムライン</i></a></li>
+                        <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット</i></a></li>
                     </ul>
                 </div>
             <p></p>
@@ -179,8 +179,8 @@
                 <!-- LIKES -->
                 @foreach ($user->favorites as $favorite)
                 <div class="card">
-                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
-                    <a href="post/{{$favorite->id}}" class="card-body">
+                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
+                    <a href="/post/{{$favorite->id}}" class="card-body">
                         @if ($favorite->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                         @else
