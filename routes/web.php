@@ -49,7 +49,7 @@ Route::delete('/pin/{id}', 'PhotoController@destroy');
 Route::delete('/pin/text/{id}', 'PinController@destroy');
 
 // ピン編集➡︎地図再検索
-Route::get('edit/{id}', 'PinController@edit');
+Route::get('/edit/{id}', 'PinController@edit');
 
 // ピン更新
 Route::POST('/update/{id}', 'PinController@update');
