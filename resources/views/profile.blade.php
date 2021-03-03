@@ -40,18 +40,18 @@
                     </form>
                 @endif
                     <div class="card-body">
-                    <h4><i class="fas fa-user">USER：{{ $user->name }}</i></h4>
+                    <h5><i class="fas fa-user">USER：{{ $user->name }}</i></h5>
                     <!-- Follow button:Display only in other users' profiles  -->
                     @if(Auth::user()->id !== $user->id)
                         @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
                             <form action="{{ route('unfollow', $user) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Following" class='fas btn btn-primary'>
+                                <input type="submit" value="&#xf164; Following" class='fas btn btn-primary'>
                             </form>
                             @else
                             <form action="{{ route('follow', $user) }}" method="POST">
                                 @csrf
-                                <input type="submit" value="&#xf164;Follow Me" class="fas btn btn-link">
+                                <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                             </form>
                         @endif
                     @endif
@@ -85,14 +85,20 @@
                         </form>
                     @endif
                     @foreach ($comments as $comment)
-                    <p class="card-text" style="color:#094067;">{{ $comment ->comment}}</p>
-                            @if(Auth::user()->id === $user->id)
-                                <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            @endif
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <p class="card-text" style="color:#094067;">{{ $comment ->comment}}</p>
+                                    @if(Auth::user()->id === $user->id)
+                            </div>
+                            <div class="p-2">
+                                        <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    @endif
+                            </div>
+                        </div>
                     @endforeach
                     </div>
                     <ul class="list-group list-group-flush">
@@ -131,7 +137,7 @@
                 <!-- LIST -->
                 @foreach ($pin as $pin)
                 <div class="card">
-                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="profile/{{$pin->user_id}}"><i class="fas fa-user"></i> {{$pin->user->name}}</a>：{{ $pin->text }}</h5>
+                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i></h5>
                     <a href="post/{{$pin->id}}" class="card-body">
                         @if ($pin->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
@@ -179,7 +185,7 @@
                 <!-- LIKES -->
                 @foreach ($user->favorites as $favorite)
                 <div class="card">
-                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default btn-sm" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user"></i> {{$favorite->user->name}}</a>：{{ $favorite->text }}</h5>
+                        <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i></h5>
                     <a href="/post/{{$favorite->id}}" class="card-body">
                         @if ($favorite->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
