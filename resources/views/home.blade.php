@@ -54,7 +54,7 @@
                     @foreach ($pins as $pins)
                     <div class="card">
                             <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i></h5>
-                        <a href="post/{{$pins->id}}" class="card-body">
+                        <a href="/post/{{$pins->id}}" class="card-body">
                             @if ($pins->photos->isEmpty()) 
                                     <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                             @else
@@ -102,7 +102,7 @@
                     @foreach ($user->favorites as $favorite)
                         <div class="card">
                                 <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i></h5>
-                            <a href="post/{{$favorite->id}}" class="card-body">
+                            <a href="/post/{{$favorite->id}}" class="card-body">
                                 @if ($favorite->photos->isEmpty()) 
                                         <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                 @else
