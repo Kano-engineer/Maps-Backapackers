@@ -138,7 +138,7 @@
                 @foreach ($pin as $pin)
                 <div class="card">
                         <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i></h5>
-                    <a href="post/{{$pin->id}}" class="card-body">
+                    <a href="/post/{{$pin->id}}" class="card-body">
                         @if ($pin->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                         @else
