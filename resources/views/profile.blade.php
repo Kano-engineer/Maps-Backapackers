@@ -80,7 +80,7 @@
                     @if(Auth::user()->id === $user->id)
                         <form action="/profile/comment/{{ $user->id }}" method="post">
                             {{ csrf_field() }}
-                            <input name="comment_profile" placeholder="自己紹介コメント">
+                            <input name="comment_profile" placeholder="Self-Introduction">
                             <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                         </form>
                     @endif
