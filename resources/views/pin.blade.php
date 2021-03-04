@@ -42,9 +42,9 @@
                     @endif
                     <br>
                     @if ($errors->has('file'))
-                                    @foreach($errors->all() as $error)
-                                    <font color =red>*{{ $error }}</font>
-                                    @endforeach
+                        @foreach($errors->all() as $error)
+                            <font color =red>*{{ $error }}</font>
+                        @endforeach
                     @endif
                     @if(Auth::user()->id === $pin->user_id)
                         <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
@@ -71,6 +71,7 @@
                             <br>
                         @endforeach
                     @endif
+                    <br>
                     <div class="map_box01"><div id="map-canvas" style="width:500px;height:300px;"></div></div>
                     <br>
 
