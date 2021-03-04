@@ -60,6 +60,7 @@
 
                         @foreach ($photos as $photo)
                                 <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}">
+
                             @if(Auth::user()->id === $pin->user_id)
                                 <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
                                     @csrf
@@ -93,10 +94,11 @@
                     <div class="container">
                         @foreach ($comments as $comments)
                             <div class="d-flex flex-row">
+                                <div class="p-2"> 
+                                    <a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
+                                </div>
                                 <div class="p-2">
-                                    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
-                                    {{ $comments->comment }}
-                                    </p>
+                                    <p style="color:#094067;">{{ $comments->comment }}</p>
                                 </div>
                                 <div class="p-2">
                                     @if(Auth::user()->id === $comments->user_id)
