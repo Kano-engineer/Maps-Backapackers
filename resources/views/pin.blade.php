@@ -50,7 +50,7 @@
                         <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="file" class="form-control" name="file">
-                            <button type="submit"  class='btn btn-primary btn-lg active btn-sm'><i class="fas fa-images">画像アップロード</i></button>
+                            <button type="submit"  class='btn btn-primary btn-sm'><i class="fas fa-images">画像アップロード</i></button>
                         </form>
                     @endif
                     <br>
@@ -120,7 +120,7 @@
                         <div class="d-flex flex-row">
                             <div class="p-2">
                                 @if(Auth::user()->id === $pin->user_id)
-                                    <a type="button" class="btn btn-primary btn-lg active btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">EDIT</i></a>
+                                    <a type="button" class="btn btn-primary btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">EDIT</i></a>
                                 @endif
                             </div>
                             <div class="p-2">
