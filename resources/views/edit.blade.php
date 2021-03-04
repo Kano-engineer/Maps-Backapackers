@@ -15,15 +15,10 @@
                             <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
-                        <a href="/profile" class="card-body">
-                        <h4><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></h4>
-                            @foreach ($comment as $comment)
-                               <p class="card-text">{{ $comment ->comment}}</p>
-                            @endforeach
-                        </a>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAPで検索(実装中：クリックOK)</i></a></li>
-                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">共有チャット</i></a></li>
+                            <li class="list-group-item"><a href="/profile"><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></a></li>
+                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SEARCH(実装中：クリックOK)</i></a></li>
+                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
                         </ul>
                 </div>
             <p></p>
