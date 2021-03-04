@@ -37,7 +37,7 @@
                     @else
                         <form action="{{ route('favorites', $pin) }}" method="POST">
                             @csrf
-                            <input type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-link">
+                            <input style="text-decoration:none;" type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                         </form>
                     @endif
                     <br>
@@ -50,7 +50,7 @@
                         <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="file" class="form-control" name="file">
-                            <button type="submit"  class='btn btn-primary btn-sm'><i class="fas fa-images">画像アップロード</i></button>
+                            <button type="submit"  class='btn btn-primary  btn-sm'><i class="fas fa-images">画像アップロード</i></button>
                         </form>
                     @endif
                     <br>
