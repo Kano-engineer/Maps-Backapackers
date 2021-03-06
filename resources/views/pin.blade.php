@@ -24,7 +24,7 @@
                 </div>
             <p></p>
         </div>
-
+        
         <div class="col-md-8">     
             <div class="card">
                     <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{optional($pin) -> text}}</i></h5>
@@ -57,10 +57,8 @@
                     @if ($photos->isEmpty()) 
                         <img style="width:380px;height:300px;" src="{{ URL::asset('image/noimage.png') }}" />
                     @else
-
                         @foreach ($photos as $photo)
                                 <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}">
-
                             @if(Auth::user()->id === $pin->user_id)
                                 <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
                                     @csrf
