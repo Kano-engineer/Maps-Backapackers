@@ -53,7 +53,14 @@
                     <!-- TIMELINE -->
                     @foreach ($pins as $pins)
                     <div class="card">
-                            <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i></h5>
+                            <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}">
+
+                        
+                            @foreach($pins->user->images as $image)
+                            <a href="/profile"><img style="width:40px;height:40px;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            @endforeach
+
+                            <i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i></h5>
                         <a href="/post/{{$pins->id}}" class="card-body">
                             @if ($pins->photos->isEmpty()) 
                                     <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
