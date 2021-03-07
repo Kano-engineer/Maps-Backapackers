@@ -116,4 +116,5 @@ https://github.com/Kano-engineer/Maps-Backapackers/issues
 
 # 製作者
 
-・Twitter：https://twitter.com/kano_engineer
+・Twitter：
+https://twitter.com/kano_engineer
