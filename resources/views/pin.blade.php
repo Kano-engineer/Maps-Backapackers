@@ -108,7 +108,16 @@
                     <div class="container">
                         @foreach ($comments as $comments)
                             <div class="d-flex flex-row">
-                                <div class="p-2"> 
+                                <div class="p-2">
+                                    @if ($comments->user->images->isEmpty()) 
+                                        <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                    @else
+                                        @foreach($comments->user->images as $image)
+                                        <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="p-2">
                                     <a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
                                 </div>
                                 <div class="p-2">
