@@ -10,7 +10,7 @@
                 <!-- 3/1 Update:sidebar in card -->
                 <div class="card" style="width:;">
                         @if (Auth::user()->images->isEmpty()) 
-                            <a href="/profile"><img style="" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
                             <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
@@ -27,7 +27,22 @@
         
         <div class="col-md-8">     
             <div class="card">
-                    <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{optional($pin) -> text}}</i></h5>
+                <h5 class="card-header" style="color:#094067;">
+                    <div class="d-flex flex-row">
+                    <div class="p-2">
+                        @if ($pin->user->images->isEmpty()) 
+                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                        @else
+                            @foreach($pin->user->images as $image)
+                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="p-2">
+                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                    </div>
+                    </div>
+                </h5>
                 <div class="card-body">
                     @if($pin->users()->where('user_id', Auth::id())->exists())
                         <form action="{{ route('unfavorites', $pin) }}" method="POST">
@@ -126,7 +141,7 @@
                                     <form action="{{ action('PinController@destroy', $pin->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt">DELETE POST</i></button>
+                                        <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt">DELETE</i></button>
                                     </form>
                                 @endif
                             </div>
