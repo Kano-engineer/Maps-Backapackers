@@ -86,6 +86,14 @@
 
 ⑥サイドバーの「MAPで検索」からMAPで投稿一覧を検索できます。＊実装中
 
+# ローカル環境へのインストール方法
+
+    $ git clone https://github.com/Kano-engineer/Maps-Backapackers
+    $ cd Maps-Backapackers
+    $ composer install
+    $ cp .env.example .env
+    $ php artisan migrate
+    $ php artisan key:generate
 
 # 今後の開発計画
 
