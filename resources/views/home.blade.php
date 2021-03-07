@@ -9,7 +9,7 @@
                 <!-- 2/28 Update:sidebar in card -->
                     <div class="card" style="width:;">
                         @if (Auth::user()->images->isEmpty()) 
-                            <a href="/profile"><img style="" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
                             <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
@@ -53,14 +53,22 @@
                     <!-- TIMELINE -->
                     @foreach ($pins as $pins)
                     <div class="card">
-                            <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}">
-
-                        
-                            @foreach($pins->user->images as $image)
-                            <a href="/profile"><img style="width:40px;height:40px;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                            @endforeach
-
-                            <i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i></h5>
+                        <h5 class="card-header" style="color:#094067;">
+                            <div class="d-flex flex-row">
+                            <div class="p-2">
+                                @if ($pins->user->images->isEmpty()) 
+                                    <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                @else
+                                    @foreach($pins->user->images as $image)
+                                    <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div class="p-2">
+                                <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
+                            </div>
+                            </div>
+                        </h5>
                         <a href="/post/{{$pins->id}}" class="card-body">
                             @if ($pins->photos->isEmpty()) 
                                     <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
@@ -108,7 +116,22 @@
                     <!-- LIKES -->
                     @foreach ($user->favorites as $favorite)
                         <div class="card">
-                                <h5 class="card-header" style="color:#094067;"><a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i></h5>
+                            <h5 class="card-header" style="color:#094067;">
+                                <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    @if ($favorite->user->images->isEmpty()) 
+                                        <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                    @else
+                                        @foreach($favorite->user->images as $image)
+                                        <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="p-2">
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i>
+                                </div>
+                                </div>
+                            </h5>
                             <a href="/post/{{$favorite->id}}" class="card-body">
                                 @if ($favorite->photos->isEmpty()) 
                                         <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
