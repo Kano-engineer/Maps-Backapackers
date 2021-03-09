@@ -40,7 +40,7 @@
                     </form>
                 @endif
                     <div class="card-body">
-                    <h5><i class="fas fa-user">USER：{{ $user->name }}</i></h5>
+                    <h5><i class="fas fa-user">{{ $user->name }}</i></h5>
                     <!-- Follow button:Display only in other users' profiles  -->
                     @if(Auth::user()->id !== $user->id)
                         @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
@@ -101,10 +101,10 @@
                         </div>
                     @endforeach
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SPACE(実装中：クリックOK)</i></a></li>
-                        <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
-                    </ul>
+                    <p></p>
+                        <a href="/map" type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></a>
+                        <p></p>
+                        <a href="/post" type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></a>
                 </div>
             <p></p>
         </div>
