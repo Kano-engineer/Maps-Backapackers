@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row" >
+        <div class="col-md-3">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
@@ -15,24 +15,18 @@
                             <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="/profile"><i class="fas fa-user">{{ Auth::user()->name }}</i></a></li>
-                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP</i></a></li>
-                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK</i></a></li>
                             <p></p>
-                            <button type="button" class="btn btn-secondary"><i class="fas fa-user">{{ Auth::user()->name }}</i></button>
+                            <a href="/profile" type="button" class="btn btn-secondary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
                             <p></p>
-                            <button type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></button>
+                            <a href="/map" type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></a>
                             <p></p>
-                            <button type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></button>
-                           
-                        </ul>
+                            <a href="/post" type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></a>
                     </div>
                     <p></p>
                 </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-9">
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>

@@ -73,7 +73,8 @@
                         <img style="width:380px;height:300px;" src="{{ URL::asset('image/noimage.png') }}" />
                     @else
                         @foreach ($photos as $photo)
-                                <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                <!-- <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}"> -->
+                                <a href="{{ asset('storage/' . $photo['photo']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" style="width:380px;height:300px;" alt="" border="0"></a>
                             @if(Auth::user()->id === $pin->user_id)
                                 <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
                                     @csrf
