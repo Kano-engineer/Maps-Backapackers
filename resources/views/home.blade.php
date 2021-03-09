@@ -16,9 +16,16 @@
                             @endforeach
                         @endif
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="/profile"><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></a></li>
-                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SEARCH(実装中：クリックOK)</i></a></li>
-                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
+                            <li class="list-group-item"><a href="/profile"><i class="fas fa-user">{{ Auth::user()->name }}</i></a></li>
+                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP</i></a></li>
+                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK</i></a></li>
+                            <p></p>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-user">{{ Auth::user()->name }}</i></button>
+                            <p></p>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></button>
+                            <p></p>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></button>
+                           
                         </ul>
                     </div>
                     <p></p>
@@ -44,7 +51,7 @@
                     </ul>
                     @endif
                     <!-- <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel：＠視覚的・感覚的に分かり易い投稿フォームを設置</i></h5> -->
-                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;" href="#"><i class="fas fa-edit">Share Your Travel</i></a>
+                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="#"><i class="fas fa-edit">Share Your Travel</i></a>
                     <br>
                     <!-- <form action="/post" method="post" class=".form-control:focus">
                         {{ csrf_field() }}
