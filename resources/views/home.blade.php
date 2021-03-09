@@ -43,12 +43,14 @@
                     @endforeach
                     </ul>
                     @endif
-                    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel</i></h5>
-                    <form action="/post" method="post" class=".form-control:focus">
+                    <!-- <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel：＠視覚的・感覚的に分かり易い投稿フォームを設置</i></h5> -->
+                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;" href="#"><i class="fas fa-edit">Share Your Travel</i></a>
+                    <br>
+                    <!-- <form action="/post" method="post" class=".form-control:focus">
                         {{ csrf_field() }}
                         <input type="search" name="text" placeholder="Place">
                         <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
-                    </form>
+                    </form> -->
                     <br>
                     <!-- TIMELINE -->
                     @foreach ($pins as $pins)
@@ -70,14 +72,16 @@
                             </div>
                         </h5>
                         <a href="/post/{{$pins->id}}" class="card-body">
-                            @if ($pins->photos->isEmpty()) 
-                                    <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-                            @else
-                                    @foreach($pins->photos as $photo)
-                                    <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
-                                    @endforeach
-                            @endif
-                                <p class="card-text"></p>
+                            <p class="card-text" style="color:black;">2020/3/8 00:00</p>
+                            <p class="card-text" style="color:black;">投稿の本文を表示：全てを捨てて旅立ち、2年間の放浪の果てにアラスカに到達しました。めちゃくちゃ寒いです。笑</p>
+                                @if ($pins->photos->isEmpty()) 
+                                        <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
+                                @else
+                                        @foreach($pins->photos as $photo)
+                                        <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                        @endforeach
+                                @endif
+                        <p class="card-text"></p>
                             @if($pins->users()->where('user_id', Auth::id())->exists())
                                 <form action="{{ route('unfavorites', $pins) }}" method="POST">
                                     @csrf
@@ -140,7 +144,7 @@
                                         <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                         @endforeach
                                 @endif
-                                    <p class="card-text"></p>
+                            <p class="card-text"></p>
                                 @if($favorite->users()->where('user_id', Auth::id())->exists())
                                     <form action="{{ route('unfavorites', $favorite) }}" method="POST">
                                         @csrf
