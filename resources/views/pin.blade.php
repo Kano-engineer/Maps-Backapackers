@@ -16,11 +16,12 @@
                             <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="/profile"><i class="fas fa-user">USER：{{ Auth::user()->name }}</i></a></li>
-                            <li class="list-group-item"><a href="/map"><i class="fas fa-globe-europe">MAP SEARCH(実装中：クリックOK)</i></a></li>
-                            <li class="list-group-item"><a href="/post"><i class="fas fa-comment-dots">TALK SPACE</i></a></li>
-                        </ul>
+                        <p></p>
+                        <a href="/profile" type="button" class="btn btn-secondary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                        <p></p>
+                        <a href="/map" type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></a>
+                        <p></p>
+                        <a href="/post" type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></a>
                 </div>
             <p></p>
         </div>
