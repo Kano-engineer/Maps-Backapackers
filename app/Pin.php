@@ -9,6 +9,7 @@ class Pin extends Model
     //
     protected $fillable = [
         'text',
+        'body',
         'location',
         'user_id',
     ];

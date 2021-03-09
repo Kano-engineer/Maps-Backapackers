@@ -33,9 +33,6 @@ Route::delete('/profile/{id}', 'ProfileController@destroy');
 //プロフィール
 Route::get('/profile/{id}', 'ProfileController@show');
 
-// ピン作成：テキスト保存
-Route::post('/post','PinController@post');
-
 //ピン詳細:{{pins->id}}をcontrollerに渡す
 Route::get('/post/{id}','PinController@show',);
 
@@ -53,7 +50,6 @@ Route::get('/edit/{id}', 'PinController@edit');
 
 // ピン更新
 Route::POST('/update/{id}', 'PinController@update');
-
 
 //リアルタムチャット 
 Route::get('post', 'ChatsController@index');
@@ -90,3 +86,9 @@ Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow')->name('un
 Route::get('/map', 'HomeController@map')->name('map');
 Route::get('/map2', 'HomeController@map2')->name('map2');
 Route::get('/map3', 'HomeController@map3')->name('map3');
+
+// ピン作成：テキスト保存
+Route::post('/post','PinController@post');
+
+// Formに遷移
+Route::post('/form','HomeController@form');
