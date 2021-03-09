@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row" >
-        <div class="col-md-3">
+        <div class="col-md-4">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
@@ -26,7 +26,7 @@
                 </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
