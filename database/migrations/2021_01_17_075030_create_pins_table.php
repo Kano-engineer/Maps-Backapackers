@@ -16,7 +16,8 @@ class CreatePinsTable extends Migration
         Schema::create('pins', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->geometry('location')->nullable();;
+            $table->string('body')->nullable();
+            $table->geometry('location')->nullable();
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
