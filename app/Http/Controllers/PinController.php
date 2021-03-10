@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\Image;
 use App\Photo;
+use App\User;
 use App\Pin;
 
 class PinController extends Controller
@@ -23,12 +24,35 @@ class PinController extends Controller
             ]
         );
 
-        Pin::create(
+        // LastInsertID
+        $data = Pin::create(
             [
                 'text' => $request->text,
+                'body' => $request->body,
                 'user_id' => $user_id = Auth::id(),
             ]);
-        return redirect()->back();
+        
+        if ($request->file('file')->isValid([])) {
+            $path = $request->file->store('public');
+
+            $file_name = basename($path);
+            // LastInsertID
+            $pin_id = $data->id;
+            $new_image_data = new Photo();
+            $new_image_data->pin_id = $pin_id;
+            $new_image_data->photo = $file_name;
+            $new_image_data->save();
+        }
+
+        $user_id = Auth::id();
+        // comment = self-introduction in sidebar
+        $comment=Comment::whereProfile_id($user_id)->get();
+        $pins = Pin::with('user')->with('photos')->get();
+        // $user->favorites
+        $id = $user_id;
+        $user = User::find($id);
+
+        return view('home', [ 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
     public function show($id)

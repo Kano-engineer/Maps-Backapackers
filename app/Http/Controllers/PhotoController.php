@@ -25,7 +25,7 @@ class PhotoController extends Controller
         
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
-
+            
             $file_name = basename($path);
             $pin_id = $id;
             $new_image_data = new Photo();
