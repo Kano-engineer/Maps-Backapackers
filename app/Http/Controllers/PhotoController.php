@@ -19,13 +19,13 @@ class PhotoController extends Controller
                 'mimes:jpeg,png',
             ],
             [
-                'file.required' => '写真は必須です。',  
+                'file.required' => 'Photoは必須です。',  
             ]
         );
         
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
-            
+
             $file_name = basename($path);
             $pin_id = $id;
             $new_image_data = new Photo();
