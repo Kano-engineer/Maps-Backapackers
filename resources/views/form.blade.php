@@ -57,9 +57,7 @@
 
                             <label><i class="fas fa-images"></i>Photos</label>
                             <input type="file" name="file" class="form-control">
-                            
-                            
-
+                            <input type="file" name="file" class="form-control">
                         </form>
                         </div>
                 </div>
