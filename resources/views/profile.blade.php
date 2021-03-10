@@ -145,13 +145,13 @@
                     <a href="/post/{{$pin->id}}" class="card-body">
                         <p class="card-text" style="color:black;">{{ $pin->created_at}}</p>
                         <p class="card-text" style="color:black;">{{ $pin->body}}</p>
-                        @if ($pin->photos->isEmpty()) 
+                        <!-- @if ($pin->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-                        @else
+                        @else -->
                                 @foreach($pin->photos as $photo)
                                 <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                 @endforeach
-                        @endif
+                        <!-- @endif -->
                             <p class="card-text"></p>
                         @if($pin->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $pin) }}" method="POST">
@@ -178,7 +178,7 @@
                     <br>
                     <br>
                 <!-- LIKES -->
-                @foreach ($user->favorites as $favorite)
+                @foreach ($user->favorites->reverse() as $favorite)
                 <div class="card">
                 <h5 class="card-header" style="color:#094067;">
                                 <div class="d-flex flex-row">
@@ -199,13 +199,13 @@
                     <a href="/post/{{$favorite->id}}" class="card-body">
                         <p class="card-text" style="color:black;">{{ $favorite->created_at}}</p>
                         <p class="card-text" style="color:black;">{{ $favorite->body}}</p>
-                        @if ($favorite->photos->isEmpty()) 
+                        <!-- @if ($favorite->photos->isEmpty()) 
                                 <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
-                        @else
+                        @else -->
                                 @foreach($favorite->photos as $photo)
                                 <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                 @endforeach
-                        @endif
+                        <!-- @endif -->
                             <p class="card-text"></p>
                         @if($favorite->users()->where('user_id', Auth::id())->exists())
                             <form action="{{ route('unfavorites', $favorite) }}" method="POST">
