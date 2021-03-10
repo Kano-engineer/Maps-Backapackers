@@ -18,9 +18,9 @@ class PinController extends Controller
                 'text' => 'required|string|max:30',
             ],
             [
-                'text.required' => 'テキストは必須です。',
-                'text.string'   => 'テキストには文字列を入力してください。',
-                'text.max'      => 'テキストは30文字以下です。',
+                'text.required' => 'Placeは必須です。',
+                'text.string'   => 'Placeには文字列を入力してください。',
+                'text.max'      => 'Placeは30文字以下です。',
             ]
         );
 
@@ -32,7 +32,7 @@ class PinController extends Controller
                 'user_id' => $user_id = Auth::id(),
             ]);
         
-        if ($request->file('file')->isValid([])) {
+        if ($request->hasFile('file')) {
             $path = $request->file->store('public');
 
             $file_name = basename($path);
@@ -95,9 +95,9 @@ class PinController extends Controller
                 'text' => 'required|string|max:30',
             ],
             [
-                'text.required' => 'テキストは必須です。',
-                'text.string'   => 'テキストには文字列を入力してください。',
-                'text.max'      => 'テキストは30文字以下です。',
+                'text.required' => 'Placeは必須です。',
+                'text.string'   => 'Placeには文字列を入力してください。',
+                'text.max'      => 'Placeは30文字以下です。',
             ]
     );
         $pin = Pin::find($id);

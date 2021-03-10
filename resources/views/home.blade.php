@@ -37,13 +37,6 @@
             <div class="tab_content" id="tab1_content">
                 <div class="tab_content_description">
                     <!-- Form -->
-                    @if ($errors->has('text'))
-                    <ul>
-                    @foreach($errors->all() as $error)
-                        <font color =red>*{{ $error }}</font>
-                    @endforeach
-                    </ul>
-                    @endif
                     <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
                     <br>
                     <br>
@@ -76,7 +69,7 @@
                                         <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                         @endforeach
                                 @endif
-                        <p class="card-text"></p>
+                            <p class="card-text"></p>
                             @if($pins->users()->where('user_id', Auth::id())->exists())
                                 <form action="{{ route('unfavorites', $pins) }}" method="POST">
                                     @csrf
@@ -98,19 +91,8 @@
             <div class="tab_content" id="tab2_content">
                 <div class="tab_content_description">
                     <!-- Form -->
-                    @if ($errors->has('text'))
-                    <ul>
-                    @foreach($errors->all() as $error)
-                        <font color =red>*{{ $error }}</font>
-                    @endforeach
-                    </ul>
-                    @endif
-                    <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel</i></h5>
-                    <form action="/post" method="post" class=".form-control:focus">
-                        {{ csrf_field() }}
-                        <input type="search" name="text" placeholder="Place">
-                        <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
-                    </form>
+                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
+                    <br>
                     <br>
                     <!-- LIKES -->
                     @foreach ($user->favorites as $favorite)
@@ -132,6 +114,8 @@
                                 </div>
                             </h5>
                             <a href="/post/{{$favorite->id}}" class="card-body">
+                                <p class="card-text" style="color:black;">{{ $favorite->created_at}}</p>
+                                <p class="card-text" style="color:black;">{{ $favorite->body}}</p>
                                 @if ($favorite->photos->isEmpty()) 
                                         <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                 @else
@@ -139,7 +123,7 @@
                                         <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                         @endforeach
                                 @endif
-                            <p class="card-text"></p>
+                                <p class="card-text"></p>
                                 @if($favorite->users()->where('user_id', Auth::id())->exists())
                                     <form action="{{ route('unfavorites', $favorite) }}" method="POST">
                                         @csrf
