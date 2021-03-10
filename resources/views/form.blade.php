@@ -27,7 +27,13 @@
         </div>
 
         <div class="col-md-9">
-
+        @if ($errors->has('text'))
+            <ul>
+            @foreach($errors->all() as $error)
+                <font color =red>*{{ $error }}</font>
+            @endforeach
+            </ul>
+        @endif
         <form action="/post" method="POST" class=".form-control:focus" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
@@ -36,7 +42,7 @@
                         <div class="d-flex flex-row">
                             <div class="p-2">
                                 @if (Auth::user()->images->isEmpty()) 
-                                    <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                    <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                 @else
                                     @foreach(Auth::user()->images as $image)
                                     <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
@@ -53,10 +59,10 @@
                     </h5>
                         <div class="card-body">
                             <textarea class="form-control" name="body"  placeholder="" rows="5"></textarea>
-                            <p class="card-text"></p>
-
+                        <p class="card-text"></p>
                             <label><i class="fas fa-images"></i>Photos</label>
                             <input type="file" name="file" class="form-control">
+                            <!-- <input type="file" name="file" class="form-control">
                         </form>
                         </div>
                 </div>
