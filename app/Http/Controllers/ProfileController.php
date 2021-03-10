@@ -49,6 +49,9 @@ class ProfileController extends Controller
         $id = $user_id;
         $user = User::find($id);
 
+        // reverse
+        $pin = $pin->reverse();
+
         return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
