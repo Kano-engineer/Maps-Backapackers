@@ -12,6 +12,7 @@ class Pin extends Model
         'body',
         'location',
         'user_id',
+        'created_at',
     ];
 
     public function user()
