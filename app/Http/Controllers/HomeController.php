@@ -80,5 +80,10 @@ class HomeController extends Controller
                 ->withErrors();
         }
     }
+
+    public function form()
+    {
+        return view('form');
+    }
 }
 

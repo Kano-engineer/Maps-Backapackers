@@ -91,4 +91,4 @@ Route::get('/map3', 'HomeController@map3')->name('map3');
 Route::post('/post','PinController@post');
 
 // Formに遷移
-Route::post('/form','HomeController@form');
+Route::get('/form','HomeController@form');

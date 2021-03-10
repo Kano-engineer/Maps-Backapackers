@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row" >
-        <div class="col-md-4">
+        <div class="col-md-3">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
@@ -16,17 +16,17 @@
                             @endforeach
                         @endif
                             <p></p>
-                            <a href="/profile" type="button" class="btn btn-secondary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                            <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
                             <p></p>
-                            <a href="/map" type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></a>
+                            <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
                             <p></p>
-                            <a href="/post" type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></a>
+                            <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>
                     </div>
                     <p></p>
                 </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-9">
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
@@ -44,14 +44,8 @@
                     @endforeach
                     </ul>
                     @endif
-                    <!-- <h5 class=".font-weight-bold" style="color:#094067;"><i class="fas fa-edit">Share Your Travel：＠視覚的・感覚的に分かり易い投稿フォームを設置</i></h5> -->
-                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="#"><i class="fas fa-edit">Share Your Travel</i></a>
+                    <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
                     <br>
-                    <!-- <form action="/post" method="post" class=".form-control:focus">
-                        {{ csrf_field() }}
-                        <input type="search" name="text" placeholder="Place">
-                        <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
-                    </form> -->
                     <br>
                     <!-- TIMELINE -->
                     @foreach ($pins as $pins)
@@ -73,8 +67,8 @@
                             </div>
                         </h5>
                         <a href="/post/{{$pins->id}}" class="card-body">
-                            <p class="card-text" style="color:black;">2020/3/8 00:00</p>
-                            <p class="card-text" style="color:black;">投稿の本文を表示：全てを捨てて旅立ち、2年間の放浪の果てにアラスカに到達しました。めちゃくちゃ寒いです。笑</p>
+                            <p class="card-text" style="color:black;">{{ $pins->created_at}}</p>
+                            <p class="card-text" style="color:black;">{{ $pins->body}}</p>
                                 @if ($pins->photos->isEmpty()) 
                                         <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                 @else

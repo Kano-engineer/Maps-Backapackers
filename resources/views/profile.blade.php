@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-6 col-md-4">
+        <div class="col-md-3">
             <!-- 3/1 Update:sidebar in card -->
             <div class="card" style="width:;">
             <!-- User's image -->
@@ -102,14 +102,14 @@
                     @endforeach
                     </div>
                     <p></p>
-                        <a href="/map" type="button" class="btn btn-secondary"><i class="fas fa-globe-europe">MAP</i></a>
+                        <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
                         <p></p>
-                        <a href="/post" type="button" class="btn btn-secondary"><i class="fas fa-comment-dots">TALK</i></a>
+                        <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>
                 </div>
             <p></p>
         </div>
 
-        <div class="col-xs-6 col-md-8">
+        <div class="col-md-9">
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
