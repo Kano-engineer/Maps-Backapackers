@@ -52,6 +52,8 @@ class PinController extends Controller
         $id = $user_id;
         $user = User::find($id);
 
+        $pins = $pins->reverse();
+
         return view('home', [ 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
