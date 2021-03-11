@@ -27,48 +27,48 @@
         </div>
 
         <div class="col-md-9">
-        @if ($errors->has('text'))
-            <ul>
-            @foreach($errors->all() as $error)
-                <font color =red>*{{ $error }}</font>
-            @endforeach
-            </ul>
-        @endif
-        <form action="/post" method="POST" class=".form-control:focus" enctype="multipart/form-data">
+            @if ($errors->has('text'))
+                <ul>
+                @foreach($errors->all() as $error)
+                    <font color =red>*{{ $error }}</font>
+                @endforeach
+                </ul>
+            @endif
+            <form action="/post" method="POST" class=".form-control:focus" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <div class="form-group">
-                <div class="card">
-                    <h5 class="card-header" style="color:#094067;">
-                        <div class="d-flex flex-row">
-                            <div class="p-2">
-                                @if (Auth::user()->images->isEmpty()) 
-                                    <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                                @else
-                                    @foreach(Auth::user()->images as $image)
-                                    <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                                    @endforeach
-                                @endif
+                <div class="form-group">
+                    <div class="card">
+                        <h5 class="card-header" style="color:#094067;">
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    @if (Auth::user()->images->isEmpty()) 
+                                        <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                    @else
+                                        @foreach(Auth::user()->images as $image)
+                                        <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="p-2"> 
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas fa-user">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="p-2">
+                                        <input class="form-control" name="text"  placeholder="Place">
+                                </div>
                             </div>
-                            <div class="p-2"> 
-                                <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas fa-user">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
+                        </h5>
+                            <div class="card-body">
+                                <textarea class="form-control" name="body"  placeholder="" rows="5"></textarea>
+                            <p class="card-text"></p>
+                                <label><i class="fas fa-images"></i>Photos</label>
+                                <input type="file" name="file" class="form-control">
                             </div>
-                            <div class="p-2">
-                                    <input class="form-control" name="text"  placeholder="Place">
-                            </div>
-                        </div>
-                    </h5>
-                        <div class="card-body">
-                            <textarea class="form-control" name="body"  placeholder="" rows="5"></textarea>
-                        <p class="card-text"></p>
-                            <label><i class="fas fa-images"></i>Photos</label>
-                            <input type="file" name="file" class="form-control">
-                        </form>
-                        </div>
-                </div>
-                <br>
-                    <button type="submit" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;"><i class="fas fa-edit">Share Your Travel</i></button>            
-            </div>
-        </form>
+                    </div>
+                    <br>
+                        <button type="submit" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;"><i class="fas fa-edit">Share Your Travel</i></button>            
+                </div> 
+            </form>
+        </div>
     </div>
 </div>
 @endsection
