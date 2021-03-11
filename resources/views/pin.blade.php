@@ -25,7 +25,7 @@
                 </div>
             <p></p>
         </div>
-        
+
         <div class="col-md-9">     
             <div class="card">
                 <h5 class="card-header" style="color:#094067;">
@@ -45,6 +45,32 @@
                     </div>
                 </h5>
                 <div class="card-body">
+                            <p class="card-text" style="color:black;">{{ $pin->created_at}}</p>
+                            <p class="card-text" style="color:black;">{{ $pin->body}}</p>
+                                @foreach ($photos as $photo)
+                                        <a href="{{ asset('storage/' . $photo['photo']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" style="width:380px;height:300px;" alt="" border="0"></a>
+                                    @if(Auth::user()->id === $pin->user_id)
+                                        <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    @endif
+                                    <br>
+                                @endforeach
+                            @if ($errors->has('file'))
+                                @foreach($errors->all() as $error)
+                                    <font color =red>*{{ $error }}</font>
+                                @endforeach
+                            @endif
+                            @if(Auth::user()->id === $pin->user_id)
+                                <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="file" class="form-control" name="file">
+                                    <button type="submit"  class='btn btn-primary  btn-sm'><i class="fas fa-images">画像アップロード</i></button>
+                                </form>
+                            @endif
+                            <br>
                     @if($pin->users()->where('user_id', Auth::id())->exists())
                         <form action="{{ route('unfavorites', $pin) }}" method="POST">
                             @csrf
@@ -56,40 +82,9 @@
                             <input style="text-decoration:none;" type="submit" value="&#xf164; LIKE！ {{ $pin->users()->count() }}" class="fas btn btn-link">
                         </form>
                     @endif
-                    <br>
-                    @if ($errors->has('file'))
-                        @foreach($errors->all() as $error)
-                            <font color =red>*{{ $error }}</font>
-                        @endforeach
-                    @endif
-                    @if(Auth::user()->id === $pin->user_id)
-                        <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" class="form-control" name="file">
-                            <button type="submit"  class='btn btn-primary  btn-sm'><i class="fas fa-images">画像アップロード</i></button>
-                        </form>
-                    @endif
-                    <br>
-                    @if ($photos->isEmpty()) 
-                        <img style="width:380px;height:300px;" src="{{ URL::asset('image/noimage.png') }}" />
-                    @else
-                        @foreach ($photos as $photo)
-                                <!-- <img style="width:380px;height:300px;" src="{{ asset('storage/' . $photo['photo']) }}"> -->
-                                <a href="{{ asset('storage/' . $photo['photo']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" style="width:380px;height:300px;" alt="" border="0"></a>
-                            @if(Auth::user()->id === $pin->user_id)
-                                <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            @endif
-                            <br>
-                        @endforeach
-                    @endif
-                    <br>
+                    <p class="card-text"></p>
                     <div class="map_box01"><div id="map-canvas" style="width:500px;height:300px;"></div></div>
                     <br>
-
                     <div>
                         @if ($errors->has('comment'))
                             @foreach($errors->all() as $error)
