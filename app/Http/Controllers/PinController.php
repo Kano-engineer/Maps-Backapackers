@@ -104,6 +104,7 @@ class PinController extends Controller
     );
         $pin = Pin::find($id);
         $pin->text=$request->text;
+        $pin->body=$request->body;
         $pin->save();
         $photos = Photo::where('Pin_id',$id)->get();
         $comments = comment::with('user')->get();
