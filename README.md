@@ -109,7 +109,7 @@
 
 ・Docker
 
-・セキュリティ面の強化
+・セキュリティの強化
 
 cf.Issues：https://github.com/Kano-engineer/Maps-Backapackers/issues
 
