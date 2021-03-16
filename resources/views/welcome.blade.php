@@ -22,9 +22,12 @@
         /* background-size: cover; */
         background-attachment: fixed;
         }
-        h1 {
-  text-shadow: 2px 2px 3px #666666;
-  }
+        h1,li{
+        text-shadow: 2px 2px 3px #666666;
+        }
+        a{
+        color:white;
+        }
     </style>
     </head>
     <body id="page-top" >
@@ -60,7 +63,6 @@
                     <div class="col-lg-8 align-self-baseline">
                         <a class="btn btn-primary btn-xl js-scroll-trigger" href="/login/guest">GUEST LOGIN</a>
                     </div>
-                    
                 </div>
             </div>
         <!-- </header> -->
