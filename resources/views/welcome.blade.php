@@ -22,7 +22,7 @@
         /* background-size: cover; */
         background-attachment: fixed;
         }
-        h1,li{
+        h1,a{
         text-shadow: 2px 2px 3px #666666;
         }
         a{
