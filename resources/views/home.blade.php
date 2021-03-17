@@ -30,9 +30,9 @@
             <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container">
             <input id="tab1" type="radio" name="tab_item" checked>
-            <label class="tab_item" for="tab1">TIMELINE</label>
+            <label class="tab_item" for="tab1"><i class="fas fa-stream"></i> TIMELINE</label>
             <input id="tab2" type="radio" name="tab_item">
-            <label class="tab_item" for="tab2">LIKES</label>
+            <label class="tab_item" for="tab2"><i class="far fa-thumbs-up"></i> LIKES</label>
             <!-- TAB:TIMELINE -->
             <div class="tab_content" id="tab1_content">
                 <div class="tab_content_description">
