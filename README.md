@@ -1,4 +1,4 @@
-![3:4](https://user-images.githubusercontent.com/71540533/109912799-20d8b380-7cf0-11eb-9c3b-864a0cf37bdf.gif)
+![Maps Backpackers 3:20](https://user-images.githubusercontent.com/71540533/111856298-0f88db80-896d-11eb-8c01-e854f965e4c5.gif)
 
 # アプリ名：Maps.Backpackers(http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/)
 
