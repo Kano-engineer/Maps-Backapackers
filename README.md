@@ -10,6 +10,8 @@
 
 # URL：http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/
 
+# 概要
+
 ・ガイドブックに載っていないローカル情報を共有できる旅アプリです。
 
 # 制作背景
