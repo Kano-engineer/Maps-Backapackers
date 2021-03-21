@@ -20,7 +20,7 @@
 
 ・JavaScript
 
-    - Vue.js
+    - Vue.js 7.6.3
 
 # API 
 
