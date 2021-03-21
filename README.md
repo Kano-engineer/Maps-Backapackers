@@ -1,11 +1,8 @@
 ![Maps Backpackers 3:20](https://user-images.githubusercontent.com/71540533/111856298-0f88db80-896d-11eb-8c01-e854f965e4c5.gif)
 
 <p align="center">
-  <a href="vue公式サイトURL"><img src="https://〜.png" width="80px;" /></a>
-  <br>
   <a href="PWA公式サイトURL"><img src="https://〜.png" height="45px;" /></a>
   <a href="Firebase公式サイトURL"><img src="https://〜.png" height="45px;" /></a>
-  <a href="firealpaca公式サイトURL"><img src="https://〜.png" height="40px;" /></a>
   <a href="sweetalert公式サイトURL"><img src="https://〜.png" height="45px;" /></a>
 </p>
 
