@@ -4,6 +4,8 @@
   <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="120px;" /></a>
   <a href="https://laravel.com"><img src="https://user-images.githubusercontent.com/71540533/111902059-cd4fbf00-8a7e-11eb-851b-f2ffff37f3f1.png" height="120px;" /></a>
   <a href="https://aws.amazon.com/?nc1=h_ls"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="120px;" /></a>
+  <a href="https://console.cloud.google.com/apis/library?hl=ja&pli=1&project=maps-301303&folder=&organizationId=&rif_reserveds"><img src="https://user-images.githubusercontent.com/71540533/111902297-37b52f00-8a80-11eb-88ec-b3c7d98ab01e.png" height="120px;" /></a>
+    
 </p>
 
 # アプリ名：Maps.Backpackers
