@@ -6,7 +6,9 @@
   <a href="sweetalert公式サイトURL"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="80px;" /></a>
 </p>
 
-# アプリ名：Maps.Backpackers(http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/)
+# アプリ名：Maps.Backpackers
+
+# URL：http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/
 
 ・ガイドブックに載っていないローカル情報を共有できる旅アプリです。
 
