@@ -1,11 +1,12 @@
 ![Maps Backpackers 3:20](https://user-images.githubusercontent.com/71540533/111856298-0f88db80-896d-11eb-8c01-e854f965e4c5.gif)
 
 <p align="center">
-  <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="120px;" /></a>
   <a href="https://laravel.com"><img src="https://user-images.githubusercontent.com/71540533/111902059-cd4fbf00-8a7e-11eb-851b-f2ffff37f3f1.png" height="120px;" /></a>
-  <a href="https://aws.amazon.com/?nc1=h_ls"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="120px;" /></a>
+  <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="120px;" /></a>
   <a href="https://console.cloud.google.com/apis/library?hl=ja&pli=1&project=maps-301303&folder=&organizationId=&rif_reserveds"><img src="https://user-images.githubusercontent.com/71540533/111902297-37b52f00-8a80-11eb-88ec-b3c7d98ab01e.png" height="120px;" /></a>
-    
+  <a href="https://git-scm.com/"><img src="https://user-images.githubusercontent.com/71540533/111902546-5831b900-8a81-11eb-8bc5-648841923e35.png" height="120px;" /></a>
+  <a href="https://www.mysql.com/"><img src="https://user-images.githubusercontent.com/71540533/111902546-5831b900-8a81-11eb-8bc5-648841923e35.png" height="120px;" /></a>
+  <a href="https://aws.amazon.com/?nc1=h_ls"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="120px;" /></a>
 </p>
 
 # アプリ名：Maps.Backpackers
