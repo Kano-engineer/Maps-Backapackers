@@ -130,6 +130,8 @@
 
 ・セキュリティの強化
 
+・独自ドメイン取得
+
 cf.Issues：https://github.com/Kano-engineer/Maps-Backapackers/issues
 
 # 製作者
