@@ -40,7 +40,7 @@
 
 ・JavaScript
 
-    - Vue.js 7.6.3
+    - Vue.js 3
 
 # API 
 
