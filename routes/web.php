@@ -92,3 +92,9 @@ Route::post('/post','PinController@post');
 
 // Formに遷移
 Route::get('/form','HomeController@form');
+
+// 検索
+Route::get('/books', 'HomeController@search');
+Route::get('/index', function () {
+    return view('index');
+});
