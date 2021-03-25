@@ -87,5 +87,22 @@ class HomeController extends Controller
     {
         return view('form');
     }
-}
 
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+ 
+        $query = Pin::query();
+        $query2 = User::query();
+
+        if (!empty($keyword)) {
+            $query->where('text', 'LIKE', "%{$keyword}%");
+            $query2->where('name', 'LIKE', "%{$keyword}%");
+        }
+  
+        $pins = $query->get();
+        $user = $query2->get();
+ 
+        return view('index2', compact('pins','user'));
+    }
+}
