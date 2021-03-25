@@ -20,8 +20,6 @@
                             <p></p>
                             <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
                             <p></p>
-                            <a href="/map2" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP2</i></a>
-                            <p></p>
                             <a href="/index" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">SEARCH</i></a>
                             <p></p>
                             <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>
