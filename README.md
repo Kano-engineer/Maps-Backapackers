@@ -1,13 +1,13 @@
 ![Maps Backpackers 3:20](https://user-images.githubusercontent.com/71540533/111856298-0f88db80-896d-11eb-8c01-e854f965e4c5.gif)
 
 <p align="center">
-  <a href="https://laravel.com"><img src="https://user-images.githubusercontent.com/71540533/111902059-cd4fbf00-8a7e-11eb-851b-f2ffff37f3f1.png" height="120px;" /></a>
-  <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="120px;" /></a>
-  <a href="https://pusher.com/channels?campaignid=916184871&utm_source=adwords&utm_medium=cpc&utm_campaign=Brand_Pusher_Exact&utm_term=pusher%20api&utm_creative=264982473776&gclid=Cj0KCQjw3duCBhCAARIsAJeFyPVYHAebhDkuoH2xAOXBdB1fHou4JHfQ40-PsQGTVIo-Mi_2fYLcGcAaAnIJEALw_wcB"><img src="https://user-images.githubusercontent.com/71540533/111903081-d1321000-8a83-11eb-9406-97ff49477d6a.png" height="120px;" /></a>
-  <a href="https://console.cloud.google.com/apis/library?hl=ja&pli=1&project=maps-301303&folder=&organizationId=&rif_reserveds"><img src="https://user-images.githubusercontent.com/71540533/111902297-37b52f00-8a80-11eb-88ec-b3c7d98ab01e.png" height="120px;" /></a>
-  <a href="https://git-scm.com/"><img src="https://user-images.githubusercontent.com/71540533/111902546-5831b900-8a81-11eb-8bc5-648841923e35.png" height="120px;" /></a>
-  <a href="https://www.mysql.com/"><img src="https://user-images.githubusercontent.com/71540533/111902721-20774100-8a82-11eb-9183-8c8c38012c75.png" height="120px;" /></a>
-  <a href="https://aws.amazon.com/?nc1=h_ls"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="120px;" /></a>
+  <a href="https://laravel.com"><img src="https://user-images.githubusercontent.com/71540533/111902059-cd4fbf00-8a7e-11eb-851b-f2ffff37f3f1.png" height="110px;" /></a>
+  <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="110px;" /></a>
+  <a href="https://pusher.com/channels?campaignid=916184871&utm_source=adwords&utm_medium=cpc&utm_campaign=Brand_Pusher_Exact&utm_term=pusher%20api&utm_creative=264982473776&gclid=Cj0KCQjw3duCBhCAARIsAJeFyPVYHAebhDkuoH2xAOXBdB1fHou4JHfQ40-PsQGTVIo-Mi_2fYLcGcAaAnIJEALw_wcB"><img src="https://user-images.githubusercontent.com/71540533/111903081-d1321000-8a83-11eb-9406-97ff49477d6a.png" height="110px;" /></a>
+  <a href="https://console.cloud.google.com/apis/library?hl=ja&pli=1&project=maps-301303&folder=&organizationId=&rif_reserveds"><img src="https://user-images.githubusercontent.com/71540533/111902297-37b52f00-8a80-11eb-88ec-b3c7d98ab01e.png" height="110px;" /></a>
+  <a href="https://git-scm.com/"><img src="https://user-images.githubusercontent.com/71540533/111902546-5831b900-8a81-11eb-8bc5-648841923e35.png" height="110px;" /></a>
+  <a href="https://www.mysql.com/"><img src="https://user-images.githubusercontent.com/71540533/111902721-20774100-8a82-11eb-9183-8c8c38012c75.png" height="110px;" /></a>
+  <a href="https://aws.amazon.com/?nc1=h_ls"><img src="https://user-images.githubusercontent.com/71540533/111902063-cde85580-8a7e-11eb-8b8c-6b1f7e02c2e3.jpg" height="110px;" /></a>
 </p>
 
 # アプリ名：Maps.Backpackers
