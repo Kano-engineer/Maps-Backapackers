@@ -98,16 +98,24 @@
 
 function initMap() {
     
+    // const pins = @json($pins);
+    // for(let i in pins) {
+    // console.log(pins[i].text);
+    // }
+
+    var addresses = [];
     const pins = @json($pins);
     for(let i in pins) {
     console.log(pins[i].text);
+    addresses.push(pins[i].text);
     }
+    console.log(addresses);
 
-    var addresses = [
-        'アラスカ',
-        'バンコク',
-        '渋谷'
-    ];
+    // var addresses = [
+    //     'アラスカ',
+    //     'バンコク',
+    //     '渋谷'
+    // ];
 
 var latlng = []; //緯度経度の値をセット
 var marker = []; //マーカーの位置情報をセット
