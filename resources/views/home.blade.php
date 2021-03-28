@@ -18,7 +18,7 @@
                             <p></p>
                             <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
                             <p></p>
-                            <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
+                            <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP：クリック➡︎「住所」</i></a>
                             <p></p>
                             <a href="/index" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">SEARCH</i></a>
                             <p></p>

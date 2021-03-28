@@ -152,9 +152,10 @@ function geo(callback){
 
 function aftergeo(){
     myLatLng = latlng[0];//最初の住所を地図の中心点に設定
+    var TokyoTower = {lat: 35.658584, lng: 139.7454316};  
     var opt = {
-        center: myLatLng, // 地図の中心を指定
-        zoom: 2 // 地図のズームを指定
+        center: TokyoTower, // 地図の中心を指定
+        zoom: 5 // 地図のズームを指定
     };//地図作成のオプションのうちcenterとzoomは必須
     map.setOptions(opt);//オプションをmapにセット
 }//function aftergeo終了
