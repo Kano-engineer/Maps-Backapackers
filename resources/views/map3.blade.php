@@ -94,58 +94,63 @@
     <a></a>
   </div>
 
-  <input type="text" id="address" value="">：住所
-
 <script>
+
+  let map;
+  let marker = []; // マーカーを複数表示させたいので、配列化
+  let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+
+  var markerData = [];
+    const pins = @json($pins);
+    for(let i in pins) {
+    console.log(pins[i].text);
+    markerData.push(pins[i].text);
+    }
+    console.log(markerData);
+
   function initMap() {
-    var target = document.getElementById('gmap');  
-    //Show map
-    var map = new google.maps.Map(target, {  
-      center: {lat: 35, lng: 135},
-      zoom: 2
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('gmap'), {
+      center: { lat: 35.6585, lng: 139.7486 }, // 東京タワーを中心に表示させている
+      zoom: 12,
     });
-    //Make instance of geocording
-    var geocoder = new google.maps.Geocoder();  
-    
-    map.addListener('click', function(e){
-      //reverse geodcording
-      geocoder.geocode({location: e.latLng}, function(results, status){
-        if(status === 'OK' && results[0]) {
 
-          var marker = new google.maps.Marker({
-            position: e.latLng,
-            map: map,
-            title: results[0].formatted_address,
-            animation: google.maps.Animation.DROP
-          });
-          
-          var infoWindow = new google.maps.InfoWindow({
-            content:  results[0].formatted_address,
-            pixelOffset: new google.maps.Size(0, 5)
-          });
+    // 繰り返し処理でマーカーと吹き出しを複数表示させる
+    for (var i = 0; i < markerData.length; i++) {
+      let id = markerData[i]['id']
 
-          document.getElementById('address').value=results[0].formatted_address;
-          
-          marker.addListener('click', function(){
-            infoWindow.open(map, marker);
-            document.getElementById('address').value=results[0].formatted_address;
-          });
-
-          //Delete marker 
-          infoWindow.addListener('closeclick', function(){
-            marker.setMap(null);
-          });
-        }else if(status === 'ZERO_RESULTS') {
-          alert('不明なアドレスです： ' + status);
-          return;
-        }else{
-          alert('失敗しました： ' + status);
-          return;
-        }
+      // 各地点の緯度経度を算出
+      markerLatLng = new google.maps.LatLng({
+        lat: markerData[i]['latitude'],
+        lng: markerData[i]['longitude']
       });
+
+      // 各地点のマーカーを作成
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
+
+      // 各地点の吹き出しを作成
+      infoWindow[i] = new google.maps.InfoWindow({
+        // 吹き出しの内容
+        content: markerData[i]['text']
+      });
+
+      // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+  }
+
+  // マーカーをクリックしたら吹き出しを表示
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
     });
-  } 
-</script> 
+  }
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
 </body>
 </html>

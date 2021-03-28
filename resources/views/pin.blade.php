@@ -161,12 +161,12 @@
     </div>
 </div>
                 <!-- Search longitude and latitude by address -->
-                <form type="hidden" onsubmit="return false;">
-                    <input style="display:none;" type="" value="{{optional($pin) -> text}}" id="address">
-                    <button style="display:none;" type="" value="" id="map_button">検索</button>
+                <form type="" onsubmit="return false;">
+                    <input style=";" type="" value="{{optional($pin) -> text}}" id="address">
+                    <button style=";" type="" value="" id="map_button">検索</button>
                 </form>
                 <!-- Output longitude -->
-                <input style="display:none;" type="text" id="lng" value=""><br>
+                <input style="" type="text" id="lng" value=""><br>
                 <!-- Output latitude -->
-                <input style="display:none;" type="text" id="lat" value=""><br>
+                <input style="" type="text" id="lat" value=""><br>
 @endsection
