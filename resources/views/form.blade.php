@@ -25,7 +25,6 @@
                     <p></p>
                 </div>
         </div>
-
         <div class="col-md-9">
             @if ($errors->has('text'))
                 <ul>
@@ -53,12 +52,15 @@
                                     <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas fa-user">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="p-2">
-                                        <input class="form-control" name="text"  placeholder="Place">
+                                    <input class="form-control" name="text"  placeholder="例：「あなたの地元」">
+                                </div>
+                                <div class="p-2">
+                                    <small><font color =red>*必須</font></small>
                                 </div>
                             </div>
                         </h5>
                             <div class="card-body">
-                                <textarea class="form-control" name="body"  placeholder="" rows="5"></textarea>
+                                <textarea class="form-control" name="body"  placeholder="とっておきの「ローカル」な情報をシェアしよう！：「ここの景色が綺麗」、「地元の人しか知らないお店」" rows="5"></textarea>
                             <p class="card-text"></p>
                                 <label><i class="fas fa-images"></i>Photos</label>
                                 <input type="file" name="file" class="form-control">
