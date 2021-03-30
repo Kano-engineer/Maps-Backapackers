@@ -138,8 +138,6 @@
 <!-- Use Google Maps API / Geocording API -->
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
 
-<script src="{{ asset('/js/getAddress.js') }}"></script> 
-
 <script src="{{ asset('/js/alert.js') }}"></script>
 
 </body>
