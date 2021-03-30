@@ -20,11 +20,10 @@
                             <p></p>
                             <a href="/map2" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP2：複数マーカー＋吹き出し</i></a>
                             <p></p>
-<<<<<<< HEAD
                             <a href="/map3" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP3：現在地</i></a>
                             <p></p>
-=======
->>>>>>> c0b17418039c650cb622e6196ba0d2f62735b4ca
+                            <a href="/form2" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">Form2</i></a>
+                            <p></p>
                             <a href="/index" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">SEARCH</i></a>
                             <p></p>
                             <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>

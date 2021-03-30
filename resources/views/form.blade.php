@@ -14,8 +14,7 @@
       top: 0;
       left: 0;
     } 
-    </style>
-
+</style>
 @section('content')
 <div class="container">
     <div class="row" >
@@ -95,6 +94,19 @@
     </div>
 </div>
 
+
+<!-- Search longitude and latitude by address -->
+<form type="" onsubmit="return false;">
+    <input style=";" type="" value="" id="address">
+    <button style=";" type="" value="" id="map_button">場所をザックリ検索</button>
+</form>
+<!-- Output longitude -->
+<input style="" type="text" id="lng" value=""><br>
+<!-- Output latitude -->
+<input style="" type="text" id="lat" value=""><br>
+<input class="" name="text"  id="output" placeholder="住所">
+
+
 <script>
   function initMap() {
     var target = document.getElementById('gmap');  
@@ -103,6 +115,7 @@
       center: { lat: 35.6585, lng: 139.7486 },
       zoom: 4
     });
+
     //Make instance of geocording
     var geocoder = new google.maps.Geocoder();  
 
@@ -120,20 +133,20 @@
       geocoder.geocode({location: e.latLng}, function(results, status){
         if(status === 'OK' && results[0]) {
 
-          var marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
             position: e.latLng,
             map: map,
             title: results[0].formatted_address,
             animation: google.maps.Animation.DROP
-          });
+        });
 
           document.getElementById('output').value=results[0].formatted_address;
           
           /*
-           * markers.push(marker)　は参照渡しになることを利用する。
+           * markers.push(marker)は参照渡しになることを利用する。
            * https://webtechdays.com/?p=221
            */
-        markers.push(marker);
+          markers.push(marker);
           
           //Delete marker 
           infoWindow.addListener('closeclick', function(){
@@ -148,7 +161,9 @@
         }
       });
     });
+    
   } 
 </script> 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
+
 @endsection

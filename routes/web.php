@@ -98,3 +98,7 @@ Route::get('/books', 'HomeController@search');
 Route::get('/index', function () {
     return view('index');
 });
+
+Route::get('/form2', function () {
+    return view('form2');
+});
