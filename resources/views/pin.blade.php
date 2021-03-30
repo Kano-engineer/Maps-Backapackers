@@ -7,7 +7,7 @@
       padding-top:56.25%;
       border: 1px solid #CCC;  
     }
-    .map_wrapper .map-canvas {
+    .map_wrapper .gmap {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -16,8 +16,6 @@
     } 
 </style>
 @section('content')
-<title>PIN</title>
-
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -98,9 +96,10 @@
                         </form>
                     @endif
                     <p class="card-text"></p>
-                    <div class="map_wrapper">
-                            <div id="map-canvas" class="map-canvas"></div>
+                        <div class="map_wrapper">
+                            <div id="gmap" class="gmap"></div>
                         </div>
+                    
                     <br>
                     <div>
                         @if ($errors->has('comment'))
@@ -173,21 +172,21 @@
                 </div>
             <!-- Card -->
             </div>
-        <!-- <div class="col-md-8"> -->
+        <!-- <div class="col-md-9"> -->
         </div>
     </div>
+<!-- 何故か</div>が無いと動かない。sectionが邪魔？➡︎強引にフォーム作成？ -->
 </div>
-
 <!-- Search longitude and latitude by address -->
-<form type="" onsubmit="return false;">
+<form style="text-align:center;" onsubmit="return false;">
     <input style=";" type="" value="{{optional($pin) -> text}}" id="address">
-    <button style=";" type="" value="" id="map_button">検索</button>
+    <button style=";" type="" value="" id="map_button">場所をザックリ検索</button>
 </form>
 <!-- Output longitude -->
 <input style="" type="text" id="lng" value=""><br>
 <!-- Output latitude -->
 <input style="" type="text" id="lat" value=""><br>
-<input class="" name="text"  id="output" placeholder="例：「あなたの地元」">
+<input class="" name="text"  id="output" placeholder="住所">
 
 <script>
 var getMap = (function() {
@@ -202,7 +201,7 @@ var getMap = (function() {
     };
 
     // 地図を表示させるインスタンスを生成
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
     
     //マーカー変数用意
     var marker;
@@ -220,11 +219,11 @@ var getMap = (function() {
         document.getElementById('lat').value=results[0].geometry.location.lat();
         document.getElementById('lng').value=results[0].geometry.location.lng();
         
-        // マーカー設定
-        marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
+        // // マーカー設定
+        // marker = new google.maps.Marker({
+        //   map: map,
+        //   position: results[0].geometry.location
+        // });
        
       // ジオコーディングが成功しなかった場合
       } else {
@@ -232,27 +231,48 @@ var getMap = (function() {
       } 
     });
 
-    // マップをクリックで位置変更
-    map.addListener('click', function(e) {
-      getClickLatLng(e.latLng, map);
-    });
+    var markers = [];
+    
+    map.addListener('click', function(e){
 
-    function getClickLatLng(lat_lng, map) {
+        /* 既存のマーカーを削除する。 */
+        if (markers.length > 0) {
+        /* 既存マーカーが参照渡しで渡されているので、marker.setMap(null)で削除できる */
+        markers.forEach(marker => marker.setMap(null));
+        }
 
-      //☆表示している地図上の緯度経度
-      document.getElementById('lat').value=lat_lng.lat();
-      document.getElementById('lng').value=lat_lng.lng();
+      //reverse geodcording
+      geocoder.geocode({location: e.latLng}, function(results, status){
+        if(status === 'OK' && results[0]) {
 
-      // マーカーを設置
-      marker.setMap(null);
-      marker = new google.maps.Marker({
-        position: lat_lng,
-        map: map,
+            var marker = new google.maps.Marker({
+            position: e.latLng,
+            map: map,
+            title: results[0].formatted_address,
+            animation: google.maps.Animation.DROP
+        });
+
+          document.getElementById('output').value=results[0].formatted_address;
+          
+          /*
+           * markers.push(marker)は参照渡しになることを利用する。
+           * https://webtechdays.com/?p=221
+           */
+          markers.push(marker);
+          
+          //Delete marker 
+          infoWindow.addListener('closeclick', function(){
+            marker.setMap(null);
+          });
+        }else if(status === 'ZERO_RESULTS') {
+          alert('不明なアドレスです： ' + status);
+          return;
+        }else{
+          alert('失敗しました： ' + status);
+          return;
+        }
       });
-
-      // 座標の中心をずらす
-      map.panTo(lat_lng);
-    }
+    });
   }
   
   //inputのvalueで検索して地図を表示
@@ -278,10 +298,10 @@ var getMap = (function() {
       }
     }
   };
- 
 })();
 getMap.getAddress();
-
 </script>
+<!-- Use Google Maps API / Geocording API -->
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE"></script>
 
 @endsection
