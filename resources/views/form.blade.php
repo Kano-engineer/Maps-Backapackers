@@ -68,7 +68,7 @@
                                     <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas fa-user">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="p-2">
-                                    <input class="form-control" name="text"  id="address" placeholder="例：「あなたの地元」">
+                                    <input class="form-control" name="text"  id="output" placeholder="例：「あなたの地元」">
                                 </div>
                                 <div class="p-2">
                                     <small><font color =red>*必須</font></small>
@@ -80,11 +80,13 @@
                             <p class="card-text"></p>
                                 <label><i class="fas fa-images"></i>Photos</label>
                                 <input type="file" name="file" class="form-control">
+                                <br>
+                                <font color =blue>*地図をクリックして住所を検索できます！</font>
+                                <div class="map_wrapper">
+                                    <div id="gmap" class="gmap"></div>
+                                </div>
                             </div>
                     </div>
-                        <div class="map_wrapper">
-                            <div id="gmap" class="gmap"></div>
-                        </div>
                     <br>
                         <button type="submit" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;"><i class="fas fa-edit">Share Your Travel</i></button>            
                 </div> 
@@ -103,8 +105,17 @@
     });
     //Make instance of geocording
     var geocoder = new google.maps.Geocoder();  
+
+    var markers = [];
     
     map.addListener('click', function(e){
+
+        /* 既存のマーカーを削除する。 */
+        if (markers.length > 0) {
+        /* 既存マーカーが参照渡しで渡されているので、marker.setMap(null)で削除できる */
+        markers.forEach(marker => marker.setMap(null));
+        }
+
       //reverse geodcording
       geocoder.geocode({location: e.latLng}, function(results, status){
         if(status === 'OK' && results[0]) {
@@ -115,19 +126,15 @@
             title: results[0].formatted_address,
             animation: google.maps.Animation.DROP
           });
-          
-          var infoWindow = new google.maps.InfoWindow({
-            content:  results[0].formatted_address,
-            pixelOffset: new google.maps.Size(0, 5)
-          });
 
-          document.getElementById('address').value=results[0].formatted_address;
+          document.getElementById('output').value=results[0].formatted_address;
           
-          marker.addListener('click', function(){
-            infoWindow.open(map, marker);
-            document.getElementById('address').value=results[0].formatted_address;
-          });
-
+          /*
+           * markers.push(marker)　は参照渡しになることを利用する。
+           * https://webtechdays.com/?p=221
+           */
+        markers.push(marker);
+          
           //Delete marker 
           infoWindow.addListener('closeclick', function(){
             marker.setMap(null);
