@@ -94,7 +94,6 @@
     </div>
 </div>
 
-
 <!-- Search longitude and latitude by address -->
 <form type="" onsubmit="return false;">
     <input style=";" type="" value="" id="address">
