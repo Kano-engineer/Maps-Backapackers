@@ -105,7 +105,12 @@ function initMap() {
     }
 
     var infoWindow = []; //Q:pins -> body を吹き出しに表示させるため配列化？
+
     var id = []; //Q:pins ->idをパラメーターに使い遷移させるため配列化？
+    for(let i in pins) {
+    id.push(pins[i].id);
+    }
+    console.log(id);
 
     var latlng = []; //緯度経度の値をセット
     var marker = []; //マーカーの位置情報をセット
@@ -132,7 +137,7 @@ function initMap() {
 
                             var infoWindow = new google.maps.InfoWindow({
                             position: results[0].geometry.location, 
-                            content: addresses[i], // Q:pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移させたい。
+                            content:  `<a href='/post/${ id[i] }'>${ pins[i].text }</a>`, // Q:pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移させたい。
                             })
                             infoWindow.open(map);
 
