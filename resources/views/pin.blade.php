@@ -13,7 +13,7 @@
       height: 100%;
       top: 0;
       left: 0;
-    } 
+    }
 </style>
 @section('content')
 <div class="container">
@@ -41,22 +41,22 @@
 
         <div class="col-md-9">     
             <div class="card">
-                <h5 class="card-header" style="color:#094067;">
-                    <div class="d-flex flex-row">
-                    <div class="p-2">
-                        @if ($pin->user->images->isEmpty()) 
-                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                        @else
-                            @foreach($pin->user->images as $image)
-                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                            @endforeach
-                        @endif
-                    </div>
-                    <div class="p-2">
-                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
-                    </div>
-                    </div>
-                </h5>
+                    <h5 class="card-header" style="color:#094067;">
+                        <div class="d-flex flex-row">
+                        <div class="p-2">
+                            @if ($pin->user->images->isEmpty()) 
+                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                            @else
+                                @foreach($pin->user->images as $image)
+                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="p-2">
+                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                        </div>
+                        </div>
+                    </h5>
                 <div class="card-body">
                             <p class="card-text" style="color:black;">{{ $pin->created_at}}</p>
                             <p class="card-text" style="color:black;">{{ $pin->body}}</p>
@@ -99,7 +99,6 @@
                         <div class="map_wrapper">
                             <div id="gmap" class="gmap"></div>
                         </div>
-                    
                     <br>
                     <div>
                         @if ($errors->has('comment'))
@@ -149,8 +148,8 @@
                         @endforeach
                     </div>
 
-                <!-- Card -->
                 </div>
+                <!-- card-body」 -->
                     <div class="card-footer text-muted">
                         <div class="d-flex flex-row">
                             <div class="p-2">
@@ -169,12 +168,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            <!-- Card -->
             </div>
-        <!-- <div class="col-md-9"> -->
+            <!-- Card」 -->
         </div>
+        <!-- <div class="col-md-9"> -->
     </div>
+</div>
 <!-- 何故か</div>が無いと動かない。sectionが邪魔？➡︎強引にフォーム作成？ -->
 </div>
 <!-- Search longitude and latitude by address -->
