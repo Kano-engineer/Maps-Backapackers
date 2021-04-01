@@ -177,15 +177,14 @@
 <!-- 何故か</div>が無いと動かない。sectionが邪魔？➡︎強引にフォーム作成？ -->
 </div>
 <!-- Search longitude and latitude by address -->
-<form style="text-align:center;" onsubmit="return false;">
-    <input style=";" type="" value="{{optional($pin) -> text}}" id="address">
-    <button style=";" type="" value="" id="map_button">場所をザックリ検索</button>
+<form style="display:none;" onsubmit="return false;">
+    <input style=";" type="" value="{{$pin->location}}" id="address">
+    <button style=";" type="" value="" id="map_button">初期情報</button>
 </form>
 <!-- Output longitude -->
-<input style="" type="text" id="lng" value=""><br>
+<input style="display:none;" type="text" id="lng" value=""><br>
 <!-- Output latitude -->
-<input style="" type="text" id="lat" value=""><br>
-<input class="" name="text"  id="output" placeholder="住所">
+<input style="display:none;" type="text" id="lat" value=""><br>
 
 <script>
 var getMap = (function() {
@@ -218,59 +217,16 @@ var getMap = (function() {
         document.getElementById('lat').value=results[0].geometry.location.lat();
         document.getElementById('lng').value=results[0].geometry.location.lng();
         
-        // // マーカー設定
-        // marker = new google.maps.Marker({
-        //   map: map,
-        //   position: results[0].geometry.location
-        // });
+        // マーカー設定
+        marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
        
       // ジオコーディングが成功しなかった場合
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);
       } 
-    });
-
-    var markers = [];
-    
-    map.addListener('click', function(e){
-
-        /* 既存のマーカーを削除する。 */
-        if (markers.length > 0) {
-        /* 既存マーカーが参照渡しで渡されているので、marker.setMap(null)で削除できる */
-        markers.forEach(marker => marker.setMap(null));
-        }
-
-      //reverse geodcording
-      geocoder.geocode({location: e.latLng}, function(results, status){
-        if(status === 'OK' && results[0]) {
-
-            var marker = new google.maps.Marker({
-            position: e.latLng,
-            map: map,
-            title: results[0].formatted_address,
-            animation: google.maps.Animation.DROP
-        });
-
-          document.getElementById('output').value=results[0].formatted_address;
-          
-          /*
-           * markers.push(marker)は参照渡しになることを利用する。
-           * https://webtechdays.com/?p=221
-           */
-          markers.push(marker);
-          
-          //Delete marker 
-          infoWindow.addListener('closeclick', function(){
-            marker.setMap(null);
-          });
-        }else if(status === 'ZERO_RESULTS') {
-          alert('不明なアドレスです： ' + status);
-          return;
-        }else{
-          alert('失敗しました： ' + status);
-          return;
-        }
-      });
     });
   }
   
