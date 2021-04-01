@@ -16,11 +16,13 @@ class PinController extends Controller
         $this->validate($request,
             [
                 'text' => 'required|string|max:30',
+                'location' => 'required',
             ],
             [
-                'text.required' => 'Placeは必須です。',
-                'text.string'   => 'Placeには文字列を入力してください。',
-                'text.max'      => 'Placeは30文字以下です。',
+                'text.required' => 'タイトルは必須です。',
+                'location.required' => 'マーカー情報は必須です。',
+                'text.string'   => 'タイトルには文字列を入力してください。',
+                'text.max'      => 'タイトルは30文字以下です。',
             ]
         );
 
@@ -29,6 +31,7 @@ class PinController extends Controller
             [
                 'text' => $request->text,
                 'body' => $request->body,
+                'location' => $request->location,
                 'user_id' => $user_id = Auth::id(),
             ]);
         

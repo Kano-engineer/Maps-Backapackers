@@ -19,8 +19,47 @@
       top: 0;
       left: 0;
     } 
-    </style>
 
+    /*Tab Menu*/
+    .tab_container {
+        padding-bottom: 1em;
+        background-color: #fff;
+        border:1px solid #3490dc;
+        margin: 0 auto;}
+        .tab_item {
+        width: calc(100%/2);
+        padding:15px 0;
+        border-bottom: 3px solid #3490dc ;
+        background-color: #ececec;
+        text-align: center;
+        color: #3490dc ;
+        display: block;
+        float: left;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.2s ease;
+        }
+        .tab_item:hover {
+        opacity: 0.75;
+        }
+        input[name="tab_item"] {
+        display: none;
+        }
+        .tab_content {
+        display: none;
+        padding: 1em 1em 0;
+        clear: both;
+        overflow: hidden;
+        }
+        #tab1:checked ~ #tab1_content,
+        #tab2:checked ~ #tab2_content {
+        display: block;
+        }
+        .tab_container input:checked + .tab_item {
+        background-color: #3490dc ;
+        color: #fff;
+        }
+    </style>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -86,29 +125,119 @@
             </div>
         </nav>
         <main class="py-4">
-             <!-- Show map -->
-             <div class="map_wrapper">
-                <div id="gmap" class="gmap"></div>
-             </div>
-        </main>
-    <a></a>
-  </div>
+
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-3">
+        
+            <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
+            <div class="sidebar">
+                <!-- 2/28 Update:sidebar in card -->
+                    <div class="card" style="width:;">
+                        @if (Auth::user()->images->isEmpty()) 
+                            <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                        @else
+                            @foreach(Auth::user()->images as $image)
+                            <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            @endforeach
+                        @endif
+                            <p></p>
+                            <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                            <p></p>
+                            <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
+                            <p></p>
+                            <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>
+                    </div>
+                    <p></p>
+                </div>
+        </div>
+        <div class="col-md-9">
+                    <!-- Update:Use tab menu for switching between list and likes -->
+            <div class="tab_container">
+                <input id="tab1" type="radio" name="tab_item" checked>
+                <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP</label>
+                <input id="tab2" type="radio" name="tab_item">
+                    <label class="tab_item" for="tab2"><i class="fas fa-stream"></i> TIMELINE</label>
+                    <!-- TAB:TIMELINE -->
+                    <div class="tab_content" id="tab1_content">
+                        <div class="tab_content_description">
+                            <!-- Show map -->
+                            <div class="map_wrapper">
+                                <div id="gmap" class="gmap"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab_content" id="tab2_content">
+                        <div class="tab_content_description">
+                        @foreach ($pins as $pins)
+                    <div class="card">
+                        <h5 class="card-header" style="color:#094067;">
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    @if ($pins->user->images->isEmpty()) 
+                                        <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                    @else
+                                        @foreach($pins->user->images as $image)
+                                        <a href="/profile/{{$pins->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="p-2">
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
+                                </div>
+                            </div>
+                        </h5>
+                        <a href="/post/{{$pins->id}}" class="card-body">
+                            <p class="card-text" style="color:black;">{{ $pins->created_at}}</p>
+                            <p class="card-text" style="color:black;">{{ $pins->body}}</p>
+                                @foreach($pins->photos as $photo)
+                                <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                @endforeach
+                            <p class="card-text"></p>
+                            @if($pins->users()->where('user_id', Auth::id())->exists())
+                                <form action="{{ route('unfavorites', $pins) }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="&#xf164; LIKE！ {{ $pins->users()->count() }}" class="fas btn btn-primary">
+                                </form>
+                            @else
+                                <form action="{{ route('favorites', $pins) }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="&#xf164; LIKE！ {{ $pins->users()->count() }}" class="fas btn btn-link">
+                                </form>
+                            @endif
+                        </a>
+                    </div>
+                    <br>
+                    @endforeach
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+<a></a>
+</div>
+
+
 
 <script>
 function initMap() {
     
     // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
     var addresses = [];
-    const pins = @json($pins);
-    for(let i in pins) {
-    addresses.push(pins[i].text);
+    const pin = @json($pin);
+    for(let i in pin) {
+    addresses.push(pin[i].location);
     }
 
     var infoWindow = []; //Q:pins -> body を吹き出しに表示させるため配列化？
 
     var id = []; //Q:pins ->idをパラメーターに使い遷移させるため配列化？
-    for(let i in pins) {
-    id.push(pins[i].id);
+    for(let i in pin) {
+    id.push(pin[i].id);
     }
     console.log(id);
 
@@ -137,7 +266,7 @@ function initMap() {
 
                             var infoWindow = new google.maps.InfoWindow({
                             position: results[0].geometry.location, 
-                            content:  `<a href='/post/${ id[i] }'>${ pins[i].text }</a>`, // Q:pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移させたい。
+                            content:  `<a href='post/${ id[i] }'>${ pin[i].text }</a>`, // Q:pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移させたい。
                             })
                             infoWindow.open(map);
 
