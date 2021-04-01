@@ -17,7 +17,7 @@ class CreatePinsTable extends Migration
             $table->id();
             $table->string('text');
             $table->string('body')->nullable();
-            $table->geometry('location')->nullable();
+            $table->string('location');
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');

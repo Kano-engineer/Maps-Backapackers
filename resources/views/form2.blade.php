@@ -31,12 +31,15 @@
 </head>
 
 <body>
+
+
+
   <div class="map_wrapper">
     <div id="gmap" class="gmap"></div>
   </div>
 
   <form style="text-align:center;" onsubmit="return false;">
-    <input style="text-align:center;" name="text"  id="output" placeholder="output">
+    <input style="text-align:center;" name="text"  id="output" placeholder="address">
     <input style=";" type="" value="日本" placeholder="初期値" id="address">
     <button style=";" type="" value="" id="map_button">場所をザックリ検索</button>
   </form>
