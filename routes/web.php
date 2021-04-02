@@ -102,3 +102,6 @@ Route::get('/index', function () {
 Route::get('/form2', function () {
     return view('form2');
 });
+
+//プロフィール2
+Route::get('/profile2', 'ProfileController@index2');
