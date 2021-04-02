@@ -18,8 +18,8 @@
       height: 100%;
       top: 0;
       left: 0;
-    } 
-
+    }
+    
     /*Tab Menu*/
     .tab_container {
         padding-bottom: 1em;
