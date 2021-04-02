@@ -296,7 +296,7 @@ function initMap() {
                         @endforeach
                     </div>
                     <!-- class="card-body" -->
-                    <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-globe-europe"></i>SEARCH</a>
+                    <a href="/index" type="button" class="btn btn-primary"><i class="fas fa-globe-europe"></i>SEARCH</a>
                 </div>
                 <!-- class="card" -->
                 <p></p>
