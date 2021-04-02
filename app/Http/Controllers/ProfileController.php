@@ -52,7 +52,29 @@ class ProfileController extends Controller
         // reverse
         $pin = $pin->reverse();
 
-        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
+        // map
+        $pins = Pin::whereUser_id($user_id)->with('photos')->get();
+
+        return view('profile', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
+    }
+    
+    // profile2：タブメニュー3つにする
+    public function index2() {
+        $user_id = Auth::id();
+        $comments=Comment::whereProfile_id($user_id)->get();
+        $user_images = Image::whereUser_id($user_id)->get();
+        $pin = Pin::whereUser_id($user_id)->with('photos')->get();
+        // $user->favorites
+        $id = $user_id;
+        $user = User::find($id);
+
+        // reverse
+        $pin = $pin->reverse();
+
+        // map
+        $pins = Pin::whereUser_id($user_id)->with('photos')->get();
+
+        return view('profile2', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
     public function destroy($id) {
@@ -67,7 +89,14 @@ class ProfileController extends Controller
         $comments=Comment::whereProfile_id($user_id)->get();
         $user_images = Image::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
-        return view('profile', ['user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
+
+        // reverse
+        $pin = $pin->reverse();
+
+        // map
+        $pins = Pin::whereUser_id($user_id)->with('photos')->get();
+        
+        return view('profile', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
         public function comment(Request $request,$id)

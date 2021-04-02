@@ -5,7 +5,7 @@
     <title>Maps.Backpackers</title>
     <meta charset="utf-8">
     <style>
-    /* Responsive */
+    /* Map Responsive */
     .map_wrapper {
       position: relative; 
       width:100%;
@@ -60,6 +60,8 @@
         color: #fff;
         }
     </style>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -130,11 +132,10 @@
 <div class="container">
     <div class="row" >
         <div class="col-md-3">
-        
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
-                    <div class="card" style="width:;">
+                    <div class="card" style="">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
@@ -145,9 +146,9 @@
                             <p></p>
                             <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
                             <p></p>
-                            <a href="/map" type="button" class="btn btn-primary"><i class="fas fa-globe-europe">MAP</i></a>
+                            <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
                             <p></p>
-                            <a href="/post" type="button" class="btn btn-primary"><i class="fas fa-comment-dots">TALK</i></a>
+                            <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-globe-europe"></i>SEARCH</a>
                     </div>
                     <p></p>
                 </div>
@@ -162,6 +163,10 @@
                     <!-- TAB:TIMELINE -->
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
+                            <!-- Form -->
+                            <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
+                            <br>
+                            <br>
                             <!-- Show map -->
                             <div class="map_wrapper">
                                 <div id="gmap" class="gmap"></div>
@@ -170,6 +175,10 @@
                     </div>
                     <div class="tab_content" id="tab2_content">
                         <div class="tab_content_description">
+                            <!-- Form -->
+                            <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
+                            <br>
+                            <br>
                         @foreach ($pins as $pins)
                     <div class="card">
                         <h5 class="card-header" style="color:#094067;">
@@ -188,7 +197,7 @@
                                 </div>
                             </div>
                         </h5>
-                        <a href="/post/{{$pins->id}}" class="card-body">
+                        <a href="/post/{{$pins->id}}" class="card-body" style="text-decoration: none;">
                             <p class="card-text" style="color:black;">{{ $pins->created_at}}</p>
                             <p class="card-text" style="color:black;">{{ $pins->body}}</p>
                                 @foreach($pins->photos as $photo)
@@ -221,8 +230,6 @@
 <a></a>
 </div>
 
-
-
 <script>
 function initMap() {
     
@@ -232,15 +239,6 @@ function initMap() {
     for(let i in pin) {
     addresses.push(pin[i].location);
     }
-
-    var infoWindow = []; //Q:pins -> body を吹き出しに表示させるため配列化？
-
-    var id = []; //Q:pins ->idをパラメーターに使い遷移させるため配列化？
-    for(let i in pin) {
-    id.push(pin[i].id);
-    }
-    console.log(id);
-
     var latlng = []; //緯度経度の値をセット
     var marker = []; //マーカーの位置情報をセット
     var myLatLng; //地図の中心点をセット用
@@ -266,7 +264,7 @@ function initMap() {
 
                             var infoWindow = new google.maps.InfoWindow({
                             position: results[0].geometry.location, 
-                            content:  `<a href='post/${ id[i] }'>${ pin[i].text }</a>`, // Q:pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移させたい。
+                            content:  `<a href='post/${ pin[i].id }'>${ pin[i].text }</a>`, //pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移。
                             })
                             infoWindow.open(map);
 
@@ -286,7 +284,7 @@ function initMap() {
         var TokyoTower = {lat: 35.658584, lng: 139.7454316};  
         var opt = {
             center: TokyoTower, // 地図の中心を指定
-            zoom: 5 // 地図のズームを指定
+            zoom: 4 // 地図のズームを指定
         };//地図作成のオプションのうちcenterとzoomは必須
         map.setOptions(opt);//オプションをmapにセット
     }//function aftergeo終了

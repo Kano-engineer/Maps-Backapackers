@@ -38,7 +38,10 @@ class HomeController extends Controller
 
         // reverse
         $pins = $pins->reverse();
-        return view('home', [ 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
+
+        // map
+        $pin = Pin::with('user')->with('photos')->get();
+        return view('home', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
     public function map()
