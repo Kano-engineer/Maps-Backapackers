@@ -48,7 +48,7 @@
                 @endforeach
                 </ul>
             @endif
-            <form action="/post/" method="POST" class=".form-control:focus" enctype="multipart/form-data">
+            <form action="/post" method="POST" class=".form-control:focus" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="form-group">
                     <div class="card">
