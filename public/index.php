@@ -59,4 +59,4 @@ $response->send();
 
 $kernel->terminate($request, $response);
 
-SassCompiler::run("scss/", "css/");
+// SassCompiler::run("scss/", "css/");
