@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Photo;
+use App\Image;
+use App\Pin;
+use App\Comment;
+use App\User;
+
 class LoginController extends Controller
 {
     /*

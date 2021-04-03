@@ -127,69 +127,6 @@
         </div>
     </nav>
 
-    <script>
-function initMap() {
-    
-    // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
-    var addresses = [];
-    const pin = @json($pins);
-    for(let i in pin) {
-    addresses.push(pin[i].location);
-    }
-    var latlng = []; //緯度経度の値をセット
-    var marker = []; //マーカーの位置情報をセット
-    var myLatLng; //地図の中心点をセット用
-    var geocoder;
-    geocoder = new google.maps.Geocoder();
-    
-    var map = new google.maps.Map(document.getElementById('gmap'));//地図を作成する
-
-    geo(aftergeo);
-    
-    function geo(callback){
-        var cRef = addresses.length;
-        for (var i = 0; i < addresses.length; i++) {
-            (function (i) { 
-                geocoder.geocode({'address': addresses[i]}, 
-                    function(results, status) { // 結果
-                        if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
-                            latlng[i]=results[0].geometry.location;// マーカーを立てる位置をセット
-                            marker[i] = new google.maps.Marker({
-                                position: results[0].geometry.location, // マーカーを立てる位置を指定
-                                map: map // マーカーを立てる地図を指定
-                            });
-
-                            var infoWindow = new google.maps.InfoWindow({
-                            position: results[0].geometry.location, 
-                            content:  `<a href='post/${ pin[i].id }'>${ pin[i].text }</a>`, //pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移。
-                            })
-                            infoWindow.open(map);
-
-                        } else { // 失敗した場合
-                        }//if文の終了。ifは文なので;はいらない
-                        if (--cRef <= 0) {
-                            callback();//全て取得できたらaftergeo実行
-                        }
-                    }//function(results, status)の終了
-                );//geocoder.geocodeの終了
-            }) (i);
-        }//for文の終了
-    }//function geo終了
-
-    function aftergeo(){
-        myLatLng = latlng[0];//最初の住所を地図の中心点に設定
-        var TokyoTower = {lat: 35.658584, lng: 139.7454316};  
-        var opt = {
-            center: TokyoTower, // 地図の中心を指定
-            zoom: 4 // 地図のズームを指定
-        };//地図作成のオプションのうちcenterとzoomは必須
-        map.setOptions(opt);//オプションをmapにセット
-    }//function aftergeo終了
-
-};//function initMap終了
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
-
 <main class="py-4">
 
     <div class="container">
@@ -246,35 +183,19 @@ function initMap() {
                                     </form>
                                 @endif
                             @endif
-
-                        <!-- Following / Followers -->
-                        <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Following：{{ $user->follows()->count() }}</i></p>
-                                @foreach ($user->follows as $follow)
-                                    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user"></i>{{$follow->name}}</a></p>
-                                @endforeach
-                            </div>
-                            <div class="p-2">
-                                <p class=".font-weight-bold" style="color:#094067;"><i class="fas fa-angle-right">Followers：{{ $user->followUsers()->count() }}</i></p>
-                                @foreach ($user->followusers as $followuser)
-                                    <p style="color:#094067;"><a style="color:#3da9fc;" href="/profile/{{$followuser->id}}"><i class="fas fa-user"></i>{{$followuser->name}}</a></p>
-                                @endforeach
-                            </div>
-                        </div>
-
+                        
                         <!-- Profile comment -->
                         <div>
-                        @if ($errors->has('comment_profile'))
-                            @foreach($errors->all() as $error)
-                            <font color =red>*{{ $error }}</font>
-                            @endforeach
-                        @endif
+                            @if ($errors->has('comment_profile'))
+                                @foreach($errors->all() as $error)
+                                <font color =red>*{{ $error }}</font>
+                                @endforeach
+                            @endif
                         </div>
                         @if(Auth::user()->id === $user->id)
                             <form action="/profile/comment/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
-                                <input name="comment_profile" placeholder="Self-Introduction">
+                                <input name="comment_profile" placeholder="自己紹介をどうぞ">
                                 <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                             </form>
                         @endif
@@ -296,6 +217,15 @@ function initMap() {
                         @endforeach
                     </div>
                     <!-- class="card-body" -->
+                    <!-- Following / Followers -->
+                    <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
+                            </div>
+                            <div class="p-2">
+                            <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
+                            </div>
+                    </div>
                     <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-globe-europe"></i>SEARCH</a>
                 </div>
                 <!-- class="card" -->
@@ -338,7 +268,7 @@ function initMap() {
                                 <h5 class="card-header" style="color:#094067;">
                                     <div class="d-flex flex-row">
                                     <div class="p-2">
-                                        @if ($pin->user->images->isEmpty()) 
+                                        @if ($pin->user->images->isEmpty())
                                             <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                         @else
                                             @foreach($pin->user->images as $image)
@@ -374,7 +304,7 @@ function initMap() {
                                         </form>
                                     @endif
                                 </a>
-                                </div>
+                            </div>
                                 <br>
                             @endforeach
                         </div>
@@ -444,6 +374,69 @@ function initMap() {
     <!-- class="container" -->
 
 </main>
+
+<script>
+function initMap() {
+    
+    // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
+    var addresses = [];
+    const pin = @json($pins);
+    for(let i in pin) {
+    addresses.push(pin[i].location);
+    }
+    var latlng = []; //緯度経度の値をセット
+    var marker = []; //マーカーの位置情報をセット
+    var myLatLng; //地図の中心点をセット用
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+    
+    var map = new google.maps.Map(document.getElementById('gmap'));//地図を作成する
+
+    geo(aftergeo);
+    
+    function geo(callback){
+        var cRef = addresses.length;
+        for (var i = 0; i < addresses.length; i++) {
+            (function (i) { 
+                geocoder.geocode({'address': addresses[i]}, 
+                    function(results, status) { // 結果
+                        if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
+                            latlng[i]=results[0].geometry.location;// マーカーを立てる位置をセット
+                            marker[i] = new google.maps.Marker({
+                                position: results[0].geometry.location, // マーカーを立てる位置を指定
+                                map: map // マーカーを立てる地図を指定
+                            });
+
+                            var infoWindow = new google.maps.InfoWindow({
+                            position: results[0].geometry.location, 
+                            content:  `<a href='/post/${ pin[i].id }'>${ pin[i].text }</a>`, //pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移。
+                            })
+                            infoWindow.open(map);
+
+                        } else { // 失敗した場合
+                        }//if文の終了。ifは文なので;はいらない
+                        if (--cRef <= 0) {
+                            callback();//全て取得できたらaftergeo実行
+                        }
+                    }//function(results, status)の終了
+                );//geocoder.geocodeの終了
+            }) (i);
+        }//for文の終了
+    }//function geo終了
+
+    function aftergeo(){
+        myLatLng = latlng[0];//最初の住所を地図の中心点に設定
+        var TokyoTower = {lat: 35.658584, lng: 139.7454316};  
+        var opt = {
+            center: TokyoTower, // 地図の中心を指定
+            zoom: 4 // 地図のズームを指定
+        };//地図作成のオプションのうちcenterとzoomは必須
+        map.setOptions(opt);//オプションをmapにセット
+    }//function aftergeo終了
+
+};//function initMap終了
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
 
 </body>
 </html>

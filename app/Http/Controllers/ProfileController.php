@@ -106,11 +106,12 @@ class ProfileController extends Controller
                     'comment_profile' => 'required|string|max:50',
                 ],
                 [
-                    'comment_profile.required' => 'コメントは必須です。',
-                    'comment_profile.string'   => 'テキストには文字列を入力してください。',
-                    'comment_profile.max'      => 'テキストは50文字以下です。',
+                    'comment_profile.required' => '自己紹介は必須です。',
+                    'comment_profile.string'   => '自己紹介には文字列を入力してください。',
+                    'comment_profile.max'      => '自己紹介は50文字以下です。',
                 ]
             );
+
             Comment::create(
                 [
                 'comment' => $request->comment_profile,
@@ -124,5 +125,21 @@ class ProfileController extends Controller
             
             return redirect()->back();
         }
+
+        // フォロー
+        public function follow($id) {
+            $user = User::find($id);
+            $user_id = $id;
+            $comments=Comment::whereProfile_id($user_id)->get();
+            $user_images = Image::whereUser_id($user_id)->get();
+            $pin = Pin::whereUser_id($user_id)->get();
     
+            // reverse
+            $pin = $pin->reverse();
+    
+            // map
+            $pins = Pin::whereUser_id($user_id)->with('photos')->get();
+            
+            return view('follow', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
+        }
 }
