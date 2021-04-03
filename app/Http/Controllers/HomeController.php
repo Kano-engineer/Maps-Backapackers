@@ -41,6 +41,7 @@ class HomeController extends Controller
 
         // map
         $pin = Pin::with('user')->with('photos')->get();
+        
         return view('home', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
@@ -104,19 +105,68 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+
+        if($request->has('keyword')){
+            $this->validate($request,
+        [
+            'keyword' => 'required',
+        ],
+        [
+            'keyword.required' => 'キーワードは必須です。',
+        ]
+        );}
+
+        if($request->has('keyword2')){
+            $this->validate($request,
+        [
+            'keyword2' => 'required',
+        ],
+        [
+            'keyword2.required' => '県名は必須です。',
+        ]
+        );}
+        
         $keyword = $request->input('keyword');
- 
+        $keyword2 = $request->input('keyword2');
+
         $query = Pin::query();
-        $query2 = User::query();
+        $query2 = Pin::query();
+        $query3 = User::query();
 
         if (!empty($keyword)) {
-            $query->where('text', 'LIKE', "%{$keyword}%");
-            $query2->where('name', 'LIKE', "%{$keyword}%");
+            $query->where('text', 'LIKE', "%{$keyword}%")
+            ->orWhere('body', 'LIKE', "%{$keyword}%")
+            ->orWhere('location', 'LIKE', "%{$keyword}%");
+
+            $query2->where('text', 'LIKE', "%{$keyword}%")
+            ->orWhere('body', 'LIKE', "%{$keyword}%")
+            ->orWhere('location', 'LIKE', "%{$keyword}%");
+            
+            $query3->where('name', 'LIKE', "%{$keyword}%");
         }
-  
+
+        if (!empty($keyword2)) {
+            $query->where('text', 'LIKE', "%{$keyword2}%")
+            ->orWhere('body', 'LIKE', "%{$keyword2}%")
+            ->orWhere('location', 'LIKE', "%{$keyword2}%");
+
+            $query2->where('text', 'LIKE', "%{$keyword2}%")
+            ->orWhere('body', 'LIKE', "%{$keyword2}%")
+            ->orWhere('location', 'LIKE', "%{$keyword2}%");
+            
+            $query3->where('name', 'LIKE', "%{$keyword2}%");
+        }
+        // map
         $pins = $query->get();
-        $user = $query2->get();
+        $pin = $query2->get();
+        $user = $query3->get();
  
-        return view('index2', compact('pins','user'));
+
+        return view('index2', compact('pins','pin','user'));
     }
+
+    public function index2() {
+        $prefs = config('pref');
+        return view('index')->with(['prefs' => $prefs]);
+      }
 }

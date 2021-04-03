@@ -19,7 +19,7 @@
       top: 0;
       left: 0;
     }
-    
+
     /*Tab Menu*/
     .tab_container {
         padding-bottom: 1em;
@@ -239,6 +239,9 @@ function initMap() {
     for(let i in pin) {
     addresses.push(pin[i].location);
     }
+
+    console.log(pin);
+
     var latlng = []; //緯度経度の値をセット
     var marker = []; //マーカーの位置情報をセット
     var myLatLng; //地図の中心点をセット用
@@ -264,7 +267,8 @@ function initMap() {
 
                             var infoWindow = new google.maps.InfoWindow({
                             position: results[0].geometry.location, 
-                            content:  `<a href='post/${ pin[i].id }'>${ pin[i].text }</a>`, //pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移。
+                            content:  `<a href='/post/${ pin[i].id }'>${ pin[i].text }</a>`,
+                            //pins->body を吹き出しに表示させ pins->idをパラメーターに使い詳細ページに遷移。
                             })
                             infoWindow.open(map);
 

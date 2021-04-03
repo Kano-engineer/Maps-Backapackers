@@ -22,7 +22,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
         body {
-        background: url("../image/5.jpg");
+        /* background: url("../image/5.jpg"); */
         /* background-size: cover; */
         background-attachment: fixed;
         }
