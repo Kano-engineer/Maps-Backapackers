@@ -155,7 +155,7 @@
                             <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
                             </div>
                     </div>
-                    <a href="/map2/" type="button" class="btn btn-primary"><i class="fas fa-globe-europe"></i>SEARCH</a>
+                    <a href="/map2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>>SEARCH</a>
                 </div>
                 <!-- class="card" -->
                 <p></p>
