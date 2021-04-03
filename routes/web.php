@@ -105,3 +105,6 @@ Route::get('/form2', function () {
 
 //プロフィール2
 Route::get('/profile2', 'ProfileController@index2');
+
+//フォロー画面
+Route::get('/follow/{id}', 'ProfileController@follow');
