@@ -245,9 +245,9 @@
                             </div>
                             </div>
                                 <!-- Show map -->
-                                <div class="map_wrapper">
+                                <!-- <div class="map_wrapper">
                                     <div id="gmap" class="gmap"></div>
-                                </div>
+                                </div> -->
                         </div>
                     </div>
 
