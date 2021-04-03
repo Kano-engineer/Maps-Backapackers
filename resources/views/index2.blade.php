@@ -311,15 +311,15 @@
                                         <div class="d-flex flex-row">
                                         <div class="p-2">
                                             @if ($follow->images->isEmpty()) 
-                                                <a href="/profile/{{$follow->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($follow->images as $image)
-                                                <a href="/profile/{{$follow->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>
                                         <div class="p-2">
-                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->user_id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
                                         </div>
                                         </div>
                                     </h5>
