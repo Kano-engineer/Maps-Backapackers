@@ -93,6 +93,9 @@ class PinController extends Controller
         // comment = self-introduction in sidebar
         $comment=Comment::whereProfile_id($user_id)->get();
         $pin = Pin::find($id);
+
+        $this->authorize('edit', $pin); // Policy
+
         return view('edit',['pin' => $pin]);
     }
 
@@ -107,7 +110,20 @@ class PinController extends Controller
                 'text.string'   => 'Placeには文字列を入力してください。',
                 'text.max'      => 'Placeは30文字以下です。',
             ]
-    );
+        );
+
+        if ($request->file('file')) {
+            $path = $request->file->store('public');
+
+            $file_name = basename($path);
+            $pin_id = $id;
+            $new_image_data = new Photo();
+            $new_image_data->pin_id = $pin_id;
+            $new_image_data->photo = $file_name;
+            $new_image_data->save();
+        }
+
+
         $pin = Pin::find($id);
         $pin->text=$request->text;
         $pin->body=$request->body;
