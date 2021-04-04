@@ -30,11 +30,11 @@
                             @endforeach
                         @endif
                         <p></p>
-                        <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                        <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
                         <p></p>
                         <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
                         <p></p> -->
-                        <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                        <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                 </div>
             <p></p>
         </div>
@@ -54,6 +54,22 @@
                         </div>
                         <div class="p-2">
                             <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                        </div>
+                        <div class="p-2">
+                            <!-- Follow button:Display only in other users' profiles  -->
+                            @if(Auth::user()->id !== $pin->user->id)
+                                @if($pin->user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                    <form action="{{ route('unfollow', $pin->user) }}" method="POST">
+                                        @csrf
+                                        <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                    </form>
+                                    @else
+                                    <form action="{{ route('follow', $pin->user) }}" method="POST">
+                                        @csrf
+                                        <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                    </form>
+                                @endif
+                            @endif
                         </div>
                         </div>
                     </h5>

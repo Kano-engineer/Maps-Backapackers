@@ -144,11 +144,11 @@
                                 @endforeach
                             @endif
                                 <p></p>
-                                <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                                <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
                                 <!-- <p></p>
                                 <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a> -->
                                 <p></p>
-                                <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                                <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                         </div>
                         <p></p>
                     </div>
@@ -178,7 +178,7 @@
                                     @endif
                                     <form action="{{url('/books')}}" method="GET">
                                         <input type="text" name="keyword" value="">
-                                        <input type="submit" value="ザックリ検索">
+                                        <input type="submit" value="検索">
                                     </form>
                             </div>
                             <div class="p-2">
@@ -259,18 +259,34 @@
                             <div class="card">
                                 <h5 class="card-header" style="color:#094067;">
                                     <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        @if ($pin->user->images->isEmpty())
-                                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                                        @else
-                                            @foreach($pin->user->images as $image)
-                                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                                            @endforeach
+                                        <div class="p-2">
+                                            @if ($pin->user->images->isEmpty())
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                            @else
+                                                @foreach($pin->user->images as $image)
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="p-2">
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                                        </div>
+                                        <div class="p-2">
+                                        <!-- Follow button:Display only in other users' profiles  -->
+                                        @if(Auth::user()->id !== $pin->user->id)
+                                            @if($pin->user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                <form action="{{ route('unfollow', $pin->user) }}" method="POST">
+                                                    @csrf
+                                                    <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                </form>
+                                                @else
+                                                <form action="{{ route('follow', $pin->user) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                </form>
+                                            @endif
                                         @endif
-                                    </div>
-                                    <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
-                                    </div>
+                                        </div>
                                     </div>
                                 </h5>
                                 <a href="/post/{{$pin->id}}" class="card-body" style="text-decoration: none;">
@@ -321,9 +337,26 @@
                                         <div class="p-2">
                                             <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
                                         </div>
+                                        <div class="p-2">
+                                        <!-- Follow button:Display only in other users' profiles  -->
+                                        @if(Auth::user()->id !== $follow->id)
+                                            @if($follow->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                <form action="{{ route('unfollow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                </form>
+                                                @else
+                                                <form action="{{ route('follow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                </form>
+                                            @endif
+                                        @endif
+                                        </div>
                                         </div>
                                     </h5>
                                 </div>
+                                <br>
                                 @endforeach 
                         </div>
                     </div>
@@ -403,48 +436,3 @@ function initMap() {
 
 </body>
 </html>
-
-
-
-<!-- 
-
-
-<br>
-<p>MAP：{{ $pins->count() }}</p>
-@if($pins->count())
-<table border="1">
-    <tr>
-        <th>MAP</th>
-        <th></th>
-        <th></th>
-    </tr>
-    @foreach ($pins as $pins)
-    <tr>
-        <td>{{ $pins->location }}</td>
-        <td></td>
-        <td></td>
-    </tr>
-    @endforeach
-</table>
-
-@endif
-
-<br>
-<p>USER：{{ $user->count() }}</p>
-@if($user->count())
-<table border="1">
-    <tr>
-        <th>USER</th>
-        <th></th>
-        <th></th>
-    </tr>
-    @foreach ($user as $user)
-    <tr>
-        <td>{{ $user->name }}</td>
-        <td></td>
-        <td></td>
-    </tr>
-    @endforeach
-</table>
-
-@endif -->
