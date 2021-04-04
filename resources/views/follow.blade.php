@@ -155,7 +155,7 @@
                             <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
                             </div>
                     </div>
-                    <a href="/map2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                    <a href="/map2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                 </div>
                 <!-- class="card" -->
                 <p></p>
@@ -168,29 +168,45 @@
                 <label class="tab_item" for="tab1"><i class="fas"></i> {{ $user->follows()->count() }} Following</label>
                 <input id="tab2" type="radio" name="tab_item">
                     <label class="tab_item" for="tab2"><i class="fas"></i> {{ $user->followUsers()->count() }} Followers</label>
-                    <!-- TAB:TIMELINE -->
+                    <!-- TAB:Following -->
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
                             @foreach ($user->follows as $follow)
                             <div class="card">
                                 <h5 class="card-header" style="color:#094067;">
                                     <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        @if ($follow->images->isEmpty()) 
-                                            <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                                        @else
-                                            @foreach($follow->images as $image)
-                                            <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                                            @endforeach
+                                        <div class="p-2">
+                                            @if ($follow->images->isEmpty()) 
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                            @else
+                                                @foreach($follow->images as $image)
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="p-2">
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
+                                        </div>
+                                        <div class="p-2">
+                                        <!-- Follow button:Display only in other users' profiles  -->
+                                        @if(Auth::user()->id !== $follow->id)
+                                            @if($follow->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                <form action="{{ route('unfollow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                </form>
+                                                @else
+                                                <form action="{{ route('follow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                </form>
+                                            @endif
                                         @endif
-                                    </div>
-                                    <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
-                                    </div>
+                                        </div>
                                     </div>
                                 </h5>
-
                             </div>
+                            <br>
                             @endforeach
                         </div>
                     </div>
@@ -200,22 +216,38 @@
                             <div class="card" href="/profile/{{$follow->id}}">
                                 <h5 class="card-header" style="color:#094067;" href="/profile/{{$follow->id}}">
                                     <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        @if ($follow->images->isEmpty()) 
-                                            <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                                        @else
-                                            @foreach($follow->images as $image)
-                                            <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                                            @endforeach
+                                        <div class="p-2">
+                                            @if ($follow->images->isEmpty()) 
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                            @else
+                                                @foreach($follow->images as $image)
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="p-2">
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
+                                        </div>
+                                        <div class="p-2">
+                                        <!-- Follow button:Display only in other users' profiles  -->
+                                        @if(Auth::user()->id !== $follow->id)
+                                            @if($follow->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                <form action="{{ route('unfollow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                </form>
+                                                @else
+                                                <form action="{{ route('follow', $follow) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                </form>
+                                            @endif
                                         @endif
-                                    </div>
-                                    <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$follow->id}}"><i class="fas fa-user">{{$follow->name}}</i></a>
-                                    </div>
+                                        </div>
                                     </div>
                                 </h5>
-
                             </div>
+                            <br>
                             @endforeach
                         </div>
                     </div>
