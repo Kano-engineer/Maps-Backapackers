@@ -78,7 +78,10 @@
                                 <textarea class="form-control" name="body"  placeholder="とっておきの「ローカル」な情報をシェアしよう！：「ここの景色が綺麗」、「地元の人しか知らないお店」" rows="5"></textarea>
                             <p class="card-text"></p>
                                 <label><i class="fas fa-images"></i>Photos</label>
-                                <input type="file" name="file" class="form-control">
+                                <input type="file" name="file" class="form-control" accept='image/*' onchange="previewImage(this);">
+                                <br>
+                                <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:300px;">
+                                <br>
                                 <br>
                                 <font color =red>*地図をザックリ検索➡︎クリック➡︎マーカー情報は必須です</font>
                                 <div class="map_wrapper">
@@ -112,6 +115,16 @@
   <input style="display:none;" type="text" id="lat" value=""><br>
 
 <script>
+
+function previewImage(obj)
+{
+	var fileReader = new FileReader();
+	fileReader.onload = (function() {
+		document.getElementById('preview').src = fileReader.result;
+	});
+	fileReader.readAsDataURL(obj.files[0]);
+}
+
 var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
