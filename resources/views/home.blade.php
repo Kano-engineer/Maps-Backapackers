@@ -144,11 +144,11 @@
                             @endforeach
                         @endif
                             <p></p>
-                            <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                            <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
                             <p></p>
                             <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
                             <p></p> -->
-                            <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                            <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                     </div>
                     <p></p>
                 </div>
@@ -194,6 +194,22 @@
                                 </div>
                                 <div class="p-2">
                                     <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
+                                </div>
+                                <div class="p-2">
+                                    <!-- Follow button:Display only in other users' profiles  -->
+                                    @if(Auth::user()->id !== $pins->user->id)
+                                        @if($pins->user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                            <form action="{{ route('unfollow', $pins->user) }}" method="POST">
+                                                @csrf
+                                                <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                            </form>
+                                            @else
+                                            <form action="{{ route('follow', $pins->user) }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                            </form>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </h5>

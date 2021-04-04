@@ -158,12 +158,19 @@
                     </div>
                     <!-- Upload image-->
                     @if(Auth::user()->id === $user->id)
-                        <form action="/profile/upload" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <label for="photo"></label>
-                            <input type="file" class="form-control" name="file">
-                            <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
-                        </form>
+                        
+                        @if($user_images->count())
+                        <table border="1">
+                        </table>
+                        @else
+                            <form action="/profile/upload" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <label for="photo"></label>
+                                <input type="file" class="form-control" name="file">
+                                <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
+                            </form>
+                        @endif
+
                     @endif
 
                     <div class="card-body">
@@ -226,7 +233,7 @@
                             <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
                             </div>
                     </div>
-                    <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                    <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                 </div>
                 <!-- class="card" -->
                 <p></p>
@@ -235,11 +242,11 @@
                 <!-- Update:Use tab menu for switching between list and likes -->
                 <div class="tab_container">
                 <input id="tab1" type="radio" name="tab_item" checked>
-                <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP</label>
+                <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP：{{ $pins->count() }}</label>
                 <input id="tab2" type="radio" name="tab_item">
-                <label class="tab_item" for="tab2"><i class="fas fa-list"></i> LIST</label>
+                <label class="tab_item" for="tab2"><i class="fas fa-list"></i> LIST：{{ $pin->count() }}</label>
                 <input id="tab3" type="radio" name="tab_item">
-                <label class="tab_item" for="tab3"><i class="far fa-thumbs-up"></i> LIKES</label>
+                <label class="tab_item" for="tab3"><i class="far fa-thumbs-up"></i> LIKES：{{ $user->favorites->count() }}</label>
                     
                     <!-- TAB1:MAP -->
                     <div class="tab_content" id="tab1_content">
@@ -267,18 +274,34 @@
                             <div class="card">
                                 <h5 class="card-header" style="color:#094067;">
                                     <div class="d-flex flex-row">
-                                    <div class="p-2">
-                                        @if ($pin->user->images->isEmpty())
-                                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                                        @else
-                                            @foreach($pin->user->images as $image)
-                                            <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                    <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
-                                    </div>
+                                        <div class="p-2">
+                                            @if ($pin->user->images->isEmpty())
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                                            @else
+                                                @foreach($pin->user->images as $image)
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="p-2">
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                                        </div>
+                                        <div class="p-2">
+                                            <!-- Follow button:Display only in other users' profiles  -->
+                                            @if(Auth::user()->id !== $pin->user->id)
+                                                @if($pin->user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                    <form action="{{ route('unfollow', $pin->user) }}" method="POST">
+                                                        @csrf
+                                                        <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                    </form>
+                                                    @else
+                                                    <form action="{{ route('follow', $pin->user) }}" method="POST">
+                                                        @csrf
+                                                        <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                    </form>
+                                                @endif
+                                            @endif
+                                        </div>
                                     </div>
                                 </h5>
                                 <a href="/post/{{$pin->id}}" class="card-body" style="text-decoration: none;">
@@ -334,8 +357,26 @@
                                             <div class="p-2">
                                                 <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i>
                                             </div>
+                                            
+                                            <div class="p-2">
+                                            <!-- Follow button:Display only in other users' profiles  -->
+                                            @if(Auth::user()->id !== $favorite->user->id)
+                                                @if($favorite->user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                                    <form action="{{ route('unfollow', $favorite->user) }}" method="POST">
+                                                        @csrf
+                                                        <a></a><input type="submit" value="&#xf164; Following" class='fas btn btn-primary'></a>
+                                                    </form>
+                                                    @else
+                                                    <form action="{{ route('follow', $favorite->user) }}" method="POST">
+                                                        @csrf
+                                                        <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                    </form>
+                                                @endif
+                                            @endif
                                             </div>
-                                        </h5>
+
+                                            </div>
+                                </h5>
                                 <a href="/post/{{$favorite->id}}" class="card-body" style="text-decoration: none;">
                                     <p class="card-text" style="color:black;">{{ $favorite->created_at}}</p>
                                     <p class="card-text" style="color:black;">{{ $favorite->body}}</p>
