@@ -144,11 +144,11 @@
                                 @endforeach
                             @endif
                                 <p></p>
-                                <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user">{{ Auth::user()->name }}</i></a>
+                                <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
                                 <!-- <p></p>
                                 <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a> -->
                                 <p></p>
-                                <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i>SEARCH</a>
+                                <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                         </div>
                         <p></p>
                     </div>
@@ -178,7 +178,7 @@
                                     @endif
                                     <form action="{{url('/books')}}" method="GET">
                                         <input type="text" name="keyword" value="">
-                                        <input type="submit" value="ザックリ検索">
+                                        <input type="submit" value="検索">
                                     </form>
                             </div>
                             <div class="p-2">
@@ -336,5 +336,3 @@ function initMap() {
 
 </body>
 </html>
-
-
