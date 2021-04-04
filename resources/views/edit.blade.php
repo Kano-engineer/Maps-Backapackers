@@ -57,9 +57,13 @@
                         </h5>
                             <div class="card-body">
                                 <textarea class="form-control" name="body"  placeholder="{{ $pin->body}}" rows="5">{{$pin->body}}</textarea>
-                            <!-- <p class="card-text"></p>
-                                <label><i class="fas fa３-images"></i>Photos</label>
-                                <input type="file" name="file" class="form-control"> -->
+                                <p class="card-text"></p>
+                                    <label><i class="fas fa-images"></i>Photos</label>
+                                    <input type="file" name="file" class="form-control" accept='image/*' onchange="previewImage(this);">
+                                    <br>
+                                    <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:300px;">
+                                    <br>
+                                    <br>
                             </div>
                     </div>
                     <br>
@@ -70,4 +74,15 @@
         </div>
     </div>
 </div>
+
+<script>
+function previewImage(obj)
+{
+	var fileReader = new FileReader();
+	fileReader.onload = (function() {
+		document.getElementById('preview').src = fileReader.result;
+	});
+	fileReader.readAsDataURL(obj.files[0]);
+}
+</script>
 @endsection

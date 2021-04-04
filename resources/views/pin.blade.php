@@ -92,13 +92,13 @@
                                     <font color =red>*{{ $error }}</font>
                                 @endforeach
                             @endif
-                            @if(Auth::user()->id === $pin->user_id)
+                            <!-- @if(Auth::user()->id === $pin->user_id)
                                 <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" class="form-control" name="file">
                                     <button type="submit"  class='btn btn-primary  btn-sm'><i class="fas fa-images">画像アップロード</i></button>
                                 </form>
-                            @endif
+                            @endif -->
                             <br>
                     @if($pin->users()->where('user_id', Auth::id())->exists())
                         <form action="{{ route('unfavorites', $pin) }}" method="POST">
