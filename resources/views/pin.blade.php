@@ -27,7 +27,7 @@
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                         <p></p>
@@ -56,7 +56,7 @@
                             @endif
                         </div>
                         <div class="p-2">
-                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
                         </div>
                         <div class="p-2">
                             <!-- Follow button:Display only in other users' profiles  -->
@@ -128,10 +128,14 @@
                     </div>
                     <div>
                         <form action="/comment/{{$pin -> id}}" method="post">
-                            {{ csrf_field() }}
-                            <input type="search" name="comment" placeholder="コメント">
-                            <button type="submit"><i class="fas fa-comment">コメント</i></button>
-                        </form>
+                                {{ csrf_field() }}
+                                <div class="input-group mb-3">
+                                    <input name="comment" type="text" class="form-control" placeholder="コメントをどうぞ" >
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit"><i class="far fa-comment-alt"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                     </div>
 
                     <br>
@@ -149,7 +153,7 @@
                                     @endif
                                 </div>
                                 <div class="p-2">
-                                    <a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas fa-user"></i>{{$comments->user->name}}</a>
+                                    <a style="color:#3da9fc;" href="/profile/{{$comments->user_id}}"><i class="fas"></i>{{$comments->user->name}}</a>
                                 </div>
                                 <div class="p-2">
                                     <p style="color:#094067;">{{ $comments->comment }}</p>
