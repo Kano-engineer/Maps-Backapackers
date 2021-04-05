@@ -223,7 +223,7 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        <!-- Following / Followers -->
                         <!-- Follow button:Display only in other users' profiles  -->
                         @if(Auth::user()->id !== $user->id)
                             @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
@@ -240,15 +240,6 @@
                         @endif
                     </div>
                     <!-- class="card-body" -->
-                    <!-- Following / Followers -->
-                    <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
-                            </div>
-                            <div class="p-2">
-                            <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
-                            </div>
-                    </div>
                 </div>
                 <!-- class="card" -->
                 <p></p>
