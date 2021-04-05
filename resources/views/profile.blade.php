@@ -237,7 +237,6 @@
                             </div>
                     </div>
                     <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
-                    <a href="/profile2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Profile2</a>
                 </div>
                 <!-- class="card" -->
                 <p></p>
