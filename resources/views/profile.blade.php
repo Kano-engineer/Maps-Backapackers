@@ -240,8 +240,15 @@
                         @endif
                     </div>
                     <!-- class="card-body" -->
-                    <!-- <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
-                    <a href="/profile2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Profile2</a> -->
+                    <!-- Following / Followers -->
+                    <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
+                            </div>
+                            <div class="p-2">
+                            <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
+                            </div>
+                    </div>
                 </div>
                 <!-- class="card" -->
                 <p></p>
