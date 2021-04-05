@@ -7,7 +7,8 @@
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <!-- 3/1 Update:sidebar in card -->
-                <div class="card" style="width:;">
+                <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="..."></a>
                         @else
@@ -35,7 +36,9 @@
             <form action="/update/{{$pin->id}}" method="POST" class=".form-control:focus" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="form-group">
-                    <div class="card">
+                    <div class="card" style="
+    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                         <h5 class="card-header" style="color:#094067;">
                             <div class="d-flex flex-row">
                                 <div class="p-2">
@@ -52,6 +55,9 @@
                                 </div>
                                 <div class="p-2">
                                         <input class="form-control" name="text"  placeholder="{{$pin->text}}" value="{{$pin->text}}">
+                                </div>
+                                <div class="p-2">
+                                    <small><font color =red>*必須</font></small>
                                 </div>
                             </div>
                         </h5>
