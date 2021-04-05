@@ -13,7 +13,7 @@
                             <a href="/profile"><img style="" src="{{ URL::asset('image/4.jpg') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                         <p></p>
@@ -51,7 +51,7 @@
                                     @endif
                                 </div>
                                 <div class="p-2"> 
-                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas fa-user">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="p-2">
                                         <input class="form-control" name="text"  placeholder="{{$pin->text}}" value="{{$pin->text}}">

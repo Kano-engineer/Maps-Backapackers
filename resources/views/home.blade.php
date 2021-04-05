@@ -106,7 +106,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 
-                                <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas fa-user"></i>My Profile</a>
+                                <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas"></i>My Profile</a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -142,7 +142,7 @@
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                             <p></p>
@@ -167,14 +167,17 @@
                     <!-- TAB:TIMELINE -->
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
-                            <!-- Form -->
-                            <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
-                            <br>
-                            <br>
-                            <!-- Show map -->
-                            <div class="map_wrapper">
-                                <div id="gmap" class="gmap"></div>
-                            </div>
+                            @if($pins->count())
+                                <table border="1">
+                                    <!-- Show map -->
+                                    <div class="map_wrapper">
+                                        <div id="gmap" class="gmap" style="overflow: hidden;height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
+                                    </div>
+                                    <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
+                                </table>
+                            @else
+                                <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
+                            @endif
                         </div>
                     </div>
                     <div class="tab_content" id="tab2_content">
@@ -197,7 +200,7 @@
                                     @endif
                                 </div>
                                 <div class="p-2">
-                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas fa-user">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
                                 </div>
                                 <div class="p-2">
                                     <!-- Follow button:Display only in other users' profiles  -->

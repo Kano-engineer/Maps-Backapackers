@@ -108,7 +108,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             
-                            <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas fa-user"></i>My Profile</a>
+                            <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas"></i>My Profile</a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -141,7 +141,7 @@
                                 <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                             @else
                                 @foreach(Auth::user()->images as $image)
-                                <a href="/profile"><img style="" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                 @endforeach
                             @endif
                                 <p></p>
@@ -170,87 +170,86 @@
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
                             <!-- Form -->
-                            <div class="d-flex flex-row">
-                            <div class="p-2">
-                                    @if ($errors->has('keyword'))
-                                        <ul>
-                                        @foreach($errors->all() as $error)
-                                            <font color =red>*{{ $error }}</font>
-                                        @endforeach
-                                        </ul>
-                                    @endif
-                                    <form action="{{url('/books')}}" method="GET">
-                                        <input type="text" name="keyword" value="">
-                                        <input type="submit" value="検索">
-                                    </form>
-                            </div>
-                            <div class="p-2">
-                                    @if ($errors->has('keyword2'))
-                                        <ul>
-                                        @foreach($errors->all() as $error)
-                                            <font color =red>*{{ $error }}</font>
-                                        @endforeach
-                                        </ul>
-                                    @endif
-                                    <form action="{{url('/books')}}" method="GET">
-                                    <select name="keyword2">
-                                    <option value="" selected>都道府県</option>
-                                    <option value="北海道">北海道</option>
-                                    <option value="青森県">青森県</option>
-                                    <option value="岩手県">岩手県</option>
-                                    <option value="宮城県">宮城県</option>
-                                    <option value="秋田県">秋田県</option>
-                                    <option value="山形県">山形県</option>
-                                    <option value="福島県">福島県</option>
-                                    <option value="茨城県">茨城県</option>
-                                    <option value="栃木県">栃木県</option>
-                                    <option value="群馬県">群馬県</option>
-                                    <option value="埼玉県">埼玉県</option>
-                                    <option value="千葉県">千葉県</option>
-                                    <option value="東京都">東京都</option>
-                                    <option value="神奈川県">神奈川県</option>
-                                    <option value="新潟県">新潟県</option>
-                                    <option value="富山県">富山県</option>
-                                    <option value="石川県">石川県</option>
-                                    <option value="福井県">福井県</option>
-                                    <option value="山梨県">山梨県</option>
-                                    <option value="長野県">長野県</option>
-                                    <option value="岐阜県">岐阜県</option>
-                                    <option value="静岡県">静岡県</option>
-                                    <option value="愛知県">愛知県</option>
-                                    <option value="三重県">三重県</option>
-                                    <option value="滋賀県">滋賀県</option>
-                                    <option value="京都府">京都府</option>
-                                    <option value="大阪府">大阪府</option>
-                                    <option value="兵庫県">兵庫県</option>
-                                    <option value="奈良県">奈良県</option>
-                                    <option value="和歌山県">和歌山県</option>
-                                    <option value="鳥取県">鳥取県</option>
-                                    <option value="島根県">島根県</option>
-                                    <option value="岡山県">岡山県</option>
-                                    <option value="広島県">広島県</option>
-                                    <option value="山口県">山口県</option>
-                                    <option value="徳島県">徳島県</option>
-                                    <option value="香川県">香川県</option>
-                                    <option value="愛媛県">愛媛県</option>
-                                    <option value="高知県">高知県</option>
-                                    <option value="福岡県">福岡県</option>
-                                    <option value="佐賀県">佐賀県</option>
-                                    <option value="長崎県">長崎県</option>
-                                    <option value="熊本県">熊本県</option>
-                                    <option value="大分県">大分県</option>
-                                    <option value="宮崎県">宮崎県</option>
-                                    <option value="鹿児島県">鹿児島県</option>
-                                    <option value="沖縄県">沖縄県</option>
+                            @if ($errors->has('keyword'))
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                    <font color =red>*{{ $error }}</font>
+                                @endforeach
+                                </ul>
+                            @endif
+                            <form action="{{url('/books')}}" method="GET">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="keyword" value="">
+                                    <div class="input-group-append" >
+                                        <button class="btn btn-primary" type="submit" id="button-addon2">SERACH</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            @if ($errors->has('keyword2'))
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                    <font color =red>*{{ $error }}</font>
+                                @endforeach
+                                </ul>
+                            @endif
+                            <form action="{{url('/books')}}" method="GET">
+                                <div class="input-group">
+                                    <select class="custom-select" name="keyword2">
+                                        <option value="" selected>都道府県</option>
+                                        <option value="北海道">北海道</option>
+                                        <option value="青森県">青森県</option>
+                                        <option value="岩手県">岩手県</option>
+                                        <option value="宮城県">宮城県</option>
+                                        <option value="秋田県">秋田県</option>
+                                        <option value="山形県">山形県</option>
+                                        <option value="福島県">福島県</option>
+                                        <option value="茨城県">茨城県</option>
+                                        <option value="栃木県">栃木県</option>
+                                        <option value="群馬県">群馬県</option>
+                                        <option value="埼玉県">埼玉県</option>
+                                        <option value="千葉県">千葉県</option>
+                                        <option value="東京都">東京都</option>
+                                        <option value="神奈川県">神奈川県</option>
+                                        <option value="新潟県">新潟県</option>
+                                        <option value="富山県">富山県</option>
+                                        <option value="石川県">石川県</option>
+                                        <option value="福井県">福井県</option>
+                                        <option value="山梨県">山梨県</option>
+                                        <option value="長野県">長野県</option>
+                                        <option value="岐阜県">岐阜県</option>
+                                        <option value="静岡県">静岡県</option>
+                                        <option value="愛知県">愛知県</option>
+                                        <option value="三重県">三重県</option>
+                                        <option value="滋賀県">滋賀県</option>
+                                        <option value="京都府">京都府</option>
+                                        <option value="大阪府">大阪府</option>
+                                        <option value="兵庫県">兵庫県</option>
+                                        <option value="奈良県">奈良県</option>
+                                        <option value="和歌山県">和歌山県</option>
+                                        <option value="鳥取県">鳥取県</option>
+                                        <option value="島根県">島根県</option>
+                                        <option value="岡山県">岡山県</option>
+                                        <option value="広島県">広島県</option>
+                                        <option value="山口県">山口県</option>
+                                        <option value="徳島県">徳島県</option>
+                                        <option value="香川県">香川県</option>
+                                        <option value="愛媛県">愛媛県</option>
+                                        <option value="高知県">高知県</option>
+                                        <option value="福岡県">福岡県</option>
+                                        <option value="佐賀県">佐賀県</option>
+                                        <option value="長崎県">長崎県</option>
+                                        <option value="熊本県">熊本県</option>
+                                        <option value="大分県">大分県</option>
+                                        <option value="宮崎県">宮崎県</option>
+                                        <option value="鹿児島県">鹿児島県</option>
+                                        <option value="沖縄県">沖縄県</option>
                                     </select>
-                                    <p><input type="submit" value="県名検索"></p>
-                                    </form>
-                            </div>
-                            </div>
-                                <!-- Show map -->
-                                <!-- <div class="map_wrapper">
-                                    <div id="gmap" class="gmap"></div>
-                                </div> -->
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">地名検索</button>
+                                    </div>
+                                    </div>
+                            </form>
                         </div>
                     </div>
 

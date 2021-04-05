@@ -108,7 +108,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             
-                            <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas fa-user"></i>My Profile</a>
+                            <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas"></i>My Profile</a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -132,14 +132,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                    <!-- User's image -->
                    @if ($user_images->isEmpty()) 
                         <img style="" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                            <img style="" src="{{ asset('storage/' . $user_image['file_name']) }}">
+                            <img style="border-radius: 50%;" src="{{ asset('storage/' . $user_image['file_name']) }}">
                             <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -180,20 +179,15 @@
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
-                            <!-- Follow button:Display only in other users' profiles  -->
-                            @if(Auth::user()->id !== $user->id)
-                                @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
-                                    <form action="{{ route('unfollow', $user) }}" method="POST">
-                                        @csrf
-                                        <input type="submit" value="&#xf164; Following" class='fas btn btn-primary'>
-                                    </form>
-                                    @else
-                                    <form action="{{ route('follow', $user) }}" method="POST">
-                                        @csrf
-                                        <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
-                                    </form>
-                                @endif
-                            @endif
+                        <!-- Following / Followers -->
+                        <div class="d-flex flex-row" style="display:flex;justify-content: center;">
+                                <div class="p-2">
+                                    <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
+                                </div>
+                                <div class="p-2">
+                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
+                                </div>
+                        </div>
                         <!-- Profile comment -->
                         <div>
                             @if ($errors->has('comment_profile'))
@@ -205,14 +199,18 @@
                         @if(Auth::user()->id === $user->id)
                             <form action="/profile/comment/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
-                                <input name="comment_profile" placeholder="自己紹介をどうぞ">
-                                <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                                <div class="input-group mb-3">
+                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ" >
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </div>
                             </form>
                         @endif
                         @foreach ($comments as $comment)
-                            <div class="d-flex flex-row">
+                            <div class="d-flex flex-row" >
                                 <div class="p-2">
-                                    <p class="card-text" style="color:#094067;">{{ $comment ->comment}}</p>   
+                                    <p class="card-text" style="color:#094067;white-space: pre-wrap;">{{ $comment ->comment}}</p>   
                                 </div>
                                 <div class="p-2">
                                     @if(Auth::user()->id === $user->id)
@@ -225,19 +223,25 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        <!-- Follow button:Display only in other users' profiles  -->
+                        @if(Auth::user()->id !== $user->id)
+                            @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
+                                <form action="{{ route('unfollow', $user) }}" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
+                                    @csrf
+                                    <input type="submit" value="&#xf164; Following" class='fas btn btn-primary'>
+                                </form>
+                                @else
+                                <form action="{{ route('follow', $user) }}" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
+                                    @csrf
+                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                </form>
+                            @endif
+                        @endif
                     </div>
                     <!-- class="card-body" -->
-                    <!-- Following / Followers -->
-                    <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
-                            </div>
-                            <div class="p-2">
-                            <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
-                            </div>
-                    </div>
-                    <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
-                    <a href="/profile2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Profile2</a>
+                    <!-- <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
+                    <a href="/profile2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Profile2</a> -->
                 </div>
                 <!-- class="card" -->
                 <p></p>
@@ -257,13 +261,20 @@
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
                             <!-- Form -->
-                            <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
+                            <!-- <a type="button" class="btn btn-primary" style="width:100%;padding:0px;font-size:30px;border-radius:20px 20px 20px 20px;" href="/form"><i class="fas fa-edit">Share Your Travel</i></a>
                             <br>
-                            <br>
-                                <!-- Show map -->
-                                <div class="map_wrapper">
-                                    <div id="gmap" class="gmap"></div>
-                                </div>
+                            <br> -->
+                                @if($pins->count())
+                                    <table border="1">
+                                        <!-- Show map -->
+                                        <div class="map_wrapper">
+                                            <div id="gmap" class="gmap" style="overflow: hidden;height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
+                                        </div>
+                                        <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
+                                    </table>
+                                @else
+                                    <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
+                                @endif
                         </div>
                     </div>
 
@@ -289,7 +300,7 @@
                                             @endif
                                         </div>
                                         <div class="p-2">
-                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas fa-user">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
                                         </div>
                                         <div class="p-2">
                                             <!-- Follow button:Display only in other users' profiles  -->
@@ -360,7 +371,7 @@
                                         @endif
                                     </div>
                                     <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas fa-user">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i>
+                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i>
                                     </div>
                                     
                                     <div class="p-2">
@@ -491,6 +502,7 @@ function initMap() {
 };//function initMap終了
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
-
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('/js/alert.js') }}"></script>
 </body>
 </html>
