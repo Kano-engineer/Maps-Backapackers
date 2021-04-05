@@ -62,7 +62,8 @@
         <div class="row">
 
         <div class="col-md-3">
-                <div class="card" style="">
+                <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                    <!-- User's image -->
                    @if ($user_images->isEmpty()) 
                    <a href="/profile/{{ $user->id }}"><img class="card-img-top" alt="..." style="" src="{{ URL::asset('image/profile.png') }}" /></a>
@@ -87,17 +88,26 @@
                     </div>
                     <!-- Upload image-->
                     @if(Auth::user()->id === $user->id)
-                        <form action="/profile/upload" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <label for="photo"></label>
-                            <input type="file" class="form-control" name="file">
-                            <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
-                        </form>
+                        @if($user_images->count())
+                            <table border="1">
+                            </table>
+                        @else
+                            <form action="/profile/upload" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <label for="photo"></label>
+                                <input type="file" class="form-control" name="file"accept='image/*' onchange="previewImage(this);">
+                                <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
+                                    <br>
+                                    <br>
+                                    <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
+                            </form>
+                        @endif
                     @endif
 
                     <div class="card-body">
                         <br>
-                        <h5><i class="fas fa-user">{{ $user->name }}</i></h5>
+                        <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
+                        <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
                             <!-- Follow button:Display only in other users' profiles  -->
                             @if(Auth::user()->id !== $user->id)
                                 @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
@@ -124,7 +134,7 @@
                         @if(Auth::user()->id === $user->id)
                             <form action="/profile/comment/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
-                                <input name="comment_profile" placeholder="Self-Introduction">
+                                <input name="comment_profile" placeholder="自己紹介をどうぞ">
                                 <button class="btn btn-primary btn-lg active btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                             </form>
                         @endif
@@ -163,7 +173,9 @@
 
             <div class="col-md-9">
                     <!-- Update:Use tab menu for switching between list and likes -->
-            <div class="tab_container">
+            <div class="tab_container" style="
+    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                 <input id="tab1" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="tab1"><i class="fas"></i> {{ $user->follows()->count() }} Following</label>
                 <input id="tab2" type="radio" name="tab_item">

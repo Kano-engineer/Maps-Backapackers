@@ -135,7 +135,9 @@
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
-                    <div class="card" style="">
+                    <div class="card" style="
+    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
@@ -155,7 +157,9 @@
         </div>
         <div class="col-md-9">
                     <!-- Update:Use tab menu for switching between list and likes -->
-            <div class="tab_container">
+            <div class="tab_container" style="
+    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+">
                 <input id="tab1" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP</label>
                 <input id="tab2" type="radio" name="tab_item">
