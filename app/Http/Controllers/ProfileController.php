@@ -58,7 +58,7 @@ class ProfileController extends Controller
         return view('profile', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
     
-    // profile2：タブメニュー3つにする
+    // profile2：UI/UX 分析
     public function index2() {
         $user_id = Auth::id();
         $comments=Comment::whereProfile_id($user_id)->get();

@@ -106,9 +106,9 @@ class PinController extends Controller
                 'text' => 'required|string|max:30',
             ],
             [
-                'text.required' => 'Placeは必須です。',
-                'text.string'   => 'Placeには文字列を入力してください。',
-                'text.max'      => 'Placeは30文字以下です。',
+                'text.required' => 'タイトルは必須です。',
+                'text.string'   => 'タイトルには文字列を入力してください。',
+                'text.max'      => 'タイトルは30文字以下です。',
             ]
         );
 
