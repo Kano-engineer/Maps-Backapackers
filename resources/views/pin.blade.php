@@ -128,14 +128,14 @@
                     </div>
                     <div>
                         <form action="/comment/{{$pin -> id}}" method="post">
-                                {{ csrf_field() }}
-                                <div class="input-group mb-3">
-                                    <input name="comment" type="text" class="form-control" placeholder="コメントをどうぞ" >
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit"><i class="far fa-comment-alt"></i></button>
-                                    </div>
+                            {{ csrf_field() }}
+                            <div class="input-group mb-3">
+                                <input name="comment" type="text" class="form-control" placeholder="コメントをどうぞ"  value="{{ old('comment') }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i class="far fa-comment-alt"></i></button>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                     </div>
 
                     <br>
@@ -170,8 +170,8 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
+
                 <!-- card-body」 -->
                     <div class="card-footer text-muted">
                         <div class="d-flex flex-row">
