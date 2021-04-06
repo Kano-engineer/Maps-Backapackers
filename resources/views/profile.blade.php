@@ -200,7 +200,7 @@
                             <form action="/profile/comment/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
-                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ" >
+                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                                     </div>
@@ -346,7 +346,7 @@
                             @endforeach
                         </div>
                     </div>
-                        
+
                     <!-- TAB:LIKES -->
                     <div class="tab_content" id="tab3_content">
                         <div class="tab_content_description">
