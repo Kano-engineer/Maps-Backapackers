@@ -60,7 +60,6 @@
     @section('content')
     <div class="container">
         <div class="row">
-
             <div class="col-md-3">
                 <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                    <!-- User's image -->
@@ -104,8 +103,6 @@
                         @endif
 
                     @endif
-
-                    <div class="card-body">
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
@@ -130,7 +127,7 @@
                             <form action="/profile/comment/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
-                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ" >
+                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit"></i></button>
                                     </div>
@@ -138,7 +135,7 @@
                             </form>
                         @endif
                         @foreach ($comments as $comment)
-                            <div class="d-flex flex-row" >
+                            <div class="d-flex flex-row" style="display:flex;justify-content: center;">
                                 <div class="p-2">
                                     <p class="card-text" style="color:#094067;white-space: pre-wrap;">{{ $comment ->comment}}</p>   
                                 </div>
@@ -153,7 +150,7 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        <!-- Following / Followers -->
                         <!-- Follow button:Display only in other users' profiles  -->
                         @if(Auth::user()->id !== $user->id)
                             @if($user->followUsers()->where('following_user_id', Auth::id())->exists())
@@ -168,10 +165,7 @@
                                 </form>
                             @endif
                         @endif
-                    </div>
-                    <!-- class="card-body" -->
-                    <!-- <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
-                    <a href="/profile2/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> Profile2</a> -->
+                        <br>
                 </div>
                 <!-- class="card" -->
                 <p></p>
@@ -224,7 +218,7 @@
                                     </div>
                                 </h5>
                             </div>
-                            <br>
+                            <p></p>
                             @endforeach
                         </div>
                     </div>
@@ -265,7 +259,7 @@
                                     </div>
                                 </h5>
                             </div>
-                            <br>
+                            <p></p>
                             @endforeach
                         </div>
                     </div>
