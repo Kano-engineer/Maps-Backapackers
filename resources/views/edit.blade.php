@@ -30,9 +30,7 @@
         <div class="col-md-9">
             @if ($errors->has('text'))
                 <ul>
-                @foreach($errors->all() as $error)
-                    <font color =red>*{{ $error }}</font>
-                @endforeach
+                    <font color =red>*{{$errors->first('text')}}</font>
                 </ul>
             @endif
             <form action="/update/{{$pin->id}}" method="POST" class=".form-control:focus" enctype="multipart/form-data">

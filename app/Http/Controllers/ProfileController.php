@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidationRequest;
 use App\Image;
 use App\User;
 use App\Pin;
@@ -11,20 +12,10 @@ use App\Photo;
 
 class ProfileController extends Controller
 {
-    public function upload(Request $request)
+    public function upload(ValidationRequest $request)
     {
-        $this->validate($request, 
-            [
-                'file' => 
-                'required',
-                'file',
-                'image',
-                'mimes:jpeg,png',
-            ],
-            [
-                'file.required' => '写真は必須です。',
-            ]
-    );
+        $validated = $request->validated();
+
         if ($request->file('file')->isValid([])) {
             $path = $request->file->store('public');
 
@@ -99,18 +90,10 @@ class ProfileController extends Controller
         return view('profile', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
-        public function comment(Request $request,$id)
+        public function comment(ValidationRequest $request,$id)
         {
-            $this->validate($request,
-                [
-                    'comment_profile' => 'required|string|max:50',
-                ],
-                [
-                    'comment_profile.required' => '自己紹介は必須です。',
-                    'comment_profile.string'   => '自己紹介には文字列を入力してください。',
-                    'comment_profile.max'      => '自己紹介は50文字以下です。',
-                ]
-            );
+
+            $validated = $request->validated();
 
             Comment::create(
                 [
