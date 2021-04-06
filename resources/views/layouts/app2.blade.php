@@ -21,24 +21,6 @@
     <!-- Fomt Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
-
-        /* Map Responsive */
-        .map_wrapper {
-    position: relative; 
-    width:100%;
-    padding-top:56.25%;
-    border: 1px solid #CCC;  
-    }
-    .map_wrapper .gmap {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    }
-
-    
-    
         body {
         /* background: url("../image/5.jpg"); */
         /* background-size: cover; */
@@ -48,14 +30,29 @@
         a {display:block;}
         a:hover { text-decoration: none; }
         
-        /*Tab Menu*/
-        .tab_container {
+        /* Map Responsive */
+    .map_wrapper {
+      position: relative; 
+      width:100%;
+      padding-top:56.25%;
+      border: 1px solid #CCC;  
+    }
+    .map_wrapper .gmap {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    } 
+
+    /*Tab Menu*/
+    .tab_container {
         padding-bottom: 1em;
         background-color: #fff;
         border:1px solid #3490dc;
         margin: 0 auto;}
         .tab_item {
-        width: calc(100%/2);
+        width: calc(100%/3);
         padding:15px 0;
         border-bottom: 3px solid #3490dc ;
         background-color: #ececec;
@@ -80,7 +77,8 @@
         overflow: hidden;
         }
         #tab1:checked ~ #tab1_content,
-        #tab2:checked ~ #tab2_content {
+        #tab2:checked ~ #tab2_content,
+        #tab3:checked ~ #tab3_content {
         display: block;
         }
         .tab_container input:checked + .tab_item {
