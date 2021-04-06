@@ -45,6 +45,25 @@ class HomeController extends Controller
         return view('home', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
+    public function home2()
+    {
+        $user_id = Auth::id();
+        // comment = self-introduction in sidebar
+        $comment=Comment::whereProfile_id($user_id)->get();
+        $pins = Pin::with('user')->with('photos')->get();
+        // $user->favorites
+        $id = $user_id;
+        $user = User::find($id);
+
+        // reverse
+        $pins = $pins->reverse();
+
+        // map
+        $pin = Pin::with('user')->with('photos')->get();
+        
+        return view('home2', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
+    }
+
     public function map()
     {
         $pins = Pin::with('user')->get();

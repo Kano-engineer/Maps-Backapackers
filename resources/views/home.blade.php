@@ -1,143 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Maps.Backpackers</title>
-    <meta charset="utf-8">
-    <style>
-    /* Map Responsive */
-    .map_wrapper {
-      position: relative; 
-      width:100%;
-      padding-top:56.25%;
-      border: 1px solid #CCC;  
-    }
-    .map_wrapper .gmap {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
+@extends('layouts.app')
 
-    /*Tab Menu*/
-    .tab_container {
-        padding-bottom: 1em;
-        background-color: #fff;
-        border:1px solid #3490dc;
-        margin: 0 auto;}
-        .tab_item {
-        width: calc(100%/2);
-        padding:15px 0;
-        border-bottom: 3px solid #3490dc ;
-        background-color: #ececec;
-        text-align: center;
-        color: #3490dc ;
-        display: block;
-        float: left;
-        text-align: center;
-        font-weight: bold;
-        transition: all 0.2s ease;
-        }
-        .tab_item:hover {
-        opacity: 0.75;
-        }
-        input[name="tab_item"] {
-        display: none;
-        }
-        .tab_content {
-        display: none;
-        padding: 1em 1em 0;
-        clear: both;
-        overflow: hidden;
-        }
-        #tab1:checked ~ #tab1_content,
-        #tab2:checked ~ #tab2_content {
-        display: block;
-        }
-        .tab_container input:checked + .tab_item {
-        background-color: #3490dc ;
-        color: #fff;
-        }
-    </style>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-</head>
-
-<body>
-  <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                Maps.Backpackers
-                    <!-- {{ config('app.name', 'Laravel') }} -->
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                                
-                            @endif
-                        @else
-                        <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                
-                                <a class="nav-link dropdown-toggle"  href="/profile"><i class="fas"></i>My Profile</a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <main class="py-4">
-
-
+@section('content')
 <div class="container">
     <div class="row" >
         <div class="col-md-3">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
-                    <div class="card" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                    <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
@@ -169,7 +39,6 @@
                         <div class="tab_content_description">
                             @if($pins->count())
                                 <table border="1">
-                                    <br>
                                     <!-- Show map -->
                                     <div class="map_wrapper">
                                         <div id="gmap" class="gmap" style="overflow: hidden;height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
@@ -177,7 +46,7 @@
                                     <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
                                 </table>
                             @else
-                                <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
+                                <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding-top: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit">Share Your Travel</i></a></div>
                             @endif
                         </div>
                     </div>
@@ -250,10 +119,6 @@
     </div>
 </div>
 
-</main>
-<a></a>
-</div>
-
 <script>
 function initMap() {
     
@@ -320,5 +185,4 @@ function initMap() {
 };//function initMap終了
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKeJI2_CkK91_yzwlmyIIrzVqyJj2CgdE&callback=initMap" async defer></script>
-</body>
-</html>
+@endsection

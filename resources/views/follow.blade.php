@@ -1,63 +1,6 @@
 @extends('layouts.app')
 
-    <style>
-    /* Map Responsive */
-    .map_wrapper {
-      position: relative; 
-      width:100%;
-      padding-top:56.25%;
-      border: 1px solid #CCC;  
-    }
-    .map_wrapper .gmap {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    } 
-
-    /*Tab Menu*/
-    .tab_container {
-        padding-bottom: 1em;
-        background-color: #fff;
-        border:1px solid #3490dc;
-        margin: 0 auto;}
-        .tab_item {
-        width: calc(100%/2);
-        padding:15px 0;
-        border-bottom: 3px solid #3490dc ;
-        background-color: #ececec;
-        text-align: center;
-        color: #3490dc ;
-        display: block;
-        float: left;
-        text-align: center;
-        font-weight: bold;
-        transition: all 0.2s ease;
-        }
-        .tab_item:hover {
-        opacity: 0.75;
-        }
-        input[name="tab_item"] {
-        display: none;
-        }
-        .tab_content {
-        display: none;
-        padding: 1em 1em 0;
-        clear: both;
-        overflow: hidden;
-        }
-        #tab1:checked ~ #tab1_content,
-        #tab2:checked ~ #tab2_content {
-        display: block;
-        }
-        .tab_container input:checked + .tab_item {
-        background-color: #3490dc ;
-        color: #fff;
-        }
-    </style>
-
-    @section('content')
+@section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -269,6 +212,4 @@
         </div>
     </div>
     <!-- class="container" -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="{{ asset('/js/alert.js') }}"></script>
 @endsection
