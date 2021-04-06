@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidationRequest;
 use App\Comment;
 use App\Image;
 use App\Photo;
@@ -11,20 +12,9 @@ use App\Pin;
 
 class PinController extends Controller
 {
-    public function post(Request $request)
+    public function post(ValidationRequest $request)
     {
-        $this->validate($request,
-            [
-                'text' => 'required|string|max:30',
-                'location' => 'required',
-            ],
-            [
-                'text.required' => 'タイトルは必須です。',
-                'location.required' => 'マーカー情報は必須です。',
-                'text.string'   => 'タイトルには文字列を入力してください。',
-                'text.max'      => 'タイトルは30文字以下です。',
-            ]
-        );
+        $validated = $request->validated();
 
         // LastInsertID
         $data = Pin::create(
@@ -99,18 +89,9 @@ class PinController extends Controller
         return view('edit',['pin' => $pin]);
     }
 
-    public function update(Request $request,$id)
+    public function update(ValidationRequest $request,$id)
     {
-        $this->validate($request,
-            [
-                'text' => 'required|string|max:30',
-            ],
-            [
-                'text.required' => 'タイトルは必須です。',
-                'text.string'   => 'タイトルには文字列を入力してください。',
-                'text.max'      => 'タイトルは30文字以下です。',
-            ]
-        );
+        $validated = $request->validated();
 
         if ($request->file('file')) {
             $path = $request->file->store('public');
@@ -135,18 +116,9 @@ class PinController extends Controller
         return view('pin',['pin' => $pin,'photos' => $photos,'comments'=>$comments]);
     }
 
-    public function comment(Request $request,$id)
+    public function comment(ValidationRequest $request,$id)
     {
-        $this->validate($request,
-            [
-                'comment' => 'required|string|max:50',
-            ],
-            [
-                'comment.required' => 'コメントは必須です。',
-                'comment.string'   => 'テキストには文字列を入力してください。',
-                'comment.max'      => 'テキストは50文字以下です。',
-            ]
-        );
+        $validated = $request->validated();
 
         Comment::create(
             [
