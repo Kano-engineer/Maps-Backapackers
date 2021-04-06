@@ -73,7 +73,7 @@
                                     <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{Auth::user()->user_id}}"><i class="fas">{{Auth::user()->name}}</i></a><i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="p-2">
-                                    <input class="form-control" name="text"  id="" placeholder="例：「地元のパン屋」">
+                                    <input class="form-control" name="text"  id="" placeholder="例：「地元のパン屋」" value="{{ old('text') }}">
                                 </div>
                                 <div class="p-2">
                                     <small><font color =red>*必須</font></small>
@@ -81,7 +81,7 @@
                             </div>
                         </h5>
                             <div class="card-body">
-                                <textarea class="form-control" name="body"  placeholder="とっておきの「ローカル」な情報をシェアしよう！：「ここの景色が綺麗」、「地元の人しか知らないお店」" rows="5"></textarea>
+                                <textarea class="form-control" name="body" value="" placeholder="とっておきの「ローカル」な情報をシェアしよう！：「ここの景色が綺麗」、「地元の人しか知らないお店」" rows="5">{{ old('body') }}</textarea>
                             <p class="card-text"></p>
                                 <label><i class="fas fa-images"></i>Photos</label>
                                 <input type="file" name="file" class="form-control" accept='image/*' onchange="previewImage(this);">
@@ -89,7 +89,7 @@
                                 <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:300px;">
                                 <br>
                                 <br>
-                                <font color =red>*地図をザックリ検索➡︎クリック➡︎マーカー情報は必須です</font>
+                                <font color =red>*地図を検索➡︎クリック➡︎マーカー情報は必須です</font>
                                 <div class="map_wrapper">
                                     <div id="gmap" class="gmap"></div>
                                 </div>
@@ -108,7 +108,7 @@
 </div>
 <form style="text-align:center;" onsubmit="return false;">
     <input style=";" type="" value="" placeholder="検索" id="address2">
-    <button style=";" type="" value="" id="map_button2">場所をザックリ検索</button>
+    <button style=";" type="" value="" id="map_button2">検索</button>
 </form>
 <form style="display:none;" onsubmit="return false;">
     <input style=";" type="" value="日本" placeholder="初期値" id="address">
