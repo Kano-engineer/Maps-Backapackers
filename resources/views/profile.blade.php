@@ -195,7 +195,7 @@
                             @endif
                         </div>
                         @if(Auth::user()->id === $user->id)
-                            <form action="/profile/comment/{{ $user->id }}" method="post" style="display:flex;justify-content: center;">
+                            <form action="/profile/comment/{{ $user->id }}" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:8px;">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
                                     <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">

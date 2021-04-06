@@ -22,7 +22,8 @@
                         <p></p> -->
                         <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
                         <p></p> -->
-                        <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
+                        <a style="margin-right:8px;margin-left:8px;" href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
+                        <br>
                 </div>
             <p></p>
         </div>
