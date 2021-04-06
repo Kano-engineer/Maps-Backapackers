@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+        <div class="col-md-3">
                 <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                    <!-- User's image -->
                    @if ($user_images->isEmpty()) 
@@ -34,17 +34,18 @@
                             <table border="1">
                             </table>
                         @else
-                            <form action="/profile/upload" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <label for="photo"></label>
-                                <input type="file" class="form-control" name="file"accept='image/*' onchange="previewImage(this);">
-                                <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
-                                    <br>
-                                    <br>
+                        <br>
+                            <form action="/profile/upload" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:10px;" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" name="file"accept='image/*' onchange="previewImage(this);"  value="{{ old('file') }}">
+                                    <div class="input-group-append">
+                                        <button style="" class="btn btn-primary btn-sm" type="submit"><i class="fas fa-images"></i></button>
+                                    </div>
                                     <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
+                                </div>
                             </form>
                         @endif
-
                     @endif
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
@@ -67,15 +68,20 @@
                             @endif
                         </div>
                         @if(Auth::user()->id === $user->id)
-                            <form action="/profile/comment/{{ $user->id }}" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:8px;">
-                                {{ csrf_field() }}
-                                <div class="input-group mb-3">
-                                    <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                            @if($comments->count())
+                                <table border="1">
+                                </table>
+                            @else
+                                <form action="/profile/comment/{{ $user->id }}" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:8px;">
+                                    {{ csrf_field() }}
+                                    <div class="input-group mb-3">
+                                        <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-edit"></i></button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endif
                         @endif
                         @foreach ($comments as $comment)
                             <div class="d-flex flex-row" style="display:flex;justify-content: center;">
