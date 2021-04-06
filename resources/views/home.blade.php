@@ -201,7 +201,7 @@
                                     @endif
                                 </div>
                                 <div class="p-2">
-                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pins->text }}</i>
+                                    <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pins->user_id}}"><i class="fas">{{$pins->user->name}}</i></a><i class="fas fa-map-marker-alt"> {{ $pins->text }}</i>
                                 </div>
                                 <div class="p-2">
                                     <!-- Follow button:Display only in other users' profiles  -->

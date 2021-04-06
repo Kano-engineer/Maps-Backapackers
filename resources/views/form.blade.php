@@ -57,9 +57,7 @@
             <form action="/post" method="POST" class=".form-control:focus" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="form-group">
-                    <div class="card" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                    <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                         <h5 class="card-header" style="color:#094067;">
                             <div class="d-flex flex-row">
                                 <div class="p-2">
@@ -85,7 +83,7 @@
                             <div class="card-body">
                                 <textarea class="form-control" name="body" value="" placeholder="とっておきの「ローカル」な情報をシェアしよう！：「ここの景色が綺麗」、「地元の人しか知らないお店」" rows="5">{{ old('body') }}</textarea>
                             <p class="card-text"></p>
-                                <label><i class="fas fa-images"></i>Photos</label>
+                                <label style="color:#3490dc"><i class="fas fa-images"></i>Photos</label>
                                 <input type="file" name="file" class="form-control" accept='image/*' onchange="previewImage(this);">
                                 <br>
                                 <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:300px;">
