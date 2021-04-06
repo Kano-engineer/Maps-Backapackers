@@ -128,7 +128,6 @@
     </nav>
 
 <main class="py-4">
-
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -162,17 +161,18 @@
                             <table border="1">
                             </table>
                         @else
-                            <form action="/profile/upload" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <label for="photo"></label>
-                                <input type="file" class="form-control" name="file"accept='image/*' onchange="previewImage(this);">
-                                <button type="submit"  class='btn btn-primary btn-lg active btn-sm' ><i class="fas fa-images">画像アップロード</i></button>
-                                    <br>
-                                    <br>
+                        <br>
+                            <form action="/profile/upload" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:10px;" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" name="file"accept='image/*' onchange="previewImage(this);"  value="{{ old('file') }}">
+                                    <div class="input-group-append">
+                                        <button style="" class="btn btn-primary btn-sm" type="submit"><i class="fas fa-images"></i></button>
+                                    </div>
                                     <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
+                                </div>
                             </form>
                         @endif
-
                     @endif
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
@@ -293,7 +293,7 @@
                                             @endif
                                         </div>
                                         <div class="p-2">
-                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt"> {{ $pin->text }}</i>
                                         </div>
                                         <div class="p-2">
                                             <!-- Follow button:Display only in other users' profiles  -->
@@ -364,7 +364,7 @@
                                         @endif
                                     </div>
                                     <div class="p-2">
-                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $favorite->text }}</i>
+                                        <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$favorite->user_id}}"><i class="fas">{{$favorite->user->name}}</i></a><i class="fas fa-map-marker-alt"> {{ $favorite->text }}</i>
                                     </div>
                                     
                                     <div class="p-2">
