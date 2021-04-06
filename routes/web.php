@@ -108,3 +108,6 @@ Route::get('/profile2', 'ProfileController@index2');
 
 //フォロー画面
 Route::get('/follow/{id}', 'ProfileController@follow');
+
+
+Route::get('/home2', 'HomeController@home2')->name('home2');
