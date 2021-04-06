@@ -174,8 +174,6 @@
                         @endif
 
                     @endif
-
-                    <div class="card-body">
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
@@ -197,7 +195,7 @@
                             @endif
                         </div>
                         @if(Auth::user()->id === $user->id)
-                            <form action="/profile/comment/{{ $user->id }}" method="post">
+                            <form action="/profile/comment/{{ $user->id }}" method="post" style="display:flex;justify-content: center;">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
                                     <input name="comment_profile" type="text" class="form-control" placeholder="自己紹介をどうぞ"  value="{{ old('comment_profile') }}">
@@ -208,7 +206,7 @@
                             </form>
                         @endif
                         @foreach ($comments as $comment)
-                            <div class="d-flex flex-row" >
+                            <div class="d-flex flex-row" style="display:flex;justify-content: center;">
                                 <div class="p-2">
                                     <p class="card-text" style="color:#094067;white-space: pre-wrap;">{{ $comment ->comment}}</p>   
                                 </div>
@@ -238,17 +236,14 @@
                                 </form>
                             @endif
                         @endif
-                    </div>
-                    <!-- class="card-body" -->
+                        <br>
                 </div>
                 <!-- class="card" -->
                 <p></p>
             </div>
             <div class="col-md-9">
                 <!-- Update:Use tab menu for switching between list and likes -->
-                <div class="tab_container" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                <div class="tab_container" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%">
                 <input id="tab1" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP：{{ $pins->count() }}</label>
                 <input id="tab2" type="radio" name="tab_item">

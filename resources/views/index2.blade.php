@@ -144,12 +144,14 @@
                                 <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                 @endforeach
                             @endif
+                            <br>
+                            <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ Auth::user()->name }}</h5>
                                 <p></p>
-                                <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
+                                <!-- <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a> -->
                                 <!-- <p></p>
                                 <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a> -->
-                                <p></p>
-                                <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
+                                <!-- <p></p> -->
+                                <!-- <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a> -->
                         </div>
                         <p></p>
                     </div>
@@ -250,9 +252,9 @@
                                     </div>
                                     </div>
                             </form>
-                            <br>
                             @if($pins->count())
                                 <table border="1">
+                                    <br>
                                     <!-- Show map -->
                                     <div class="map_wrapper">
                                         <div id="gmap" class="gmap" style="overflow: hidden;height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
