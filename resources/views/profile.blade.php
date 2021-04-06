@@ -20,21 +20,18 @@
                             </form>
                         @endforeach
                     @endif
-                    <div>
-                    @if ($errors->has('file'))
-                        @foreach($errors->all() as $error)
-                        <font color =red>*{{ $error }}</font>
-                        @endforeach
-                    @endif
-                    </div>
                     <!-- Upload image -->
                     @if(Auth::user()->id === $user->id)
-
                         @if($user_images->count())
                             <table border="1">
                             </table>
                         @else
                         <br>
+                        @if ($errors->has('file'))
+                            <ul>
+                                <font color =red>*{{$errors->first('file')}}</font>
+                            </ul>
+                        @endif
                             <form action="/profile/upload" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:10px;" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
@@ -52,19 +49,19 @@
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
                         <!-- Following / Followers -->
                         <div class="d-flex flex-row" style="display:flex;justify-content: center;">
-                                <div class="p-2">
-                                    <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
-                                </div>
+                            <div class="p-2">
+                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
+                            </div>
                                 <div class="p-2">
                                 <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
-                                </div>
+                            </div>
                         </div>
                         <!-- Profile comment -->
                         <div>
                             @if ($errors->has('comment_profile'))
-                                @foreach($errors->all() as $error)
-                                <font color =red>*{{ $error }}</font>
-                                @endforeach
+                                <ul>
+                                    <font color =red>*{{$errors->first('comment_profile')}}</font>
+                                </ul>
                             @endif
                         </div>
                         @if(Auth::user()->id === $user->id)

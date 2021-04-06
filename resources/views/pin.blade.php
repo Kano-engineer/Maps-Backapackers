@@ -124,9 +124,9 @@
                     <br>
                     <div>
                         @if ($errors->has('comment'))
-                            @foreach($errors->all() as $error)
-                            <font color =red>*{{ $error }}</font>
-                            @endforeach
+                            <ul>
+                                <font color =red>*{{$errors->first('comment')}}</font>
+                            </ul>
                         @endif
                     </div>
                     <div>
