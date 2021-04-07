@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\IndexRequest;
 use App\Photo;
 use App\Image;
 use App\Pin;
@@ -45,78 +46,6 @@ class HomeController extends Controller
         return view('home', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
     }
 
-    public function home2()
-    {
-        $user_id = Auth::id();
-        // comment = self-introduction in sidebar
-        $comment=Comment::whereProfile_id($user_id)->get();
-        $pins = Pin::with('user')->with('photos')->get();
-        // $user->favorites
-        $id = $user_id;
-        $user = User::find($id);
-
-        // reverse
-        $pins = $pins->reverse();
-
-        // map
-        $pin = Pin::with('user')->with('photos')->get();
-        
-        return view('home2', [ 'pin' => $pin, 'pins' => $pins, 'comment'=>$comment,'user' => $user]);
-    }
-
-    public function map()
-    {
-        $pins = Pin::with('user')->get();
-        return view('map', [ 'pins' => $pins]);
-    }
-
-    public function map2()
-    {
-        $user_id = Auth::id();
-        // comment = self-introduction in sidebar
-        $comment=Comment::whereProfile_id($user_id)->get();
-        $pins = Pin::with('user')->with('photos')->get();
-        // $user->favorites
-        $id = $user_id;
-        $user = User::find($id);
-
-        // reverse
-        $pins = $pins->reverse();
-
-        // map
-        $pin = Pin::with('user')->with('photos')->get();
-        return view('map2', [ 'pin' => $pin,'pins' => $pins, 'comment'=>$comment,'user' => $user]);
-    }
-
-    public function map3()
-    {
-        $pins = Pin::with('user')->get();
-        return view('map3', [ 'pins' => $pins]);
-    }
-    
-    public function upload(Request $request)
-    {
-        $this->validate($request, [
-            'file' => [
-                'required',
-                'file',
-                'image',
-                'mimes:jpeg,png',
-            ]
-        ]);
-
-        if ($request->file('file')->isValid([])) {
-            $path = $request->file->store('public');
-
-            return view('home')->with('filename', basename($path));
-        } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors();
-        }
-    }
-
     public function form()
     {
         return view('form');
@@ -124,6 +53,7 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        // $validated = $request->validated();
 
         if($request->has('keyword')){
             $this->validate($request,
@@ -141,7 +71,7 @@ class HomeController extends Controller
             'keyword2' => 'required',
         ],
         [
-            'keyword2.required' => '県名は必須です。',
+            'keyword2.required' => '都道府県名は必須です。',
         ]
         );}
         
@@ -183,9 +113,4 @@ class HomeController extends Controller
 
         return view('index2', compact('pins','pin','user'));
     }
-
-    public function index2() {
-        $prefs = config('pref');
-        return view('index')->with(['prefs' => $prefs]);
-      }
 }

@@ -54,7 +54,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="keyword" value="">
                                     <div class="input-group-append" >
-                                        <button class="btn btn-primary" type="submit" id="button-addon2">SERACH</button>
+                                        <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> SERACH</button>
                                     </div>
                                 </div>
                             </form>
@@ -119,7 +119,7 @@
                                         <option value="沖縄県">沖縄県</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">地名検索</button>
+                                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> 地名検索</button>
                                     </div>
                                     </div>
                             </form>
