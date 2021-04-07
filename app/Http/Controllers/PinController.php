@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidationRequest;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Comment;
 use App\Image;
 use App\Photo;
@@ -90,7 +91,7 @@ class PinController extends Controller
         return view('edit',['pin' => $pin]);
     }
 
-    public function update(ValidationRequest $request,$id)
+    public function update(UpdateRequest $request,$id)
     {
         $validated = $request->validated();
 
