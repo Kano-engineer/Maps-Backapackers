@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidationRequest;
+use App\Http\Requests\ProfileCommentRequest;
+use App\Http\Requests\ProfileImageRequest;
 use App\Image;
 use App\User;
 use App\Pin;
@@ -12,7 +13,7 @@ use App\Photo;
 
 class ProfileController extends Controller
 {
-    public function upload(ValidationRequest $request)
+    public function upload(ProfileImageRequest $request)
     {
         $validated = $request->validated();
 
@@ -90,9 +91,8 @@ class ProfileController extends Controller
         return view('profile', ['pins' => $pins,'user_images' => $user_images,'pin' => $pin,'user' => $user,'comments'=>$comments]);
     }
 
-        public function comment(ValidationRequest $request,$id)
+        public function comment(ProfileCommentRequest $request,$id)
         {
-
             $validated = $request->validated();
 
             Comment::create(
