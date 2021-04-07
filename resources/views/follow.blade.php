@@ -110,7 +110,7 @@
                                 @else
                                 <form action="{{ route('follow', $user) }}" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
                                     @csrf
-                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                    <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                 </form>
                             @endif
                         @endif
@@ -159,7 +159,7 @@
                                                 @else
                                                 <form action="{{ route('follow', $follow) }}" method="POST">
                                                     @csrf
-                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                    <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                                 </form>
                                             @endif
                                         @endif
@@ -200,7 +200,7 @@
                                                 @else
                                                 <form action="{{ route('follow', $follow) }}" method="POST">
                                                     @csrf
-                                                    <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                    <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                                 </form>
                                             @endif
                                         @endif
