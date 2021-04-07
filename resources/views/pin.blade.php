@@ -1,28 +1,12 @@
 @extends('layouts.app')
-<style>
-    /* Responsive */
-    .map_wrapper {
-      position: relative; 
-      width:100%;
-      padding-top:56.25%;
-      border: 1px solid #CCC;  
-    }
-    .map_wrapper .gmap {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-</style>
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <!-- 3/1 Update:sidebar in card -->
-                <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
@@ -44,9 +28,7 @@
         </div>
 
         <div class="col-md-9">     
-            <div class="card" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+            <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                     <h5 class="card-header" style="color:#094067;">
                         <div class="d-flex flex-row">
                         <div class="p-2">
@@ -59,7 +41,7 @@
                             @endif
                         </div>
                         <div class="p-2">
-                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt">{{ $pin->text }}</i>
+                            <a type="button" class="btn btn-default" style="color:#3da9fc;" href="/profile/{{$pin->user_id}}"><i class="fas">{{$pin->user->name}}</i></a><i class="fas fa-map-marker-alt"> {{ $pin->text }}</i>
                         </div>
                         <div class="p-2">
                             <!-- Follow button:Display only in other users' profiles  -->
@@ -83,29 +65,16 @@
                             <p class="card-text" style="color:black;">{{ $pin->created_at}}</p>
                             <p class="card-text" style="color:black;">{{ $pin->body}}</p>
                                 @foreach ($photos as $photo)
-                                        <a href="{{ asset('storage/' . $photo['photo']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" style="width:380px;height:300px;" alt="" border="0"></a>
+                                        <a href="{{ asset('storage/' . $photo['photo']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" class="img-fluid" alt="" border="0"></a>
                                     @if(Auth::user()->id === $pin->user_id)
                                         <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
+                                        </form> 
                                     @endif
                                     <br>
                                 @endforeach
-                            @if ($errors->has('file'))
-                                @foreach($errors->all() as $error)
-                                    <font color =red>*{{ $error }}</font>
-                                @endforeach
-                            @endif
-                            <!-- @if(Auth::user()->id === $pin->user_id)
-                                <form action="/store/{{$pin->id}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="file" class="form-control" name="file">
-                                    <button type="submit"  class='btn btn-primary  btn-sm'><i class="fas fa-images">画像アップロード</i></button>
-                                </form>
-                            @endif -->
-                            <br>
                     @if($pin->users()->where('user_id', Auth::id())->exists())
                         <form action="{{ route('unfavorites', $pin) }}" method="POST">
                             @csrf
@@ -174,7 +143,7 @@
                         @endforeach
                     </div>
                 </div>
-
+                
                 <!-- card-body」 -->
                     <div class="card-footer text-muted">
                         <div class="d-flex flex-row">

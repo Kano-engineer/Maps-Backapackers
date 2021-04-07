@@ -40,7 +40,7 @@ Route::get('/post/{id}','PinController@show',);
 Route::post('/store/{id}','PhotoController@upload',);
 
 // ピン：写真の消去
-Route::delete('/pin/{id}', 'PhotoController@destroy');
+Route::delete('/photo/{id}', 'PhotoController@destroy');
 
 // ピン：文章の削除
 Route::delete('/pin/text/{id}', 'PinController@destroy');
