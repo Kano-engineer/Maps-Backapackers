@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidationRequest;
+use App\Http\Requests\CommentRequest;
 use App\Comment;
 use App\Image;
 use App\Photo;
@@ -116,7 +117,7 @@ class PinController extends Controller
         return view('pin',['pin' => $pin,'photos' => $photos,'comments'=>$comments]);
     }
 
-    public function comment(ValidationRequest $request,$id)
+    public function comment(CommentRequest $request,$id)
     {
         $validated = $request->validated();
 
