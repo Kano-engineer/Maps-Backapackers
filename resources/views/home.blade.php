@@ -83,7 +83,7 @@
                                             @else
                                             <form action="{{ route('follow', $pins->user) }}" method="POST">
                                                 @csrf
-                                                <input type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
+                                                <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                             </form>
                                         @endif
                                     @endif
