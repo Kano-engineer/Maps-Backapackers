@@ -62,7 +62,7 @@
                             <div class="card-body">
                                 <textarea class="form-control" name="body"  placeholder="{{ $pin->body}}" rows="5">{{$pin->body}}</textarea>
                                 <p class="card-text"></p>
-                                    <label><i class="fas fa-images"></i>Photos</label>
+                                    <label style="color:#3490dc"><i class="fas fa-images"></i>Photos</label>
                                     <input type="file" name="file" class="form-control" accept='image/*' onchange="previewImage(this);">
                                     <br>
                                     <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:300px;">

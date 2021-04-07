@@ -38,8 +38,10 @@ class PhotoController extends Controller
     }
 
         public function destroy($id) {
-            $photo=Photo::where('id',$id)->delete();
-            
+            $photo=Photo::where('id',$id);
+            $photo->delete();
+
             return redirect()->back();
     }
+
 }
