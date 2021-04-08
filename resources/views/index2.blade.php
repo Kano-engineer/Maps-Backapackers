@@ -29,16 +29,13 @@
             </div>
             <div class="col-md-9">
                 <!-- Update:Use tab menu for switching between list and likes -->
-                <div class="tab_container" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                <div class="tab_container" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                 <input id="tab1" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="tab1"><i class="fas fa-globe-europe"></i> MAP：{{ $pins->count() }}</label>
                 <input id="tab2" type="radio" name="tab_item">
                 <label class="tab_item" for="tab2"><i class="fas fa-stream"></i> TIMELINE：{{ $pin->count() }}</label>
                 <input id="tab3" type="radio" name="tab_item">
-                <label class="tab_item" for="tab3"><i class="far fa-user"></i> USER：{{ $user->count() }}</label>
-                    
+                <label class="tab_item" for="tab3"><i class="far fa-user"></i> USER：{{ $user->count() }}</label>          
                     <!-- TAB1:MAP -->
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
@@ -52,7 +49,7 @@
                             @endif
                             <form action="{{url('/books')}}" method="GET">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="keyword" value="">
+                                    <input type="text" class="form-control" name="keyword" value="{{$keyword}}">
                                     <div class="input-group-append" >
                                         <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> SERACH</button>
                                     </div>
