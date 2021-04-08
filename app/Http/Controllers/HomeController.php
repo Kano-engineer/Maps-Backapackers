@@ -109,8 +109,9 @@ class HomeController extends Controller
         $pins = $query->get();
         $pin = $query2->get();
         $user = $query3->get();
- 
 
-        return view('index2', compact('pins','pin','user'));
+        $keyword = $request->keyword;
+
+        return view('index2', ['pins'=>$pins,'pin'=>$pin,'user'=>$user,'keyword'=>$keyword]);
     }
 }
