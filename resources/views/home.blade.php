@@ -7,26 +7,27 @@
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <div class="sidebar">
                 <!-- 2/28 Update:sidebar in card -->
-                    <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
-                        @if (Auth::user()->images->isEmpty()) 
-                            <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
-                        @else
-                            @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
-                            @endforeach
-                        @endif
+                <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%)">
+                    @if (Auth::user()->images->isEmpty()) 
+                        <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
+                    @else
+                        @foreach(Auth::user()->images as $image)
+                        <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                        @endforeach
+                    @endif
+                    <br>
+                    <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
+                        <!-- <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
+                        <p></p> -->
+                        <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
+                        <p></p> -->
+                        <a style="margin-right:8px;margin-left:8px;" href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                         <br>
-                        <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
-                            <!-- <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
-                            <p></p> -->
-                            <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
-                            <p></p> -->
-                            <a style="margin-right:8px;margin-left:8px;" href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
-                            <br>
-                    </div>
-                    <p></p>
                 </div>
+                <p></p>
+            </div>
         </div>
+
         <div class="col-md-9">
                     <!-- Update:Use tab menu for switching between list and likes -->
             <div class="tab_container" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">

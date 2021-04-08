@@ -11,13 +11,13 @@
                     @else
                         @foreach ($user_images as $user_image)
                             <img style="border-radius: 50%;" src="{{ asset('storage/' . $user_image['file_name']) }}">
-                            <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
+                            <!-- <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 @if(Auth::user()->id === $user->id)
                                     <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
                                 @endif
-                            </form>
+                            </form> -->
                         @endforeach
                     @endif
                     <!-- Upload image -->
@@ -85,7 +85,7 @@
                                 <div class="p-2">
                                     <p class="card-text" style="color:#094067;white-space: pre-wrap;">{{ $comment ->comment}}</p>   
                                 </div>
-                                <div class="p-2">
+                                <!-- <div class="p-2">
                                     @if(Auth::user()->id === $user->id)
                                         <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
                                             @csrf
@@ -93,7 +93,7 @@
                                             <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     @endif
-                                </div>
+                                </div> -->
                             </div>
                         @endforeach
                         <!-- Following / Followers -->
@@ -110,8 +110,13 @@
                                     <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                 </form>
                             @endif
+                        @else
+                                <form action="" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
+                                    @csrf
+                                    <a type="submit" style="text-decoration: none;" class="btn btn-primary btn-sm" href="profile2"><i class="fas fa-user-edit"></i> EDIT</a>
+                                </form>
                         @endif
-                        <br>
+                        <p></p>
                 </div>
                 <!-- class="card" -->
                 <p></p>
