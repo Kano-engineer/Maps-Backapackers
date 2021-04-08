@@ -21,7 +21,7 @@
                         @endforeach
                     @endif
                     <!-- Upload image -->
-                    @if(Auth::user()->id === $user->id)
+                    <!-- @if(Auth::user()->id === $user->id)
                         @if($user_images->count())
                             <table border="1">
                             </table>
@@ -43,7 +43,7 @@
                                 </div>
                             </form>
                         @endif
-                    @endif
+                    @endif -->
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
@@ -64,7 +64,7 @@
                                 </ul>
                             @endif
                         </div>
-                        @if(Auth::user()->id === $user->id)
+                        <!-- @if(Auth::user()->id === $user->id)
                             @if($comments->count())
                                 <table border="1">
                                 </table>
@@ -79,7 +79,7 @@
                                     </div>
                                 </form>
                             @endif
-                        @endif
+                        @endif -->
                         @foreach ($comments as $comment)
                             <div class="d-flex flex-row" style="display:flex;justify-content: center;">
                                 <div class="p-2">
