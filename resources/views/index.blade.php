@@ -52,7 +52,7 @@
                             @endif
                             <form action="{{url('/books')}}" method="GET">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="keyword" value="">
+                                    <input type="text" class="form-control" name="keyword" value="{{ old('text') }}">
                                     <div class="input-group-append" >
                                         <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> SERACH</button>
                                     </div>
