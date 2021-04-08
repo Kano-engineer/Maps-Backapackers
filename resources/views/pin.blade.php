@@ -149,7 +149,7 @@
                         <div class="d-flex flex-row">
                             <div class="p-2">
                                 @if(Auth::user()->id === $pin->user_id)
-                                    <a type="button" class="btn btn-primary btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit">EDIT</i></a>
+                                    <a type="button" class="btn btn-primary btn-sm" href="/edit/{{$pin->id}}"><i class="fas fa-user-edit"></i> EDIT</a>
                                 @endif
                             </div>
                             <div class="p-2">
@@ -157,7 +157,7 @@
                                     <form action="{{ action('PinController@destroy', $pin->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt">DELETE</i></button>
+                                        <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i> DELETE</button>
                                     </form>
                                 @endif
                             </div>
