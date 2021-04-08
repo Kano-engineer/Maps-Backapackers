@@ -146,9 +146,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <a>
-            @yield('aside') 
-        </a>
     </div>
 
 <!-- Use Google Maps API / Geocording API -->
