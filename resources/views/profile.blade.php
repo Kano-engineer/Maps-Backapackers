@@ -7,10 +7,10 @@
                 <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                    <!-- User's image -->
                    @if ($user_images->isEmpty()) 
-                        <img style="" src="{{ URL::asset('image/profile.png') }}" />
+                        <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                            <img style="border-radius: 50%;" src="{{ asset('storage/' . $user_image['file_name']) }}">
+                            <img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $user_image['file_name']) }}">
                             <!-- <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
