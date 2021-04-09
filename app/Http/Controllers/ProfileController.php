@@ -10,6 +10,8 @@ use App\User;
 use App\Pin;
 use App\Comment;
 use App\Photo;
+// AWS S3
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -18,7 +20,7 @@ class ProfileController extends Controller
         $validated = $request->validated();
 
         if ($request->file('file')->isValid([])) {
-            $path = $request->file->store('public');
+            $path = $request->file->store('s3');
 
             $file_name = basename($path);
             $user_id = Auth::id();
