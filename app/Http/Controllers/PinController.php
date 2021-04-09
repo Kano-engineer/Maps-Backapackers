@@ -11,6 +11,8 @@ use App\Image;
 use App\Photo;
 use App\User;
 use App\Pin;
+// AWS S3
+use Storage;
 
 class PinController extends Controller
 {
@@ -28,7 +30,7 @@ class PinController extends Controller
             ]);
         
         if ($request->hasFile('file')) {
-            $path = $request->file->store('public');
+            $path = $request->file->store('s3');
 
             $file_name = basename($path);
             // LastInsertID
@@ -96,7 +98,7 @@ class PinController extends Controller
         $validated = $request->validated();
 
         if ($request->file('file')) {
-            $path = $request->file->store('public');
+            $path = $request->file->store('s3');
 
             $file_name = basename($path);
             $pin_id = $id;
