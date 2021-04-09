@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Photo;
+// AWS S3
+use Storage;
 
 class PhotoController extends Controller
 {
@@ -24,7 +26,7 @@ class PhotoController extends Controller
         );
         
         if ($request->file('file')->isValid([])) {
-            $path = $request->file->store('public');
+            $path = $request->file->store('s3');
 
             $file_name = basename($path);
             $pin_id = $id;
