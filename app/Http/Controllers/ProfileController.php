@@ -19,19 +19,26 @@ class ProfileController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->file('file')->isValid([])) {
+        if ($request->file->isValid([])) {
             // $path = $request->file->store('public');
+            
+            // S3アップロード
+            $media = $request->file('file');
 
-            $file = $request->file('file');
-            // Storage::disk('s3')->putFile('/', $file);
-            $path = Storage::disk('s3')->putFile('/map', $file, 'public');
+            $path = Storage::disk('s3')->putFile('/map', $media);
+            // $url = Storage::disk('s3')->url($path);
+            // dd($path);
+
+            // $file = $request->file('file');
+            // // Storage::disk('s3')->putFile('/', $file);
+            // $path = Storage::disk('s3')->putFile('/map', $file, 'public');
 
             $file_name = basename($path);
             $user_id = Auth::id();
             $new_image_data = new Image();
 
             $new_image_data->path = Storage::disk('s3')->url($path);;
-
+            
             $new_image_data->user_id = $user_id;
             $new_image_data->file_name = $file_name;
 
@@ -39,6 +46,15 @@ class ProfileController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function create(Request $request) {
+        // S3アップロード
+        $media = $request->file('file');
+
+        $path = Storage::disk('s3')->putFile('/map', $media,'public');
+        $url = Storage::disk('s3')->url($path);
+        dd($url);
     }
 
     public function index() {
