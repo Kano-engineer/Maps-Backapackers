@@ -62,6 +62,9 @@
 
 ・AWS
 
+    - EC2
+    - S3
+    - 
 ![aws-sample-1_ut1522819085](https://user-images.githubusercontent.com/71540533/109102044-579c5000-776b-11eb-9e0b-e3afb6f0e42e.png)
 
 # 機能
@@ -144,15 +147,13 @@
 
 ・投稿画像の画質向上
 
-・地図機能拡張
-
 ・セキュリティの強化
 
 ・マネタイズするために必要な機能
 
 ・完全SPA化
 
-・S3 / RDS / Route53
+・RDS / Route53
 
 ・Jenkins連携で自動デプロイ
 
