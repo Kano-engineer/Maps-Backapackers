@@ -24,13 +24,12 @@ class ProfileController extends Controller
 
             $file = $request->file('file');
             // Storage::disk('s3')->putFile('/', $file);
-            $path = Storage::disk('s3')->putFile('/', $file, 'public');
-            
+            $path = Storage::disk('s3')->putFile('/map', $file, 'public');
 
             $file_name = basename($path);
             $user_id = Auth::id();
             $new_image_data = new Image();
-            
+
             $new_image_data->path = Storage::disk('s3')->url($path);;
 
             $new_image_data->user_id = $user_id;
