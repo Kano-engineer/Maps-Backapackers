@@ -10,7 +10,7 @@
                         <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                            <img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $user_image['file_name']) }}">
+                            <img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}">
                             <!-- <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -168,7 +168,7 @@
                                                 <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($pin->user->images as $image)
-                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -200,7 +200,7 @@
                                             <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                     @else -->
                                             @foreach($pin->photos as $photo)
-                                            <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                            <img style="width:250px;height:200px;" src="{{ $photo['path'] }}">
                                             @endforeach
                                     <!-- @endif -->
                                         <p class="card-text"></p>
@@ -239,7 +239,7 @@
                                             <a href="/profile/{{$favorite->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                         @else
                                             @foreach($favorite->user->images as $image)
-                                            <a href="/profile/{{$favorite->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                            <a href="/profile/{{$favorite->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
                                             @endforeach
                                         @endif
                                     </div>
@@ -272,7 +272,7 @@
                                             <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                     @else -->
                                             @foreach($favorite->photos as $photo)
-                                            <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
+                                            <img style="width:250px;height:200px;" src="{{ $photo['path'] }}">
                                             @endforeach
                                     <!-- @endif -->
                                         <p class="card-text"></p>

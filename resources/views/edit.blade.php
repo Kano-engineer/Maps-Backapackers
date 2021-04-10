@@ -13,7 +13,7 @@
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                         <br>

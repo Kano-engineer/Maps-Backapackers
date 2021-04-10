@@ -30,12 +30,17 @@ class PinController extends Controller
             ]);
         
         if ($request->hasFile('file')) {
-            $path = $request->file->store('public');
+            // $path = $request->file->store('public');
+
+            $file = $request->file('file');
+            $path = Storage::disk('s3')->putFile('/map', $file);
 
             $file_name = basename($path);
             // LastInsertID
             $pin_id = $data->id;
             $new_image_data = new Photo();
+            $new_image_data->path = Storage::disk('s3')->url($path);;
+
             $new_image_data->pin_id = $pin_id;
             $new_image_data->photo = $file_name;
             $new_image_data->save();
@@ -98,14 +103,17 @@ class PinController extends Controller
         $validated = $request->validated();
 
         if ($request->file('file')) {
-            $path = $request->file->store('public');
+            // $path = $request->file->store('public');
 
-            // $file = $request->file('file');
-            // Storage::disk('s3')->putFile('/', $file);
+            $file = $request->file('file');
+            $path = Storage::disk('s3')->putFile('/map', $file);
 
             $file_name = basename($path);
             $pin_id = $id;
             $new_image_data = new Photo();
+            
+            $new_image_data->path = Storage::disk('s3')->url($path);;
+
             $new_image_data->pin_id = $pin_id;
             $new_image_data->photo = $file_name;
             $new_image_data->save();

@@ -10,6 +10,7 @@ class Photo extends Model
     protected $fillable = [
         'photo',
         'pin_id',
+        'path',
     ];
 
     public function pin()

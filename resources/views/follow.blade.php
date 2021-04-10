@@ -10,7 +10,7 @@
                         <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                        <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $user_image['file_name']) }}" class="card-img-top"></a>
+                        <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}" class="card-img-top"></a>
                             <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
