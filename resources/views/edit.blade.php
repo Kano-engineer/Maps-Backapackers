@@ -7,8 +7,7 @@
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
             <!-- TODO:Use @yield('sidebar') instead of <div class="sidebar">-->
                 <!-- 3/1 Update:sidebar in card -->
-                <div class="card" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+                <div class="card" style="box-shadow:0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                         @if (Auth::user()->images->isEmpty()) 
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
