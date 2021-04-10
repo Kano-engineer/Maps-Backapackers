@@ -13,7 +13,7 @@
                             <a href="/profile"><img style="" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                            <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                         <br>
@@ -44,7 +44,7 @@
                                         <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                     @else
                                         @foreach(Auth::user()->images as $image)
-                                        <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
+                                        <a href="/profile/{{Auth::user()->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
                                         @endforeach
                                     @endif
                                 </div>
