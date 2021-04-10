@@ -61,7 +61,6 @@ Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
 
-
 // ピン：コメント作成
 Route::post('/comment/{id}','PinController@comment');
 
@@ -111,3 +110,6 @@ Route::get('/follow/{id}', 'ProfileController@follow');
 
 
 Route::get('/home2', 'HomeController@home2')->name('home2');
+
+// プロフィール：更新
+Route::post('/save','PinController@save');
