@@ -30,7 +30,7 @@ class PinController extends Controller
             ]);
         
         if ($request->hasFile('file')) {
-            $path = $request->file->store('s3');
+            $path = $request->file->store('public');
 
             $file_name = basename($path);
             // LastInsertID
@@ -98,7 +98,10 @@ class PinController extends Controller
         $validated = $request->validated();
 
         if ($request->file('file')) {
-            $path = $request->file->store('s3');
+            $path = $request->file->store('public');
+
+            // $file = $request->file('file');
+            // Storage::disk('s3')->putFile('/', $file);
 
             $file_name = basename($path);
             $pin_id = $id;
