@@ -11,6 +11,7 @@
     </style>
   </head>
   <body>
+  <!-- Jenkins jobtest -->
     <div id="test-map"></div>
     <script>
     function initMap() {
