@@ -153,7 +153,7 @@
 
 ・完全SPA化
 
-・RDS / Route53
+・Route53：独自ドメイン取得
 
 ・Jenkins連携で自動デプロイ
 
