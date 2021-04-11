@@ -61,7 +61,7 @@
                        <br>
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/login/guest">GUEST LOGIN</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/login/guest">(Jenkins jobtest)</a>
                     </div>
                 </div>
             </div>
