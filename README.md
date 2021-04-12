@@ -64,7 +64,7 @@
 
     - EC2
     - S3
-    - 
+    - RDS
 ![aws-sample-1_ut1522819085](https://user-images.githubusercontent.com/71540533/109102044-579c5000-776b-11eb-9e0b-e3afb6f0e42e.png)
 
 # 機能
@@ -153,11 +153,9 @@
 
 ・完全SPA化
 
-・Route53：独自ドメイン取得
-
 ・Docker
 
-・独自ドメイン取得
+・Route53：独自ドメイン取得
 
 cf.Issues：https://github.com/Kano-engineer/Maps-Backapackers/issues
 
