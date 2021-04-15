@@ -113,7 +113,7 @@
                         @else
                                 <form action="" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
                                     @csrf
-                                    <a type="submit" style="text-decoration: none;" class="btn btn-primary btn-sm" href="profile2"><i class="fas fa-user-edit"></i> EDIT</a>
+                                    <a type="submit" style="text-decoration: none;" class="btn btn-primary btn-sm" href="/profile2"><i class="fas fa-user-edit"></i> EDIT</a>
                                 </form>
                         @endif
                         <p></p>
@@ -121,6 +121,7 @@
                 <!-- class="card" -->
                 <p></p>
             </div>
+
             <div class="col-md-9">
                 <!-- Update:Use tab menu for switching between list and likes -->
                 <div class="tab_container" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%">

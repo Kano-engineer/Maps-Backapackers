@@ -10,31 +10,28 @@
                         <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                        <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}" class="card-img-top"></a>
-                            <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
+                            <img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}">
+                            <!-- <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 @if(Auth::user()->id === $user->id)
                                     <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
                                 @endif
-                            </form>
+                            </form> -->
                         @endforeach
                     @endif
-                    <div>
-                    @if ($errors->has('file'))
-                        @foreach($errors->all() as $error)
-                        <font color =red>*{{ $error }}</font>
-                        @endforeach
-                    @endif
-                    </div>
                     <!-- Upload image -->
-                    @if(Auth::user()->id === $user->id)
-
+                    <!-- @if(Auth::user()->id === $user->id)
                         @if($user_images->count())
                             <table border="1">
                             </table>
                         @else
                         <br>
+                        @if ($errors->has('file'))
+                            <ul>
+                                <font color =red>*{{$errors->first('file')}}</font>
+                            </ul>
+                        @endif
                             <form action="/profile/upload" method="post" style="display:flex;justify-content: center;margin-right:8px;margin-left:10px;" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="input-group mb-3">
@@ -46,28 +43,28 @@
                                 </div>
                             </form>
                         @endif
-                    @endif
+                    @endif -->
                         <br>
                         <!-- <h5><i class="fas fa-user">{{ $user->name }}</i></h5> -->
                         <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
                         <!-- Following / Followers -->
                         <div class="d-flex flex-row" style="display:flex;justify-content: center;">
-                                <div class="p-2">
-                                    <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
-                                </div>
+                            <div class="p-2">
+                                <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->follows()->count() }} Following</i></a>
+                            </div>
                                 <div class="p-2">
                                 <a href="/follow/{{$user->id}}" class=".font-weight-bold" style=""><i class="fas">{{ $user->followUsers()->count() }} Followers</i></a>
-                                </div>
+                            </div>
                         </div>
                         <!-- Profile comment -->
                         <div>
                             @if ($errors->has('comment_profile'))
-                                @foreach($errors->all() as $error)
-                                <font color =red>*{{ $error }}</font>
-                                @endforeach
+                                <ul>
+                                    <font color =red>*{{$errors->first('comment_profile')}}</font>
+                                </ul>
                             @endif
                         </div>
-                        @if(Auth::user()->id === $user->id)
+                        <!-- @if(Auth::user()->id === $user->id)
                             @if($comments->count())
                                 <table border="1">
                                 </table>
@@ -82,13 +79,13 @@
                                     </div>
                                 </form>
                             @endif
-                        @endif
+                        @endif -->
                         @foreach ($comments as $comment)
                             <div class="d-flex flex-row" style="display:flex;justify-content: center;">
                                 <div class="p-2">
                                     <p class="card-text" style="color:#094067;white-space: pre-wrap;">{{ $comment ->comment}}</p>   
                                 </div>
-                                <div class="p-2">
+                                <!-- <div class="p-2">
                                     @if(Auth::user()->id === $user->id)
                                         <form action="{{ action('ProfileController@destroyComment', $comment->id) }}" method="post">
                                             @csrf
@@ -96,7 +93,7 @@
                                             <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     @endif
-                                </div>
+                                </div> -->
                             </div>
                         @endforeach
                         <!-- Following / Followers -->
@@ -113,6 +110,11 @@
                                     <input style="text-decoration: none;" type="submit" value="&#xf164; Follow Me" class="fas btn btn-link">
                                 </form>
                             @endif
+                        @else
+                                <form action="" method="POST" style="display: flex;justify-content: flex-end;margin-right: 8px;margin-top: 16px;">
+                                    @csrf
+                                    <a type="submit" style="text-decoration: none;" class="btn btn-primary btn-sm" href="/profile2"><i class="fas fa-user-edit"></i> EDIT</a>
+                                </form>
                         @endif
                         <p></p>
                 </div>
@@ -122,9 +124,7 @@
 
             <div class="col-md-9">
                     <!-- Update:Use tab menu for switching between list and likes -->
-            <div class="tab_container" style="
-    box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-">
+            <div class="tab_container" style="box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);">
                 <input id="tab1" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="tab1"><i class="fas"></i> {{ $user->follows()->count() }} Following</label>
                 <input id="tab2" type="radio" name="tab_item">
