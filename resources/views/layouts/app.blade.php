@@ -36,9 +36,6 @@
     top: 0;
     left: 0;
     }
-
-    
-    
         body {
         /* background: url("../image/5.jpg"); */
         /* background-size: cover; */
