@@ -21,16 +21,16 @@
     <!-- Fomt Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
-        body {
-        /* background: url("../image/5.jpg"); */
-        /* background-size: cover; */
-        background-attachment: fixed;
-        }
-        /* link on li */
-        a {display:block;}
-        a:hover { text-decoration: none; }
-        
-        /* Map Responsive */
+    body {
+    /* background: url("../image/5.jpg"); */
+    /* background-size: cover; */
+    background-attachment: fixed;
+    }
+    /* link on li */
+    a {display:block;}
+    a:hover { text-decoration: none; }
+    
+    /* Map Responsive */
     .map_wrapper {
       position: relative; 
       width:100%;
