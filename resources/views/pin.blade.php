@@ -67,7 +67,7 @@
                                 @foreach ($photos as $photo)
                                         <a href="{{ asset($photo['path']) }}" target="_blank"><img src="{{ $photo['path'] }}" class="img-fluid" alt="" border="0"></a>
                                     @if(Auth::user()->id === $pin->user_id)
-                                        <form action="{{ action('PhotoController@destroy', $photo->id) }}" method="post">
+                                        <form action="{{ action('PinController@DestryPhoto', $photo->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>

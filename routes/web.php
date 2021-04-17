@@ -36,11 +36,8 @@ Route::get('/profile/{id}', 'ProfileController@show');
 //ピン詳細:{{pins->id}}をcontrollerに渡す
 Route::get('/post/{id}','PinController@show',);
 
-//ピン詳細ページで写真をDB保存
-Route::post('/store/{id}','PhotoController@upload',);
-
 // ピン：写真の消去
-Route::delete('/photo/{id}', 'PhotoController@destroy');
+Route::delete('/photo/{id}', 'PinController@DestryPhoto');
 
 // ピン：文章の削除
 Route::delete('/pin/text/{id}', 'PinController@destroy');
@@ -107,7 +104,6 @@ Route::get('/profile2', 'ProfileController@index2');
 
 //フォロー画面
 Route::get('/follow/{id}', 'ProfileController@follow');
-
 
 Route::get('/home2', 'HomeController@home2')->name('home2');
 

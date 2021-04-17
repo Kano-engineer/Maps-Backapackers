@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Photo;
-use App\Image;
+use App\Images;
 use App\Pin;
 use App\Comment;
 use App\User;

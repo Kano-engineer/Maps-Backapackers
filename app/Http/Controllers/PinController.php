@@ -7,7 +7,7 @@ use App\Http\Requests\ValidationRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\UpdateRequest;
 use App\Comment;
-use App\Image;
+use App\Images;
 use App\Photo;
 use App\User;
 use App\Pin;
@@ -106,6 +106,7 @@ class PinController extends Controller
             // $path = $request->file->store('public');
 
             $file = $request->file('file');
+
             $path = Storage::disk('s3')->putFile('/map', $file);
 
             $file_name = basename($path);
@@ -118,7 +119,6 @@ class PinController extends Controller
             $new_image_data->photo = $file_name;
             $new_image_data->save();
         }
-
 
         $pin = Pin::find($id);
         $pin->text=$request->text;
@@ -150,4 +150,11 @@ class PinController extends Controller
 
         return redirect()->back();
     }
+
+    public function DestryPhoto($id) {
+        $photo=Photo::where('id',$id);
+        $photo->delete();
+
+        return redirect()->back();
+   }
 }

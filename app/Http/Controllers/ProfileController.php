@@ -5,13 +5,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileCommentRequest;
 use App\Http\Requests\ProfileImageRequest;
-use App\Image;
+use App\Images;
 use App\User;
 use App\Pin;
 use App\Comment;
 use App\Photo;
 // AWS S3
 use Storage;
+// Intervention Image
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -21,16 +23,14 @@ class ProfileController extends Controller
 
         if ($request->file->isValid([])) {
             // $path = $request->file->store('public');
-            
             // S3アップロード
             $file = $request->file('file');
+            
             $path = Storage::disk('s3')->putFile('/map', $file);
-            // $url = Storage::disk('s3')->url($path);
-            // dd($path);
 
             $file_name = basename($path);
             $user_id = Auth::id();
-            $new_image_data = new Image();
+            $new_image_data = new Images();
 
             $new_image_data->path = Storage::disk('s3')->url($path);;
 
@@ -55,7 +55,7 @@ class ProfileController extends Controller
     public function index() {
         $user_id = Auth::id();
         $comments=Comment::whereProfile_id($user_id)->get();
-        $user_images = Image::whereUser_id($user_id)->get();
+        $user_images = Images::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->with('photos')->get();
         // $user->favorites
         $id = $user_id;
@@ -74,7 +74,7 @@ class ProfileController extends Controller
     public function index2() {
         $user_id = Auth::id();
         $comments=Comment::whereProfile_id($user_id)->get();
-        $user_images = Image::whereUser_id($user_id)->get();
+        $user_images = Images::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->with('photos')->get();
         // $user->favorites
         $id = $user_id;
@@ -90,7 +90,7 @@ class ProfileController extends Controller
     }
 
     public function destroy($id) {
-        $pin=Image::where('id',$id);
+        $pin=Images::where('id',$id);
         $pin->delete();
         return redirect()->back();
     }
@@ -99,7 +99,7 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user_id = $id;
         $comments=Comment::whereProfile_id($user_id)->get();
-        $user_images = Image::whereUser_id($user_id)->get();
+        $user_images = Images::whereUser_id($user_id)->get();
         $pin = Pin::whereUser_id($user_id)->get();
 
         // reverse
@@ -134,7 +134,7 @@ class ProfileController extends Controller
             $user = User::find($id);
             $user_id = $id;
             $comments=Comment::whereProfile_id($user_id)->get();
-            $user_images = Image::whereUser_id($user_id)->get();
+            $user_images = Images::whereUser_id($user_id)->get();
             $pin = Pin::whereUser_id($user_id)->get();
     
             // reverse
