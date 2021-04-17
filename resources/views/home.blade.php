@@ -122,8 +122,8 @@
 
 <script>
 function initMap() {
-    
-    // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
+
+    // Laravelからpin -> location:「住所」が入った 配列を addresses 渡す。
     var addresses = [];
     const pin = @json($pin);
     for(let i in pin) {
@@ -131,7 +131,7 @@ function initMap() {
     }
 
     console.log(pin);
-
+    
     var latlng = []; //緯度経度の値をセット
     var marker = []; //マーカーの位置情報をセット
     var myLatLng; //地図の中心点をセット用

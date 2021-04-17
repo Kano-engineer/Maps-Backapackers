@@ -317,7 +317,7 @@ function previewImage(obj)
 
 function initMap() {
     
-    // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
+    // Laravelからpins -> location:「住所」が入った 配列を addresses 渡す。
     var addresses = [];
     const pin = @json($pins);
     for(let i in pin) {

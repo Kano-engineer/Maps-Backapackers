@@ -49,7 +49,7 @@
                             @endif
                             <form action="{{url('/books')}}" method="GET">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="keyword" value="{{$keyword}}">
+                                    <input type="text" class="form-control" name="keyword" value="{{$keyword}}" placeholder="Maps.Backpackerを検索">
                                     <div class="input-group-append" >
                                         <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> SERACH</button>
                                     </div>
@@ -256,7 +256,7 @@
 <script>
 function initMap() {
     
-    // Laravelからpins -> text:「住所」が入った 配列を addresses 渡す。
+    // Laravelからpins -> location:「住所」が入った 配列を addresses 渡す。
     var addresses = [];
     const pin = @json($pins);
     for(let i in pin) {
