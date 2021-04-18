@@ -34,7 +34,7 @@ Route::delete('/profile/{id}', 'ProfileController@destroy');
 Route::get('/profile/{id}', 'ProfileController@show');
 
 //ピン詳細:{{pins->id}}をcontrollerに渡す
-Route::get('/post/{id}','PinController@show',);
+Route::get('/post/{id}','PinController@show',)->name('pin');
 
 // ピン：写真の消去
 Route::delete('/photo/{id}', 'PinController@DestryPhoto');

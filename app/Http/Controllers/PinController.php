@@ -51,6 +51,7 @@ class PinController extends Controller
             $new_image_data->photo = $file_name;
             $new_image_data->save();
         }
+        return redirect(route('home'));
 
         $user_id = Auth::id();
         // comment = self-introduction in sidebar
@@ -135,11 +136,8 @@ class PinController extends Controller
         $pin->text=$request->text;
         $pin->body=$request->body;
         $pin->save();
-        $photos = Photo::where('Pin_id',$id)->get();
-        $comments = comment::with('user')->get();
-        $comments = Comment::where('Pin_id',$id)->get();
 
-        return view('pin',['pin' => $pin,'photos' => $photos,'comments'=>$comments]);
+        return redirect(route('pin',$id));
     }
 
     public function comment(CommentRequest $request,$id)
