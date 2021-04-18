@@ -15,6 +15,7 @@ use Storage;
 // Intervention Image
 use Intervention\Image\Facades\Image;
 
+
 class ProfileController extends Controller
 {
     public function upload(ProfileImageRequest $request)
@@ -22,10 +23,14 @@ class ProfileController extends Controller
         $validated = $request->validated();
 
         if ($request->file->isValid([])) {
-            // $path = $request->file->store('public');
             // S3アップロード
             $file = $request->file('file');
-            
+
+            \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
+            //TinyPNG Compress Image
+            $source = \Tinify\fromFile($file);
+            $source->toFile($file);
+
             $path = Storage::disk('s3')->putFile('/map', $file);
 
             $file_name = basename($path);

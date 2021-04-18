@@ -33,6 +33,12 @@ class PinController extends Controller
             // $path = $request->file->store('public');
 
             $file = $request->file('file');
+
+            \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
+            //TinyPNG Compress Image
+            $source = \Tinify\fromFile($file);
+            $source->toFile($file);
+            
             $path = Storage::disk('s3')->putFile('/map', $file);
 
             $file_name = basename($path);
@@ -106,6 +112,11 @@ class PinController extends Controller
             // $path = $request->file->store('public');
 
             $file = $request->file('file');
+
+            \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
+            //TinyPNG Compress Image
+            $source = \Tinify\fromFile($file);
+            $source->toFile($file);
 
             $path = Storage::disk('s3')->putFile('/map', $file);
 
