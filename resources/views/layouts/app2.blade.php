@@ -153,5 +153,6 @@
 
 <script src="{{ asset('/js/alert.js') }}"></script>
 
+<script src="{{ asset('index.js') }}" defer></script>
 </body>
 </html>
