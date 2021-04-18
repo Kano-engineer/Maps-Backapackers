@@ -46,6 +46,8 @@
 
 ・Google API ( Maps Javascript API / Geocoding API )
 
+・TinyPNG API
+
 
 # インフラ / コード管理
 
@@ -143,8 +145,6 @@
 # 今後の開発計画
 
 ・UI/UXの洗練
-
-・投稿画像の画質の最適化 / 読み込み速度向上
 
 ・セキュリティの強化
 
