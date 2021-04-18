@@ -41,12 +41,11 @@
 
 # API 
 
-・Pusher
-
 ・Google API ( Maps Javascript API / Geocoding API )
 
 ・TinyPNG API
 
+・Pusher Channels API
 
 # インフラ / コード管理
 
