@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://laravel.com"><img src="https://user-images.githubusercontent.com/71540533/111902059-cd4fbf00-8a7e-11eb-851b-f2ffff37f3f1.png" height="100px;" /></a>
-  <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="100px;" /></a>
+<!--   <a href="https://vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/71540533/111902057-cc1e9200-8a7e-11eb-8878-38ecf9b89daf.png" height="100px;" /></a> -->
   <a href="https://console.cloud.google.com/apis/library?hl=ja&pli=1&project=maps-301303&folder=&organizationId=&rif_reserveds"><img src="https://user-images.githubusercontent.com/71540533/111902297-37b52f00-8a80-11eb-88ec-b3c7d98ab01e.png" height="100px;" /></a>
   <a href="https://tinypng.com/developers"><img src="https://user-images.githubusercontent.com/71540533/115167113-34e64200-a0f1-11eb-8be9-6081ac728b78.png" height="100px;" /></a>
   <a href="https://pusher.com/channels?campaignid=916184871&utm_source=adwords&utm_medium=cpc&utm_campaign=Brand_Pusher_Exact&utm_term=pusher%20api&utm_creative=264982473776&gclid=Cj0KCQjw3duCBhCAARIsAJeFyPVYHAebhDkuoH2xAOXBdB1fHou4JHfQ40-PsQGTVIo-Mi_2fYLcGcAaAnIJEALw_wcB"><img src="https://user-images.githubusercontent.com/71540533/111903081-d1321000-8a83-11eb-9406-97ff49477d6a.png" height="100px;" /></a>
@@ -37,8 +37,6 @@
     - Laravel 7.30.4
 
 ・JavaScript
-
-    - Vue.js 3
 
 # API 
 
