@@ -44,8 +44,6 @@
 
 ・TinyPNG API
 
-・Pusher Channels API
-
 # インフラ / コード管理
 
 ・Git
