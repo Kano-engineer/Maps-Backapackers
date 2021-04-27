@@ -30,16 +30,21 @@ class PinController extends Controller
             ]);
         
         if ($request->hasFile('file')) {
-            // $path = $request->file->store('public');
 
-            $file = $request->file('file');
+            $file = $request->file;
 
+            // S3
+            // $file = $request->file('file');
+            
             \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
             //TinyPNG Compress Image
             $source = \Tinify\fromFile($file);
             $source->toFile($file);
             
-            $path = Storage::disk('s3')->putFile('/map', $file);
+            // S3
+            // $path = Storage::disk('s3')->putFile('/map', $file);
+
+            $path = $file->store('public');
 
             $file_name = basename($path);
             // LastInsertID
@@ -110,16 +115,20 @@ class PinController extends Controller
         $validated = $request->validated();
 
         if ($request->file('file')) {
-            // $path = $request->file->store('public');
+            $file = $request->file;
 
-            $file = $request->file('file');
-
+            // S3
+            // $file = $request->file('file');
+            
             \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
             //TinyPNG Compress Image
             $source = \Tinify\fromFile($file);
             $source->toFile($file);
+            
+            // S3
+            // $path = Storage::disk('s3')->putFile('/map', $file);
 
-            $path = Storage::disk('s3')->putFile('/map', $file);
+            $path = $file->store('public');
 
             $file_name = basename($path);
             $pin_id = $id;
