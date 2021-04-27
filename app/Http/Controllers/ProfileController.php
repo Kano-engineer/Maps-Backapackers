@@ -23,15 +23,21 @@ class ProfileController extends Controller
         $validated = $request->validated();
 
         if ($request->file->isValid([])) {
-            // S3アップロード
-            $file = $request->file('file');
 
-            \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
+            $file = $request->file;
+
+            // // S3アップロード
+            // $file = $request->file('file');
+
             //TinyPNG Compress Image
+            \Tinify\setKey("Bb8c926D3P53vKYKs3y3R79phzvJvzxG");
             $source = \Tinify\fromFile($file);
             $source->toFile($file);
 
-            $path = Storage::disk('s3')->putFile('/map', $file);
+            // Store in S3
+            // $path = Storage::disk('s3')->putFile('/map', $file);
+            
+            $path = $file->store('public');
 
             $file_name = basename($path);
             $user_id = Auth::id();

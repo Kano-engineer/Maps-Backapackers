@@ -12,7 +12,10 @@
                                 <a href="/profile"><img style="padding:5px" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                             @else
                                 @foreach(Auth::user()->images as $image)
-                                <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                <!-- S3 -->
+                                <!-- <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                <!-- Public -->
+                                <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                 @endforeach
                             @endif
                             <br>
@@ -132,7 +135,7 @@
                             @endif
                         </div>
                     </div>
-
+                    
                     <!-- TAB:TIMELINE -->
                     <div class="tab_content" id="tab2_content">
                         <div class="tab_content_description">
@@ -146,7 +149,10 @@
                                                 <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($pin->user->images as $image)
-                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                                <!-- S3 -->
+                                                <!-- <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                                <!-- Public -->
+                                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -178,7 +184,10 @@
                                             <img style="width:250px;height:200px;" src="{{ URL::asset('image/noimage.png') }}"  class="card-img-top" alt="...">
                                     @else -->
                                             @foreach($pin->photos as $photo)
-                                            <img style="width:250px;height:200px;" src="{{ $photo['path'] }}">
+                                            <!-- S3 -->
+                                            <!-- <img style="width:250px;height:200px;" src="{{ $photo['path'] }}"> -->
+                                            <!-- Public -->
+                                            <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                             @endforeach
                                     <!-- @endif -->
                                         <p class="card-text"></p>
@@ -212,7 +221,10 @@
                                                 <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($follow->images as $image)
-                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                                <!-- S3 -->
+                                                <!-- <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                                <!-- Public -->
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>

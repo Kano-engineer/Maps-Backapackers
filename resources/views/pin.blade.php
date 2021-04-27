@@ -11,7 +11,10 @@
                             <a href="/profile"><img style="padding:5px" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                         @else
                             @foreach(Auth::user()->images as $image)
-                            <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                            <!-- S3 -->
+                            <!-- <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                            <!-- Public -->
+                            <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                             @endforeach
                         @endif
                         <br>
@@ -36,7 +39,10 @@
                                 <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                             @else
                                 @foreach($pin->user->images as $image)
-                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset( $image['path']) }}" class="card-img-top" alt="..."></a>
+                                <!-- S3 -->
+                                <!-- <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset( $image['path']) }}" class="card-img-top" alt="..."></a> -->
+                                <!-- Public -->
+                                <a href="/profile/{{$pin->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                 @endforeach
                             @endif
                         </div>
@@ -65,7 +71,10 @@
                             <p class="card-text" style="color:black;">{{ $pin->created_at}}</p>
                             <p class="card-text" style="color:black;">{{ $pin->body}}</p>
                                 @foreach ($photos as $photo)
-                                        <a href="{{ asset($photo['path']) }}" target="_blank"><img src="{{ $photo['path'] }}" class="img-fluid" alt="" border="0"></a>
+                                        <!-- S3 -->
+                                        <!-- <a href="{{ asset($photo['path']) }}" target="_blank"><img src="{{ $photo['path'] }}" class="img-fluid" alt="" border="0"></a> -->
+                                        <!-- Public -->
+                                        <a href="{{ asset($photo['path']) }}" target="_blank"><img src="{{ asset('storage/' . $photo['photo']) }}" class="img-fluid" alt="" border="0"></a>
                                     @if(Auth::user()->id === $pin->user_id)
                                         <form action="{{ action('PinController@DestryPhoto', $photo->id) }}" method="post">
                                             @csrf

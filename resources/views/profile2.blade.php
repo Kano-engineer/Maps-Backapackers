@@ -10,7 +10,10 @@
                         <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                            <img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}">
+                            <!-- Store in S3 -->
+                            <!-- <img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}"> -->
+                            <!-- Store in public -->
+                            <img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $user_image['file_name']) }}">
                             <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
