@@ -10,14 +10,10 @@
                         <img style="padding:5px" src="{{ URL::asset('image/profile.png') }}" />
                     @else
                         @foreach ($user_images as $user_image)
-                            <img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}">
-                            <!-- <form action="{{ action('ProfileController@destroy', $user_image->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                @if(Auth::user()->id === $user->id)
-                                    <button type="submit"  class='btn btn-danger btn-sm' onClick="delete_alert(event);return false;"><i class="fas fa-trash-alt"></i></button>
-                                @endif
-                            </form> -->
+                            <!-- Store in S3 -->
+                            <!-- <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $user_image['path'] }}" class="card-img-top" alt="..."></a> -->
+                            <!-- Store in public -->
+                            <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $user_image['file_name']) }}" class="card-img-top" alt="..."></a>
                         @endforeach
                     @endif
                     <!-- Upload image -->
@@ -141,7 +137,10 @@
                                                 <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($follow->images as $image)
-                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                                <!-- S3 -->
+                                                <!-- <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                                <!-- Public -->
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -182,7 +181,10 @@
                                                 <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                             @else
                                                 @foreach($follow->images as $image)
-                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                                <!-- S3 -->
+                                                <!-- <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                                <!-- Public -->
+                                                <a href="/profile/{{$follow->id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                                 @endforeach
                                             @endif
                                         </div>
