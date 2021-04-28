@@ -15,7 +15,7 @@
                         <!-- Store in S3 -->
                         <!-- <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
                         <!-- Store in public -->
-                        <img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $image['file_name']) }}">
+                        <a href="/profile"><img style="border-radius: 50%;padding:5px" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                         @endforeach
                     @endif
                     <br>
