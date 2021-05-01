@@ -30,3 +30,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+Vue.component('like-component', require('./components/LikeComponent.vue').default);

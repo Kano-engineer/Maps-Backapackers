@@ -20,16 +20,14 @@
                     @endif
                     <br>
                     <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ $user->name }}</h5>
-                        <!-- <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a>
-                        <p></p> -->
-                        <!-- <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a>
-                        <p></p> -->
                         <a style="margin-right:8px;margin-left:8px;" href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a>
                         <br>
                 </div>
                 <p></p>
             </div>
         </div>
+        
+        <like-component></like-component>
 
         <div class="col-md-9">
             <!-- Update:Use tab menu for switching between list and likes -->
@@ -128,6 +126,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
 function initMap() {
