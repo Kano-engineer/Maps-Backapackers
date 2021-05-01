@@ -21,11 +21,6 @@
                             <br>
                             <h5 style="font-weight: bold; font-size: xxx-large; text-align: center;">{{ Auth::user()->name }}</h5>
                                 <p></p>
-                                <!-- <a href="/profile" type="button" class="btn btn-primary"><i class="fas fa-user"> {{ Auth::user()->name }}</i></a> -->
-                                <!-- <p></p>
-                                <a href="/post/" type="button" class="btn btn-primary"><i class="fas fa-comment-dots"></i>TALK</a> -->
-                                <!-- <p></p> -->
-                                <!-- <a href="/index/" type="button" class="btn btn-primary"><i class="fas fa-search"></i> SEARCH</a> -->
                         </div>
                         <p></p>
                     </div>
