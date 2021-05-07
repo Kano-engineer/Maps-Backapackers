@@ -1993,11 +1993,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['post'],
   mounted: function mounted() {
-    console.log('Like Component mounted.');
+    console.log(this.post);
   }
 });
 

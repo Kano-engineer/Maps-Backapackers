@@ -1,5 +1,3 @@
-// LikeComponent.vue
-
 <template>
     <div class="container">
         <div class="row justify-content-center mt-1">
@@ -20,8 +18,10 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Like Component mounted.')
+      name: 'PageA', 
+        props: ['post'],
+        mounted () {
+            console.log(this.post);
         }
-    }
+     }
 </script>

@@ -20,6 +20,5 @@ class FavoriteController extends Controller
         $pin->users()->detach(Auth::id());
         return redirect()->back();
     }
-
     
 }
