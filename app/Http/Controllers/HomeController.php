@@ -51,6 +51,11 @@ class HomeController extends Controller
         return view('form');
     }
 
+    public function form2()
+    {
+        return view('form2');
+    }
+
     public function search(Request $request)
     {
         // $validated = $request->validated();

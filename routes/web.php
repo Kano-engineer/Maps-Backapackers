@@ -88,6 +88,7 @@ Route::post('/post','PinController@post');
 
 // Formに遷移
 Route::get('/form','HomeController@form');
+Route::get('/form2','HomeController@form2');
 
 // 検索
 Route::get('/books', 'HomeController@search');

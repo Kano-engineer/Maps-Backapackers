@@ -26,8 +26,6 @@
                 <p></p>
             </div>
         </div>
-        
-        <like-component></like-component>
 
         <div class="col-md-9">
             <!-- Update:Use tab menu for switching between list and likes -->
@@ -39,6 +37,7 @@
                     <!-- TAB:TIMELINE -->
                     <div class="tab_content" id="tab1_content">
                         <div class="tab_content_description">
+                            <!-- If pins = 0 -> don't display map-->
                             @if($pins->count())
                                 <table border="1">
                                     <!-- Show map -->
@@ -46,6 +45,8 @@
                                         <div id="gmap" class="gmap" style="overflow: hidden;height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"></div>
                                     </div>
                                     <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit"> Share Your Travel</i></a></div>
+                                    <!-- form2:for update form -->
+                                    <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form2" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding-top: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit"> Form2 </i></a></div>
                                 </table>
                             @else
                                 <div style="display: flex;justify-content: flex-end;"><a type="button" href="/form" class="btn btn-primary" style="margin-top: 16px;width: 50%;/* padding-top: 0px; */font-size: 30px;/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */border-radius: 20px;"><i class="fas fa-edit"> Share Your Travel</i></a></div>
@@ -105,6 +106,8 @@
                                 <img style="width:250px;height:200px;" src="{{ asset('storage/' . $photo['photo']) }}">
                                 @endforeach
                             <p class="card-text"></p>
+                            <!-- TODO:Vue.js Axios to Like -->
+                            <!-- <like-component :post="{{ json_encode($pins)}}"></like-component> -->
                             @if($pins->users()->where('user_id', Auth::id())->exists())
                                 <form action="{{ route('unfavorites', $pins) }}" method="POST">
                                     @csrf
@@ -126,8 +129,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>
 function initMap() {
