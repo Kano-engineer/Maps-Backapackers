@@ -106,10 +106,10 @@
     <button style=";" type="" value="" id="map_button">を初期表示</button>
 </form>
 
-  <!-- Output longitude -->
-  <input style="display:none;" type="text" id="lng" value=""><br>
-  <!-- Output latitude -->
-  <input style="display:none;" type="text" id="lat" value=""><br>
+<!-- Output longitude -->
+<input style="display:none;" type="text" id="lng" value=""><br>
+<!-- Output latitude -->
+<input style="display:none;" type="text" id="lat" value=""><br>
 
 <script>
 

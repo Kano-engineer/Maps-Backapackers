@@ -124,7 +124,10 @@
                                         <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ URL::asset('image/profile.png') }}"  class="card-img-top" alt="..."></a>
                                     @else
                                         @foreach($comments->user->images as $image)
-                                        <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a>
+                                        <!-- S3 -->
+                                        <!-- <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ $image['path'] }}" class="card-img-top" alt="..."></a> -->
+                                        <!-- Public -->
+                                        <a href="/profile/{{$comments->user_id}}"><img style="width:40px;height:40px;border-radius: 50%;" src="{{ asset('storage/' . $image['file_name']) }}" class="card-img-top" alt="..."></a>
                                         @endforeach
                                     @endif
                                 </div>
