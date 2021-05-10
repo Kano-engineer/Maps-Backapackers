@@ -161,6 +161,8 @@
 
 ・Docker
 
+・Circle CI
+
 cf.Issues：https://github.com/Kano-engineer/Maps-Backapackers/issues
 
 # 製作者
