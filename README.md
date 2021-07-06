@@ -14,7 +14,7 @@
 
 # アプリ名：Maps.Backpackers
 
-# URL：http://ec2-52-195-10-177.ap-northeast-1.compute.amazonaws.com/
+# URL：*現在停止中。
 
 # 概要
 
