@@ -14,7 +14,7 @@
 
 # アプリ名：Maps.Backpackers
 
-# URL：*現在停止中。
+# URL：http://maps-backpackers.herokuapp.com/
 
 # 概要
 
