@@ -165,6 +165,6 @@
 
 cf.Issues：https://github.com/Kano-engineer/Maps-Backapackers/issues
 
-# 製作者
+# 製作者 / 学習記録
 
-・Twitter：https://twitter.com/kano_engineer
+・Twitter：https://twitter.com/kano_engineer/status/1384336560238125061?s=21&t=rfbmzWZXv66aGyZDVXbi7A
